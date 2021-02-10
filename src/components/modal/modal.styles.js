@@ -3,6 +3,8 @@ import { CardContainer, Button } from "../UI/index";
 import {
   colorDarkBlue,
   colorDarkBlue50,
+  colorRed,
+  colorGreen
 } from "../UI/variables";
 
 export const PageModal = styled.section`
@@ -31,7 +33,7 @@ export const CardModal = styled(CardContainer)`
   padding: 30px;
 
   border: ${(props) =>
-    props.right ? "3px solid #32CB82" : "3px solid #FF4F4F"};
+    props.right ? `3px solid ${colorGreen}` : `3px solid ${colorRed}`};
 `;
 
 export const Icon = styled.img`

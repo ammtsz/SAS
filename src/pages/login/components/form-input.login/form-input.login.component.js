@@ -1,10 +1,10 @@
 import React from "react";
 import { FormInputBox, Input } from "./form-input.login.styles"
 
-const FormInput = ({ label, handleChange, ...otheInputProps }) => (
+const FormInput = ({ label, handleChange, id, ...otheInputProps }) => (
   <FormInputBox className="form-input__box">
-    {label}
-    <Input className="form-input_" {...otheInputProps} onChange={handleChange} />
+    <label htmlFor={id} >{label}</label>
+    <Input id={id} className="form-input_" {...otheInputProps} onChange={handleChange} />
   </FormInputBox>
 );
 

@@ -11,6 +11,8 @@ import HeaderTriviaComponent from "./components/header.trivia/header.trivia.comp
 import CardHeaderTriviaComponent from "./components/card-header.trivia/card-header.trivia.component";
 import QATrivia from "./components/qa.trivia/qa.trivia.component";
 
+// import { withRouter } from "react-router-dom"
+
 const Trivia = () => {
   const onscroll = () => {
     window.onscroll = () => {
@@ -23,6 +25,11 @@ const Trivia = () => {
       }
     };
   };
+
+  const confirmAnswer = () => {
+
+  }
+
   useEffect(() => {
     onscroll();
     return () => onscroll()
@@ -38,7 +45,7 @@ const Trivia = () => {
           <QATrivia />
 
           <AnswerBtnContainer id="answer-btn-container">
-            <AnswerBtn>Responder</AnswerBtn>
+            <AnswerBtn onClick={() => confirmAnswer()}>Responder</AnswerBtn>
           </AnswerBtnContainer>
           
         </CardTrivia>

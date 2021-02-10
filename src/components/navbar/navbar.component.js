@@ -1,21 +1,30 @@
 import React from "react";
-import { NavbarStyled, Logo, UserBox, Name, Login } from "./navbar.styles";
 
-const Navbar = ({user}) => {
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCredentials } from "../../redux/user/user.selectors";
+import { actionSignOut } from "../../redux/user/user.actions";
 
+import { withRouter } from "react-router";
+
+import NavbarRender from "./navbar.render"
+const Navbar = (props) => {
+
+  const {history} = props
+  
+  const goToLogin = () => {
+    history.push("/login")
+  }
   return (
-    <NavbarStyled>
-      <Logo>Teste Dev Frontend</Logo>
-      <UserBox>
-        <Name>{user ? `Hello, ${user}` : ""}</Name>
-        {user ? (
-          <Login href="#">Exit</Login>
-        ) : (
-          <Login href="#">Login</Login>
-        )}
-      </UserBox>
-    </NavbarStyled>
+    <NavbarRender {...props} goToLogin={goToLogin}/>
   );
 };
 
-export default Navbar;
+const mapStateToProps = createStructuredSelector({
+  user: selectCredentials,
+});
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(actionSignOut()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Navbar));

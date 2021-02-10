@@ -27,10 +27,17 @@ export const Name = styled.p`
   font-size: 0.75rem;
   color: ${colorWhite};
 `;
-export const Login = styled.a`
+export const Login = styled.button`
   align-self: center;
 
-  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+  
   font-size: 0.75rem;
+  text-decoration: underline;
   color: ${colorWhite};
+  
+  cursor: pointer;
+
+  outline: none;
 `;

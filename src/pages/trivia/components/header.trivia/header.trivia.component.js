@@ -6,18 +6,22 @@ import {
   CloseIcon,
 } from "./header.trivia.styles";
 import CloseBtn from "../../../../assets/img/close-btn.svg";
+import { withRouter } from "react-router-dom"
 
-const HeaderTriviaComponent = () => {
+const HeaderTriviaComponent = ({ history }) => {
+  const leaveQuiz = () => {
+    history.push("/");
+  };
+
   return (
-        <HeaderTrivia>
-          <CategoryName>Historia</CategoryName>
-          <CloseButton>
-            <CloseIcon src={CloseBtn} alt="close" tabIndex="-1" />
-            Fechar
-          </CloseButton>
-        </HeaderTrivia>
-
+    <HeaderTrivia>
+      <CategoryName>Historia</CategoryName>
+      <CloseButton onClick={() => leaveQuiz()}>
+        <CloseIcon src={CloseBtn} alt="close" tabIndex="-1" />
+        Fechar
+      </CloseButton>
+    </HeaderTrivia>
   );
 };
 
-export default HeaderTriviaComponent;
+export default withRouter(HeaderTriviaComponent);

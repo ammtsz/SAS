@@ -1,23 +1,16 @@
 import styled from "styled-components"
-import { colorDarkBlue, colorDarkGrey } from "../../../../components/UI/variables";
+import { colorDarkBlue } from "../../../../components/UI/variables";
 
 export const FormInputBox = styled.div`
-    height: 2.5rem;
+    height: 2rem;
     border-radius: 8px;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
     margin-top: 1rem;
-    i{
-        color: ${colorDarkBlue};
-        padding: 0 10px 0 5px;
-    }
+    color: ${colorDarkBlue};
 
     & label{
-        color:${colorDarkBlue};
-        align-self: flex-end;
-        margin-right: 1rem;
-
+        align-self: center;
+        margin-right: 0.7rem;
     }
 `
 
@@ -26,12 +19,10 @@ export const Input = styled.input`
     border: none;
     border-bottom: 1px solid ${colorDarkBlue};
     background-color: transparent;
-    padding: 5px;
     &:focus{
         outline: none;
     }
     &::placeholder{
-        color:${colorDarkGrey};
         font-size: 1rem;
     }
 `

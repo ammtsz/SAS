@@ -11,7 +11,7 @@ import { CardContainer } from "../../../../components/UI";
 export const CardCategory = styled(CardContainer)`
   display: flex;
   flex-direction: column;
-  justify-content:  ${(props) => (props.done ? "space-between" : "flex-end")};
+  justify-content:  ${(props) => (props.completed ? "space-between" : "flex-end")};
   height: 100%;
 
   padding: 16px;
@@ -19,6 +19,10 @@ export const CardCategory = styled(CardContainer)`
   min-height: 104px;
   word-break: break-word;
   cursor: pointer;
+
+  &:disabled{
+    cursor: default;
+  }
 
   .card__results {
     color: ${colorDarkBlue70};
@@ -106,5 +110,5 @@ export const CategoryName = styled.h2`
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.5rem;
-  color: ${(props) => (props.done ? colorDarkBlue70 : colorDark)};
+  color: ${(props) => (props.completed ? colorDarkBlue70 : colorDark)};
 `;

@@ -26,8 +26,8 @@ export const QuestionLevel = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding-right: 14px;
+  padding-left: 14px;
 
-  width: 86px;
   height: 20px;
   border-radius: 14px;
   background-color: ${colorDarkBlue20};

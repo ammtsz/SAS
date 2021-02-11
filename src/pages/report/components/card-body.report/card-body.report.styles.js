@@ -12,7 +12,7 @@ import {
 const cardHeaderHeight = "237px";
 const cardHeaderHeightXS = "214px";
 
-export const CardBodyTrivia = styled.p`
+export const CardBodyTrivia = styled.div`
   margin-top: ${cardHeaderHeight};
   padding-top: 57px;
   padding-bottom: 27px;
@@ -26,7 +26,7 @@ export const CardBodyTrivia = styled.p`
   align-items: center;
 `;
 
-export const BodyTitle = styled.p`
+export const BodyTitle = styled.div`
   position: absolute;
   top: calc(${cardHeaderHeight} - 35px / 2);
   @media (max-width: ${mq_xs}) {
@@ -35,8 +35,7 @@ export const BodyTitle = styled.p`
 
   left: 50%;
   transform: translate(-50%);
-  width: 280px;
-  padding: 8px 6px;
+  padding: 8px 32px;
   box-sizing: border-box;
 
   background: ${colorWhite};
@@ -51,7 +50,7 @@ export const BodyTitle = styled.p`
   color: ${colorDarkBlue};
 `;
 
-export const ResultsSumary = styled.p`
+export const ResultsSumary = styled.div`
   display: flex;
   justify-content: space-between;
   width: 199px;
@@ -79,7 +78,7 @@ export const ResultsDetails = styled.div`
   display: flex;
 
   .level__details {
-    padding: 0 48px;
+    padding: 0 40px;
     margin: 40px 0 58px 0;
     border-right: 1px solid #b8bed5;
 
@@ -99,7 +98,7 @@ export const ResultsDetails = styled.div`
 
   @media (max-width: ${mq_sm}) {
     .level__details {
-      padding: 0 8vw;
+      padding: 0 7vw;
     }
   }
 

@@ -8,11 +8,10 @@ import {
   HeaderText,
 } from "./card-header.report.styles";
 
-const ReportHeaderFinished = () => {
-// const title = "Historia"
-const title = "Parabéns!"
-// const message = ""
-const message = "Você finalizou o teste"
+const ReportHeaderFinished = ({review, category}) => {
+
+const title = review ? category.name : "Congratulation!" 
+const message = review ? "" : "You finished the quiz"
 
   return (
     <CardHeaderTrivia>

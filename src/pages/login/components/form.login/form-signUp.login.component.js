@@ -11,6 +11,14 @@ import {
 import { selectAuthError } from "../../../../redux/user/user.selectors";
 import ErrorMessage from "../error-message.login/error-message.login.component";
 
+const mapStateToProps = createStructuredSelector({
+  error: selectAuthError,
+});
+const mapDispatchToProps = (dispatch) => ({
+  emailSignUp: (data) => dispatch(actionEmailSignUp(data)),
+  setError: (data) => dispatch(actionSetAuthError(data)),
+});
+
 const SignUp = ({ newAccount, emailSignUp, setError, error }) => {
   const [inputDatas, setInputDatas] = useState({
     displayName: "",
@@ -91,13 +99,5 @@ const SignUp = ({ newAccount, emailSignUp, setError, error }) => {
     </React.Fragment>
   );
 };
-
-const mapStateToProps = createStructuredSelector({
-  error: selectAuthError,
-});
-const mapDispatchToProps = (dispatch) => ({
-  emailSignUp: (data) => dispatch(actionEmailSignUp(data)),
-  setError: (data) => dispatch(actionSetAuthError(data)),
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

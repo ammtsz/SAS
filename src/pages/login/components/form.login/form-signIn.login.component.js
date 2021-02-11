@@ -16,6 +16,15 @@ import FormInput from "../form-input.login/form-input.login.component";
 import ButtonSwitch from "../../../../components/button-switch/button-switch.component";
 import ErrorMessage from "../error-message.login/error-message.login.component";
 
+const mapStateToProps = createStructuredSelector({
+  persistence: selectPersistence,
+  error: selectAuthError,
+});
+const mapDispatchToProps = (dispatch) => ({
+  setPersistence: (data) => dispatch(actionSetPersistence(data)),
+  emailSignIn: (data) => dispatch(actionEmailSignIn(data)),
+});
+
 const SignIn = ({
   newAccount,
   persistence,
@@ -34,7 +43,6 @@ const SignIn = ({
     const { name, value } = event.target;
     setInputDatas({ ...inputDatas, [name]: value });
   };
-
 
   return (
     <React.Fragment>
@@ -85,14 +93,5 @@ const SignIn = ({
     </React.Fragment>
   );
 };
-
-const mapStateToProps = createStructuredSelector({
-  persistence: selectPersistence,
-  error: selectAuthError,
-});
-const mapDispatchToProps = (dispatch) => ({
-  setPersistence: (data) => dispatch(actionSetPersistence(data)),
-  emailSignIn: (data) => dispatch(actionEmailSignIn(data)),
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

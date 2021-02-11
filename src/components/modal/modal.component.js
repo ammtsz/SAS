@@ -4,14 +4,23 @@ import RightIcon from "../../assets/img/right.svg";
 import WrongIcon from "../../assets/img/wrong.svg";
 import ArrowIcon from "../../assets/img/arrow-right.svg";
 
-const Modal = ({ right }) => {
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { actionGoToNextQuestion } from "../../redux/quiz/quiz.actions";
+
+const mapDispatchToProps = (dispatch) => ({
+  goToNextQuestion: (data) => dispatch(actionGoToNextQuestion(data)),
+});
+
+const Modal = ({ right, goToNextQuestion, history }) => {
   return (
-    <PageModal>
+    <PageModal id="modal">
       <CardModal right={right}>
         <Icon src={right ? RightIcon : WrongIcon} alt="..." />
-        <Message>Voce acertou!</Message>
-        <NextBtn>
-          Avancar 
+        <Message>{right ? "Correct answer!" : "Wrong answer"}</Message>
+        <NextBtn onClick={() => goToNextQuestion(history)}>
+          Avancar
           <img className="nextButton__icon" src={ArrowIcon} alt="..." />
         </NextBtn>
       </CardModal>
@@ -19,4 +28,4 @@ const Modal = ({ right }) => {
   );
 };
 
-export default Modal;
+export default connect(null, mapDispatchToProps)(withRouter(Modal));

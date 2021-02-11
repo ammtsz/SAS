@@ -4,15 +4,16 @@ import {
   colorDarkBlue,
   colorDarkBlue50,
   colorRed,
-  colorGreen
+  colorGreen,
 } from "../UI/variables";
 
 export const PageModal = styled.section`
-  position: absolute;
+  display: none;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
   background-color: ${colorDarkBlue50};
 

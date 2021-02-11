@@ -18,7 +18,7 @@ export const ContainerTrivia = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 26px;
-  max-width: 700px;
+  width: 700px;
   @media (max-width: ${mq_xs}) {
     margin: 0;
   }

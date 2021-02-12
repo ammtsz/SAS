@@ -13,7 +13,7 @@ const NavbarRender = ({user, signOut, goToLogin, history, goToCategories}) => {
         ) : (
           history.location.pathname === "/login" 
             ?
-            <Login onClick={() => goToCategories()}>Continuar sem Login</Login>
+            <Login onClick={() => goToCategories()}>continue without login</Login>
             :
             <Login onClick={() => goToLogin()}>Login</Login>
         )}

@@ -51,7 +51,7 @@ const SignUp = ({ newAccount, emailSignUp, setError, error }) => {
           type="text"
           name="displayName"
           id="signup-name"
-          placeholder="nome"
+          placeholder="name"
           label={<i className="fas fa-user"></i>}
           handleChange={(event) => handleChange(event)}
         />
@@ -67,7 +67,7 @@ const SignUp = ({ newAccount, emailSignUp, setError, error }) => {
           type="password"
           name="password"
           id="signup-password"
-          placeholder="senha"
+          placeholder="password"
           label={<i className="fas fa-lock"></i>}
           handleChange={(event) => handleChange(event)}
         />
@@ -75,7 +75,7 @@ const SignUp = ({ newAccount, emailSignUp, setError, error }) => {
           type="password"
           name="confirmPassword"
           id="signup-confirm-password"
-          placeholder="Confirme a senha"
+          placeholder="confirm password"
           label={<i className="fas fa-lock"></i>}
           handleChange={(event) => handleChange(event)}
         />
@@ -91,9 +91,9 @@ const SignUp = ({ newAccount, emailSignUp, setError, error }) => {
               : ""
           }
         />
-        <ButtonLogin>Cadastrar</ButtonLogin>
+        <ButtonLogin>Create account</ButtonLogin>
         <ButtonLogin onClick={() => newAccount()}>
-          Ja tenho uma conta
+          Log in
         </ButtonLogin>
       </Form>
     </React.Fragment>

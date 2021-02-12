@@ -6,8 +6,11 @@ import { CategoriesActionsTypes } from "./categories.types";
 import {
   actionSetAllCategories,
   actionSetCategoriesError,
+  actionSetReports,
 } from "./categories.actions";
 import { selectReports, selectAllCategories } from "./categories.selectors";
+import { selectUserDatas } from "../user/user.selectors";
+import { rsf } from "../../firebase/firebase.utils";
 
 // UTILS
 export function* setEnabledCategories(categoriesFetched) {
@@ -35,7 +38,6 @@ export function* setEnabledCategories(categoriesFetched) {
 export function* saveCategories(categoriesUpdated) {
   try {
     yield put(actionSetAllCategories(categoriesUpdated));
-    localStorage.setItem("categories", JSON.stringify(categoriesUpdated));
   } catch (error) {
     yield put(actionSetCategoriesError(error));
   }
@@ -45,10 +47,11 @@ export function* saveCategories(categoriesUpdated) {
 
 export function* getCategories() {
   try {
-    const stateCategories = yield select(selectAllCategories)
-    let categories
+    yield getReportsFromDB();
+    const stateCategories = yield select(selectAllCategories);
+    let categories;
 
-    if(stateCategories.length === 0){
+    if (stateCategories.length === 0) {
       categories = yield fetchCategories();
       categories = categories.map((category) => ({
         ...category,
@@ -61,7 +64,28 @@ export function* getCategories() {
     } else {
       categories = stateCategories;
     }
+
     yield setEnabledCategories(categories);
+  } catch (error) {
+    yield put(actionSetCategoriesError(error));
+  }
+}
+
+export function* getReportsFromDB() {
+  try {
+    const userDatas = yield select(selectUserDatas);
+    let reports
+    
+    if (userDatas) {
+      const userSnapshot = yield call(
+        rsf.firestore.getDocument,
+        `users/${userDatas.id}`
+      );
+      reports = userSnapshot.data().reports
+    } else {
+      reports = localStorage.getItem("trivia") ? JSON.parse(localStorage.getItem("trivia")) : {}
+    }
+    yield put(actionSetReports(reports));
   } catch (error) {
     yield put(actionSetCategoriesError(error));
   }
@@ -70,12 +94,16 @@ export function* getCategories() {
 // CALLS
 
 export function* onGetCategories() {
+  yield takeLatest(CategoriesActionsTypes.SAGA_GET_CATEGORIES, getCategories);
+}
+export function* onGetReportsFromDB() {
   yield takeLatest(
-    CategoriesActionsTypes.SAGA_GET_CATEGORIES,
-    getCategories
+    CategoriesActionsTypes.SAGA_GET_REPORTS_FROM_FIREBASE,
+    getReportsFromDB
   );
 }
 
 export function* categoriesSagas() {
   yield all([call(onGetCategories)]);
+  yield all([call(onGetReportsFromDB)]);
 }

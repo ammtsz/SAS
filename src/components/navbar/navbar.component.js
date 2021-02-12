@@ -2,7 +2,7 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCredentials } from "../../redux/user/user.selectors";
+import { selectUserDatas } from "../../redux/user/user.selectors";
 import { actionSignOut } from "../../redux/user/user.actions";
 
 import { withRouter } from "react-router";
@@ -10,7 +10,7 @@ import { withRouter } from "react-router";
 import NavbarRender from "./navbar.render";
 
 const mapStateToProps = createStructuredSelector({
-  user: selectCredentials,
+  user: selectUserDatas,
 });
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(actionSignOut()),

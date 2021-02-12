@@ -15,8 +15,17 @@ export const actionSetCategoriesError = (data) => ({
   payload: data,
 });
 
+export const actionResetCategories = () => ({
+  type: CategoriesActionsTypes.REDUCER_RESET_CATEGORIES,
+});
+
 
 export const actionGetCategories = (data) => ({
   type: CategoriesActionsTypes.SAGA_GET_CATEGORIES,
+  payload: data,
+});
+
+export const actionGetReportsFromFirebase = (data) => ({
+  type: CategoriesActionsTypes.SAGA_GET_REPORTS_FROM_FIREBASE,
   payload: data,
 });

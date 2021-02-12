@@ -65,7 +65,7 @@ const SignIn = ({
           type="password"
           name="password"
           id="signin-password"
-          placeholder="senha"
+          placeholder="password"
           label={<i className="fas fa-lock"></i>}
           handleChange={(event) => handleChange(event)}
         />
@@ -82,13 +82,13 @@ const SignIn = ({
         />
         <ButtonSwitch
           id="signin-persistence"
-          label="salvar usuario"
+          label="keep me logged in"
           checked={persistence}
           onChange={(event) => setPersistence(event.target.checked)}
         />
 
-        <ButtonLogin type="submit">Entrar</ButtonLogin>
-        <ButtonLogin onClick={() => newAccount()}>Criar Conta</ButtonLogin>
+        <ButtonLogin type="submit">Log in</ButtonLogin>
+        <ButtonLogin onClick={() => newAccount()}>Sign up</ButtonLogin>
       </Form>
     </React.Fragment>
   );

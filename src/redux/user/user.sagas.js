@@ -15,6 +15,9 @@ import {
   actionSignUpFailure,
 } from "./user.actions";
 import { selectPersistence } from "./user.selectors";
+import { actionResetQuiz } from "../quiz/quiz.actions";
+import { actionResetCategories } from "../categories/categories.actions";
+import { actionResetReport } from "../report/report.actions";
 
 // UTILS
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
@@ -26,7 +29,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
     );
     const userSnapshot = yield userRef.get();
     yield put(
-        actionSignInSuccess({
+      actionSignInSuccess({
         id: userSnapshot.id,
         ...userSnapshot.data(),
       })
@@ -55,7 +58,11 @@ export function* setUserAuth() {
 export function* signOut() {
   try {
     yield auth.signOut();
+    yield put(actionResetQuiz())
+    yield put(actionResetCategories())
+    yield put(actionResetReport())
     yield put(actionSignOutSuccess());
+    localStorage.removeItem("trivia")
   } catch (error) {
     yield put(actionSignOutFailure(error));
   }
@@ -72,7 +79,7 @@ export function* emailSignIn({ payload: { email, password } }) {
 export function* emailSignUp({ payload: { email, password, displayName } }) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    yield getSnapshotFromUserAuth(user, {displayName})
+    yield getSnapshotFromUserAuth(user, { displayName });
   } catch (error) {
     yield put(actionSignUpFailure(error));
   }

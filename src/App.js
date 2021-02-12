@@ -3,12 +3,12 @@ import AppRoutes from "./App.routes";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCredentials } from "./redux/user/user.selectors";
+import { selectUserDatas } from "./redux/user/user.selectors";
 import { actionSetUserAuth } from "./redux/user/user.actions";
 import { selectQuizActive } from "./redux/quiz/quiz.selectors";
 
 const mapStateToProps = createStructuredSelector({
-  user: selectCredentials,
+  user: selectUserDatas,
   quizActive: selectQuizActive,
 });
 

@@ -17,6 +17,9 @@ const categoriesReducer = (state = INITIAL_STATE, action) => {
     case CategoriesActionsTypes.REDUCER_SET_CATEGORIES_ERROR:
       return { ...state, error: action.payload };
 
+    case CategoriesActionsTypes.REDUCER_RESET_CATEGORIES:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

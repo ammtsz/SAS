@@ -1,7 +1,7 @@
 import { UserActionsTypes } from "./user.types";
 
 const INITIAL_STATE = {
-  credentials: null,
+  datas: null,
   persistence: false,
   error: null,
 };
@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UserActionsTypes.REDUCER_SET_USER:
-      return { ...state, credentials: action.payload };
+      return { ...state, datas: action.payload };
 
     case UserActionsTypes.REDUCER_SET_PERSISTENCE:
       return { ...state, persistence: action.payload };
@@ -21,10 +21,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return { ...state, error: action.payload };
 
     case UserActionsTypes.REDUCER_SIGN_IN_SUCCESS:
-      return { ...state, credentials: action.payload, error: null };
+      return { ...state, datas: action.payload, error: null };
 
     case UserActionsTypes.REDUCER_SIGN_OUT_SUCCESS:
-      return { ...state, credentials: null, error: null };
+      return { ...state, datas: null, error: null };
 
     default:
       return state;

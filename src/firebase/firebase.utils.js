@@ -23,7 +23,6 @@ export const storage = firebase.storage();
 //REDUX SAGA FIREBASE
 export const rsf = new ReduxSagaFirebase(firebaseApp);
 
-// verifies user's profile and create a new user on firebase if he/she is not registered yet
 export const createUserProfileDocumentFirebase = async (userAuth, additionalData) => {
   if (!userAuth) return;
 

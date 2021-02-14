@@ -12,7 +12,8 @@ import {
   actionSetQuizToken,
   actionSetQuizActive,
   actionSetQuizCategory,
-  actionSetQuizQuestionDatas,
+  actionSetQuizQuestionsDatas,
+  actionSetQuizLoading,
 } from "./quiz.actions";
 import { QuizActionsTypes } from "./quiz.types";
 import {
@@ -21,14 +22,39 @@ import {
   selectQuizPromotion,
   selectQuizQuestionNumber,
   selectQuizCategory,
-  selectQuizQuestionDatas,
+  selectQuizQuestionsDatas,
   selectQuizToken,
 } from "./quiz.selectors";
 import { selectReports } from "../categories/categories.selectors";
-import { actionSetReports } from "../categories/categories.actions";
+import { actionSetCategoriesReport } from "../categories/categories.actions";
 import { selectUserDatas } from "../user/user.selectors";
 
-export function* saveQuestionDatas(fetchedQuestion) {
+// UTILS
+
+export function* fetchQuestionFn(difficulty, category) {
+  try {
+    const token = yield select(selectQuizToken);
+    const fetchedQuestion = yield fetchQuestion(difficulty, category, token);
+    yield updateToken(token, fetchedQuestion.token);
+    console.log(fetchedQuestion)
+    return fetchedQuestion.results;
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+    return {};
+  }
+}
+export function* updateToken(stateToken, fetchedToken) {
+  try {
+    if (stateToken !== fetchedToken) {
+      console.log("newtoken");
+      //test => tokens
+      yield put(actionSetQuizToken(fetchedToken));
+    }
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+  }
+}
+export function* saveQuestionsDatas(fetchedQuestion) {
   try {
     yield put(actionSetQuizCurrentQuestion(fetchedQuestion));
   } catch (error) {
@@ -54,32 +80,7 @@ export function* getCurrentOptions() {
     yield put(actionSetQuizError(error));
   }
 }
-export function* fetchNewQuestion({ payload: { difficulty, category } }) {
-  try {
-    const token = yield select(selectQuizToken);
-    const fetchedQuestion = yield fetchQuestion(difficulty, category, token);
-    if (!token) {
-      yield put(actionSetQuizToken(fetchedQuestion.token));
-    }
-    yield saveQuestionDatas(fetchedQuestion.results);
-    yield getCurrentOptions(fetchedQuestion.results);
-  } catch (error) {
-    yield put(actionSetQuizError(error));
-  }
-}
-export function* checkAnswer(selectedOption) {
-  try {
-    if (selectedOption.payload === "0") {
-      yield rightAnswerActions();
-    } else {
-      yield wrongAnswerActions();
-    }
 
-    yield updateQuizReport();
-  } catch (error) {
-    yield put(actionSetQuizError(error));
-  }
-}
 export function* rightAnswerActions() {
   try {
     const quizPromotion = yield select(selectQuizPromotion);
@@ -142,111 +143,6 @@ export function* decreaseDifficulty() {
     yield put(actionSetQuizError(error));
   }
 }
-export function* goToNextQuestion(history) {
-  try {
-    const quizQuestionNumber = yield select(selectQuizQuestionNumber);
-    if (quizQuestionNumber < 10) {
-      const difficulty = yield select(selectQuizDifficulty);
-      const category = yield select(selectQuizCategory);
-      yield put(actionSetQuizQuestionNumber(quizQuestionNumber + 1));
-      yield fetchNewQuestion({
-        payload: { difficulty, category: category.id },
-      });
-    } else {
-      history.payload.push("/report");
-    }
-    yield updateResumeReport();
-    document.querySelector("#modal").style.display = "none";
-  } catch (error) {
-    yield put(actionSetQuizError(error));
-  }
-}
-export function* updateQuizReport() {
-  try {
-    const quizQuestionNumber = yield select(selectQuizQuestionNumber);
-    const difficulty = yield select(selectQuizDifficulty);
-    const category = yield select(selectQuizCategory);
-    const reports = yield select(selectReports);
-    const question_datas = yield select(selectQuizQuestionDatas);
-    const token = yield select(selectQuizToken);
-    const promotion = yield select(selectQuizPromotion);
-    const results = yield getReportDatas();
-
-    const resume =
-      quizQuestionNumber < 10
-        ? {
-            token,
-            promotion,
-            difficulty,
-          }
-        : null;
-
-    const categoryReport = {
-      category_name: category.name,
-      question_datas,
-      results,
-      resume,
-    };
-    const newReport = { ...reports, [category.id]: categoryReport };
-    yield put(actionSetReports(newReport));
-    yield updateReportOnDB(newReport);
-  } catch (error) {
-    yield put(actionSetQuizError(error));
-  }
-}
-export function* updateResumeReport() {
-  try {
-    const quizQuestionNumber = yield select(selectQuizQuestionNumber);
-    const difficulty = yield select(selectQuizDifficulty);
-    const category = yield select(selectQuizCategory);
-    const reports = yield select(selectReports);
-    const token = yield select(selectQuizToken);
-    const promotion = yield select(selectQuizPromotion);
-    const lastQuestion = yield select(selectQuizCurrentQuestion);
-
-    const resume =
-      quizQuestionNumber < 10
-        ? {
-            token,
-            promotion,
-            difficulty,
-            lastQuestion,
-          }
-        : null;
-
-    const newReport = {
-      ...reports,
-      [category.id]: { ...reports[category.id], resume },
-    };
-    yield put(actionSetReports(newReport));
-    yield updateReportOnDB(newReport);
-  } catch (error) {
-    yield put(actionSetQuizError(error));
-  }
-}
-
-export function* updateReportOnDB(report) {
-  try {
-    const userDatasState = yield select(selectUserDatas);
-    if (userDatasState) {
-      const userSnapshot = yield call(
-        rsf.firestore.getDocument,
-        `users/${userDatasState.id}`
-      );
-      const userDatas = userSnapshot.data();
-
-      yield call(rsf.firestore.updateDocument, `users/${userDatasState.id}`, {
-        ...userDatas,
-        reports: { ...userDatas.reports, ...report },
-      });
-    } else {
-      console.log(report);
-      localStorage.setItem("trivia", JSON.stringify(report));
-    }
-  } catch (error) {
-    yield put(actionSetQuizError(error));
-  }
-}
 
 export function* getReportDatas() {
   try {
@@ -256,9 +152,9 @@ export function* getReportDatas() {
     let rights = 0;
     let wrongs = 0;
 
-    const quizQuestionDatas = yield select(selectQuizQuestionDatas);
+    const quizQuestionsDatas = yield select(selectQuizQuestionsDatas);
 
-    quizQuestionDatas.forEach((question) => {
+    quizQuestionsDatas.forEach((question) => {
       if (question.difficulty === "easy") {
         if (question.selected_answer === "0") {
           easy = { ...easy, rights: easy.rights + 1 };
@@ -300,6 +196,128 @@ export function* getReportDatas() {
     return {};
   }
 }
+export function* updateReportOnDB(report) {
+  try {
+    const userDatasState = yield select(selectUserDatas);
+    if (userDatasState) {
+      const userSnapshot = yield call(
+        rsf.firestore.getDocument,
+        `users/${userDatasState.id}`
+      );
+      const userDatas = userSnapshot.data();
+
+      yield call(rsf.firestore.updateDocument, `users/${userDatasState.id}`, {
+        ...userDatas,
+        reports: { ...userDatas.reports, ...report },
+      });
+    } else {
+      localStorage.setItem("trivia", JSON.stringify(report));
+    }
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+  }
+}
+
+// CALLED
+export function* getNewQuestion({ payload: { difficulty, category } }) {
+  try {
+    yield put(actionSetQuizLoading(true));
+    const fetchedQuestion = yield fetchQuestionFn(difficulty, category);
+    yield saveQuestionsDatas(fetchedQuestion);
+    yield getCurrentOptions(fetchedQuestion);
+    yield put(actionSetQuizLoading(false));
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+  }
+}
+export function* checkAnswer(selectedOption) {
+  try {
+    document.querySelector("#modal-button").disabled = false;
+    if (selectedOption.payload === "0") {
+      yield rightAnswerActions();
+    } else {
+      yield wrongAnswerActions();
+    }
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+  }
+}
+export function* updateQuizReport() {
+  try {
+    const quizQuestionNumber = yield select(selectQuizQuestionNumber);
+    const difficulty = yield select(selectQuizDifficulty);
+    const category = yield select(selectQuizCategory);
+    const reports = yield select(selectReports);
+    const questions_datas = yield select(selectQuizQuestionsDatas);
+    const token = yield select(selectQuizToken);
+    const promotion = yield select(selectQuizPromotion);
+    const results = yield getReportDatas();
+
+    const resume =
+      quizQuestionNumber < 10
+        ? {
+            token,
+            promotion,
+            difficulty,
+          }
+        : null;
+
+    const categoryReport = {
+      category_name: category.name,
+      questions_datas,
+      results,
+      resume,
+    };
+    const newReport = { ...reports, [category.id]: categoryReport };
+    console.log(newReport);
+    yield put(actionSetCategoriesReport(newReport));
+    yield updateReportOnDB(newReport);
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+  }
+}
+export function* updateQuizResumeReport() {
+  try {
+    const quizQuestionNumber = yield select(selectQuizQuestionNumber);
+    const difficulty = yield select(selectQuizDifficulty);
+    const category = yield select(selectQuizCategory);
+    const reports = yield select(selectReports);
+    const token = yield select(selectQuizToken);
+    const promotion = yield select(selectQuizPromotion);
+    const lastQuestion = yield select(selectQuizCurrentQuestion);
+
+    const resume =
+      quizQuestionNumber < 10
+        ? {
+            token,
+            promotion,
+            difficulty,
+            lastQuestion,
+          }
+        : null;
+
+    const newReport = {
+      ...reports,
+      [category.id]: { ...reports[category.id], resume },
+    };
+    yield put(actionSetCategoriesReport(newReport));
+    yield updateReportOnDB(newReport);
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+  }
+}
+export function* goToNextQuestion() {
+  try {
+    const quizQuestionNumber = yield select(selectQuizQuestionNumber);
+    const difficulty = yield select(selectQuizDifficulty);
+    const category = yield select(selectQuizCategory);
+    yield getNewQuestion({ payload: { difficulty, category: category.id } });
+    yield updateQuizResumeReport();
+    yield put(actionSetQuizQuestionNumber(quizQuestionNumber + 1));
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+  }
+}
 export function* finishQuiz(history) {
   try {
     yield put(actionResetQuiz());
@@ -317,15 +335,17 @@ export function* resumeQuiz(category) {
     yield put(actionSetQuizCategory(category.payload));
     yield put(actionSetQuizDifficulty(quizDatas.resume.difficulty));
     yield put(actionSetQuizPromotion(quizDatas.resume.promotion));
-    yield put(actionSetQuizQuestionNumber(quizDatas.question_datas.length + 1));
+    yield put(
+      actionSetQuizQuestionNumber(quizDatas.questions_datas.length + 1)
+    );
     yield put(actionSetQuizToken(quizDatas.resume.token));
-    yield put(actionSetQuizQuestionDatas(quizDatas.question_datas));
+    yield put(actionSetQuizQuestionsDatas(quizDatas.questions_datas));
 
     if (quizDatas.resume.lastQuestion) {
       yield put(actionSetQuizCurrentQuestion(quizDatas.resume.lastQuestion));
       yield getCurrentOptions();
     } else {
-      yield fetchNewQuestion({
+      yield getNewQuestion({
         payload: {
           difficulty: quizDatas.resume.difficulty,
           category: category.payload.id,
@@ -338,29 +358,19 @@ export function* resumeQuiz(category) {
 }
 
 // CALLS
-
-export function* onFetchNewQuestion() {
-  yield takeLatest(QuizActionsTypes.SAGA_FETCH_NEW_QUESTION, fetchNewQuestion);
+export function* onGetNewQuestion() {
+  yield takeLatest(QuizActionsTypes.SAGA_GET_NEW_QUESTION, getNewQuestion);
 }
 export function* onCheckAnswer() {
   yield takeLatest(QuizActionsTypes.SAGA_CHECK_ANSWER, checkAnswer);
 }
-export function* onRightAnswerActions() {
-  yield takeLatest(
-    QuizActionsTypes.SAGA_RIGHT_ANSWERS_ACTIONS,
-    rightAnswerActions
-  );
+export function* onUpdateQuizReport() {
+  yield takeLatest(QuizActionsTypes.SAGA_UPDATE_QUIZ_REPORT, updateQuizReport);
 }
-export function* onWrongAnswerActions() {
+export function* onUpdateQuizResumeReport() {
   yield takeLatest(
-    QuizActionsTypes.SAGA_WRONG_ANSWERS_ACTIONS,
-    wrongAnswerActions
-  );
-}
-export function* onGetCurrentOptions() {
-  yield takeLatest(
-    QuizActionsTypes.SAGA_GET_CURRENT_OPTIONS,
-    getCurrentOptions
+    QuizActionsTypes.SAGA_UPDATE_QUIZ_RESUME_REPORT,
+    updateQuizResumeReport
   );
 }
 export function* onGoToNextQuestion() {
@@ -375,10 +385,10 @@ export function* onResumeQuiz() {
 
 export function* quizSagas() {
   yield all([
-    call(onFetchNewQuestion),
+    call(onGetNewQuestion),
     call(onCheckAnswer),
-    call(onWrongAnswerActions),
-    call(onGetCurrentOptions),
+    call(onUpdateQuizReport),
+    call(onUpdateQuizResumeReport),
     call(onGoToNextQuestion),
     call(onFinishQuiz),
     call(onResumeQuiz),

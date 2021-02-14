@@ -14,3 +14,7 @@ export const selectPersistence = createSelector(
   [selectUser],
   (user) => user.persistence
 );
+export const selectUserTheme = createSelector(
+  [selectUser],
+  (user) => user.theme
+);

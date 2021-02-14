@@ -17,7 +17,7 @@ const ButtomSwitch = ({ label, id, ...otherSwitchProps }) => (
       <Slider className="slider round"></Slider>
     </ButtonSwitchContainer>
 
-    <label htmlFor={`button-switch--${id}`}>{label}</label>
+    <label htmlFor={`button-switch--${id}`} className="button-switch--label">{label}</label>
   </ButtonSwitch>
 );
 

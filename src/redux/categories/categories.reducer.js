@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 
 const categoriesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CategoriesActionsTypes.REDUCER_SET_REPORTS:
+    case CategoriesActionsTypes.REDUCER_SET_CATEGORIES_REPORT:
       return { ...state, reports: action.payload };
 
     case CategoriesActionsTypes.REDUCER_SET_ALL_CATEGORIES:

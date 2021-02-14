@@ -4,6 +4,7 @@ import {
   auth,
   createUserProfileDocumentFirebase,
   getCurrentUserFirebase,
+  rsf,
 } from "../../firebase/firebase.utils";
 import firebase from "firebase/app";
 import {
@@ -13,11 +14,10 @@ import {
   actionSignOutSuccess,
   actionSignOutFailure,
   actionSignUpFailure,
+  actionSetUserError,
+  actionSetUserTheme,
 } from "./user.actions";
-import { selectPersistence } from "./user.selectors";
-import { actionResetQuiz } from "../quiz/quiz.actions";
-import { actionResetCategories } from "../categories/categories.actions";
-import { actionResetReport } from "../report/report.actions";
+import { selectPersistence, selectUserDatas } from "./user.selectors";
 
 // UTILS
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
@@ -34,6 +34,8 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
         ...userSnapshot.data(),
       })
     );
+    yield getUserTheme() // <= realocar
+
   } catch (error) {
     yield put(actionSignInFailure(error));
   }
@@ -45,7 +47,7 @@ export function* signInPersistence() {
     : auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
 }
 
-// ACTIONS
+// CALLED
 export function* setUserAuth() {
   try {
     const userAuth = yield getCurrentUserFirebase();
@@ -58,11 +60,7 @@ export function* setUserAuth() {
 export function* signOut() {
   try {
     yield auth.signOut();
-    yield put(actionResetQuiz())
-    yield put(actionResetCategories())
-    yield put(actionResetReport())
     yield put(actionSignOutSuccess());
-    localStorage.removeItem("trivia")
   } catch (error) {
     yield put(actionSignOutFailure(error));
   }
@@ -84,6 +82,50 @@ export function* emailSignUp({ payload: { email, password, displayName } }) {
     yield put(actionSignUpFailure(error));
   }
 }
+export function* updateThemeOnDatabase(theme) {
+  try {
+    const userDatasState = yield select(selectUserDatas);
+    if (userDatasState) {
+      const userSnapshot = yield call(
+        rsf.firestore.getDocument,
+        `users/${userDatasState.id}`
+      );
+      const userDatas = userSnapshot.data();
+
+      yield call(rsf.firestore.updateDocument, `users/${userDatasState.id}`, {
+        ...userDatas,
+        theme: theme.payload,
+      });
+    } else {
+      localStorage.setItem("triviaTheme", JSON.stringify(theme.payload));
+    }
+  } catch (error) {
+    yield put(actionSetUserError(error));
+  }
+}
+export function* getUserTheme() {
+  try {
+    const userDatasState = yield select(selectUserDatas);
+    
+    let theme = "light";
+    if (userDatasState) {
+      
+      const userSnapshot = yield call(
+        rsf.firestore.getDocument,
+        `users/${userDatasState.id}`
+      );
+      const userDatas = userSnapshot.data();
+
+      if (userDatas.theme) theme = userDatas.theme;
+    } else {
+      const LS = JSON.parse(localStorage.getItem("triviaTheme"));
+      if (LS) theme = LS;
+    }
+    yield put(actionSetUserTheme(theme));
+  } catch (error) {
+    yield put(actionSetUserError(error));
+  }
+}
 
 // CALLS
 export function* onSetUserAuth() {
@@ -98,6 +140,15 @@ export function* onEmailSignIn() {
 export function* onEmailSignUp() {
   yield takeLatest(UserActionsTypes.SAGA_EMAIL_SIGN_UP, emailSignUp);
 }
+export function* onUpdateThemeOnDatabase() {
+  yield takeLatest(
+    UserActionsTypes.SAGA_UPDATE_THEME_ON_DATABASE,
+    updateThemeOnDatabase
+  );
+}
+export function* onGetUserTheme() {
+  yield takeLatest(UserActionsTypes.SAGA_GET_USER_THEME, getUserTheme);
+}
 
 export function* userSagas() {
   yield all([
@@ -105,5 +156,7 @@ export function* userSagas() {
     call(onSignOut),
     call(onEmailSignIn),
     call(onEmailSignUp),
+    call(onUpdateThemeOnDatabase),
+    call(onGetUserTheme),
   ]);
 }

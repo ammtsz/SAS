@@ -17,10 +17,11 @@ const fetchWithToken = (difficulty, category, token) => {
       return res.json();
     })
     .then((json) => {
-      if (json.response_code === 3) {
+      if (json.response_code === 3 || json.response_code === 4) {
         console.log("response_code=3, getToken");
         return getToken(difficulty, category);
       } else {
+        console.log(json)
         
         return {results: json.results[0], token};
       }

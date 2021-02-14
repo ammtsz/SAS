@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
-import Card from "./components/card.categories/card.categories.components";
+import Card from "./card.categories/card.categories.components";
 import {
   Title,
   PageCategories,
   CardsContainer,
 } from "./categories-page.styles";
 
-import { withRouter } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectAllCategories } from "../../redux/categories/categories.selectors";
 import { actionGetCategories } from "../../redux/categories/categories.actions";
 import { selectUserDatas } from "../../redux/user/user.selectors";
+import { actionResetReport } from "../../redux/report/report.actions";
+import { actionResetQuiz } from "../../redux/quiz/quiz.actions";
 
 const mapStateToProps = createStructuredSelector({
   categories: selectAllCategories,
@@ -21,9 +21,11 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   getCategories: (data) => dispatch(actionGetCategories(data)),
+  resetReport: () => dispatch(actionResetReport()),
+  resetQuiz: () => dispatch(actionResetQuiz()),
 });
 
-const Categories = ({ getCategories, categories, userDatas }) => {
+const Categories = ({ getCategories, categories, userDatas, resetReport, resetQuiz }) => {
   
   let userId;
   if (userDatas) {
@@ -32,17 +34,22 @@ const Categories = ({ getCategories, categories, userDatas }) => {
 
   useEffect(() => {
     getCategories();
-    console.log("CATEGORIES");
-  }, [getCategories, userId]);
+    resetReport();
+    resetQuiz();
+  }, [getCategories, userId, resetReport, resetQuiz]);
 
+  
   return (
     <PageCategories>
-      <Title>
+      <Title >
         Categories <small>({categories.length})</small>
       </Title>
-      <CardsContainer>
+      <CardsContainer >
         {categories.map((category) => (
-          <Card key={category.id} category={category} />
+          <Card
+            key={category.id}
+            category={category}
+            data-testid="categories-cards"/>
         ))}
       </CardsContainer>
     </PageCategories>
@@ -52,4 +59,4 @@ const Categories = ({ getCategories, categories, userDatas }) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Categories));
+)(Categories);

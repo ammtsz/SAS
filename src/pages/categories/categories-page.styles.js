@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import {
-  colorDark,
   navbarHeight,
   mq_lg,
   mq_md,
   mq_sm,
   mq_xs,
-} from "../../components/UI/variables";
+} from "../../assets/css/variables";
 
 export const PageCategories = styled.section`
   display: flex;
@@ -32,14 +31,6 @@ export const PageCategories = styled.section`
   }
 `;
 
-export const CardsContainer = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  
-  width: 100%;
-`;
-
 export const Title = styled.h1`
   margin-top: 48px;
   margin-bottom: 32px;
@@ -48,7 +39,7 @@ export const Title = styled.h1`
   font-weight: 500;
   font-size: 2.75rem;
   line-height: 3.5rem;
-  color: ${colorDark};
+  color: ${({theme}) => theme.text2};
 
   @media (max-width: ${mq_md}) {
     margin-top: 40px;
@@ -58,3 +49,13 @@ export const Title = styled.h1`
     margin-bottom: 16px;
   }
 `;
+
+export const CardsContainer = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+
+  width: 100%;
+`;
+

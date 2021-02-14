@@ -1,5 +1,6 @@
 import { UserActionsTypes } from "./user.types";
 
+// REDUCERS
 export const actionSetUser = (user) => ({
   type: UserActionsTypes.REDUCER_SET_USER,
   payload: user,
@@ -10,6 +11,10 @@ export const actionSetAuthError = (data) => ({
 });
 export const actionSetPersistence = (data) => ({
   type: UserActionsTypes.REDUCER_SET_PERSISTENCE,
+  payload: data,
+});
+export const actionSetUserTheme = (data) => ({
+  type: UserActionsTypes.REDUCER_SET_THEME,
   payload: data,
 });
 
@@ -33,7 +38,14 @@ export const actionSignUpFailure = (error) => ({
   type: UserActionsTypes.REDUCER_SIGN_UP_FAILURE,
   payload: error,
 });
+export const actionResetUserTheme = () => ({
+  type: UserActionsTypes.REDUCER_RESET_THEME,
+});
+export const actionSetUserError = () => ({
+  type: UserActionsTypes.REDUCER_SET_USER_ERROR,
+});
 
+// SAGAS
 export const actionSetUserAuth = (user) => ({
   type: UserActionsTypes.SAGA_SET_USER_AUTH,
   payload: user,
@@ -48,4 +60,11 @@ export const actionEmailSignIn = (datas) => ({
 export const actionEmailSignUp = (datas) => ({
   type: UserActionsTypes.SAGA_EMAIL_SIGN_UP,
   payload: datas,
+});
+export const actionUpdateThemeOnDatabase = (datas) => ({
+  type: UserActionsTypes.SAGA_UPDATE_THEME_ON_DATABASE,
+  payload: datas,
+});
+export const actionGetUserTheme = () => ({
+  type: UserActionsTypes.SAGA_GET_USER_THEME,
 });

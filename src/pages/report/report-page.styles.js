@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { CardContainer } from "../../components/UI";
+import { CardContainer } from "../../assets/css";
 import {
   navbarHeight,
   mq_xs,
-} from "../../components/UI/variables";
+} from "../../assets/css/variables";
 
 
 export const PageReport = styled.section`

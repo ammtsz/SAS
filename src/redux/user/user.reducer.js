@@ -3,6 +3,7 @@ import { UserActionsTypes } from "./user.types";
 const INITIAL_STATE = {
   datas: null,
   persistence: false,
+  theme: "light",
   error: null,
 };
 
@@ -18,6 +19,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionsTypes.REDUCER_SIGN_IN_FAILURE:
     case UserActionsTypes.REDUCER_SIGN_OUT_FAILURE:
     case UserActionsTypes.REDUCER_SIGN_UP_FAILURE:
+    case UserActionsTypes.REDUCER_SET_USER_ERROR:
       return { ...state, error: action.payload };
 
     case UserActionsTypes.REDUCER_SIGN_IN_SUCCESS:
@@ -25,6 +27,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
 
     case UserActionsTypes.REDUCER_SIGN_OUT_SUCCESS:
       return { ...state, datas: null, error: null };
+
+    case UserActionsTypes.REDUCER_SET_THEME:
+      return { ...state, theme: action.payload };
+
+    case UserActionsTypes.REDUCER_RESET_THEME:
+      return { ...state, theme: "light" };
 
     default:
       return state;

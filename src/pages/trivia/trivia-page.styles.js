@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import { CardContainer, Button } from "../../components/UI";
+import { CardContainer, Button } from "../../assets/css";
 import {
   navbarHeight,
   colorWhite,
   colorGrey,
+  colorBlack25,
   fontAvenir,
   mq_md,
   mq_xs,
-} from "../../components/UI/variables";
+} from "../../assets/css/variables";
 
 export const PageTrivia = styled.section`
   display: flex;
@@ -43,11 +44,10 @@ export const AnswerBtnContainer = styled.div`
     display: flex;
     position: sticky;
     bottom: 0;
+    background: ${({ theme }) => theme.cards};
 
-    &[data-sticky="true"] {
-      background: ${colorWhite};
-      box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.25);
-    }
+    box-shadow: ${({ sticky }) =>
+      sticky ? `0px -1px 4px ${colorBlack25}` : "none"};
   }
 `;
 
@@ -65,5 +65,11 @@ export const AnswerBtn = styled(Button)`
   }
   @media (max-width: ${mq_xs}) {
     margin: 16px 24px;
+  }
+
+  &:disabled {
+    &:hover {
+      background: ${colorGrey};
+    }
   }
 `;

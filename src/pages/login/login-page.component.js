@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PageLogin, CardForm } from "./login-page.styles";
-import SignIn from "./components/form.login/form-signIn.login.component";
-import SignUp from "./components/form.login/form-signUp.login.component";
+import SignIn from "./form.login/form-signIn.login.component";
+import SignUp from "./form.login/form-signUp.login.component";
 
 import { connect } from "react-redux";
 import { actionSetAuthError } from "../../redux/user/user.actions";

@@ -6,14 +6,14 @@ import { CategoriesActionsTypes } from "./categories.types";
 import {
   actionSetAllCategories,
   actionSetCategoriesError,
-  actionSetReports,
+  actionSetCategoriesReport,
 } from "./categories.actions";
 import { selectReports, selectAllCategories } from "./categories.selectors";
 import { selectUserDatas } from "../user/user.selectors";
 import { rsf } from "../../firebase/firebase.utils";
 
 // UTILS
-export function* setEnabledCategories(categoriesFetched) {
+export function* setCategoriesProgressStatus(categoriesFetched) {
   try {
     const reports = yield select(selectReports);
     const completedCategoriesId = reports ? Object.keys(reports) : []; //retorna [categoryId, categoryId]
@@ -22,7 +22,7 @@ export function* setEnabledCategories(categoriesFetched) {
     categoriesFetched.forEach((category) => {
       let completed = 0;
       if (completedCategoriesId.indexOf(category.id.toString()) > -1) {
-        completed = reports[category.id].question_datas.length;
+        completed = reports[category.id].questions_datas.length;
       }
       categoryWithStatus.push({
         ...category,
@@ -34,7 +34,6 @@ export function* setEnabledCategories(categoriesFetched) {
     yield put(actionSetCategoriesError(error));
   }
 }
-
 export function* saveCategories(categoriesUpdated) {
   try {
     yield put(actionSetAllCategories(categoriesUpdated));
@@ -42,12 +41,30 @@ export function* saveCategories(categoriesUpdated) {
     yield put(actionSetCategoriesError(error));
   }
 }
+export function* getReportsFromDatabase() {
+  try {
+    const userDatas = yield select(selectUserDatas);
+    let reports
+    
+    if (userDatas) {
+      const userSnapshot = yield call(
+        rsf.firestore.getDocument,
+        `users/${userDatas.id}`
+      );
+      reports = userSnapshot.data().reports
+    } else {
+      reports = localStorage.getItem("trivia") ? JSON.parse(localStorage.getItem("trivia")) : {}
+    }
+    yield put(actionSetCategoriesReport(reports));
+  } catch (error) {
+    yield put(actionSetCategoriesError(error));
+  }
+}
 
-// ---------------------------------------------------
-
+// CALLED
 export function* getCategories() {
   try {
-    yield getReportsFromDB();
+    yield getReportsFromDatabase();
     const stateCategories = yield select(selectAllCategories);
     let categories;
 
@@ -65,45 +82,19 @@ export function* getCategories() {
       categories = stateCategories;
     }
 
-    yield setEnabledCategories(categories);
+    yield setCategoriesProgressStatus(categories);
   } catch (error) {
     yield put(actionSetCategoriesError(error));
   }
 }
 
-export function* getReportsFromDB() {
-  try {
-    const userDatas = yield select(selectUserDatas);
-    let reports
-    
-    if (userDatas) {
-      const userSnapshot = yield call(
-        rsf.firestore.getDocument,
-        `users/${userDatas.id}`
-      );
-      reports = userSnapshot.data().reports
-    } else {
-      reports = localStorage.getItem("trivia") ? JSON.parse(localStorage.getItem("trivia")) : {}
-    }
-    yield put(actionSetReports(reports));
-  } catch (error) {
-    yield put(actionSetCategoriesError(error));
-  }
-}
 
 // CALLS
 
 export function* onGetCategories() {
   yield takeLatest(CategoriesActionsTypes.SAGA_GET_CATEGORIES, getCategories);
 }
-export function* onGetReportsFromDB() {
-  yield takeLatest(
-    CategoriesActionsTypes.SAGA_GET_REPORTS_FROM_FIREBASE,
-    getReportsFromDB
-  );
-}
 
 export function* categoriesSagas() {
   yield all([call(onGetCategories)]);
-  yield all([call(onGetReportsFromDB)]);
 }

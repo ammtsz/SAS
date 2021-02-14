@@ -1,7 +1,7 @@
 import React from "react";
 import { PageReport, CardReport } from "./report-page.styles";
-import ReportHeader from "./components/card-header.report/card-header.report.component";
-import ReportBody from "./components/card-body.report/card-body.report.component";
+import ReportHeader from "./card-header.report/card-header.report.component";
+import ReportBody from "./card-body.report/card-body.report.component";
 
 import { connect } from "react-redux";
 import { actionFinishQuiz } from "../../redux/quiz/quiz.actions";
@@ -14,6 +14,7 @@ import {
   selectReportReview,
   selectReportCategory,
 } from "../../redux/report/report.selectors";
+import { actionResetReport } from "../../redux/report/report.actions";
 
 const mapStateToProps = createStructuredSelector({
   reports: selectReports,
@@ -24,15 +25,13 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   finishQuiz: (data) => dispatch(actionFinishQuiz(data)),
+  resetReport: (data) => dispatch(actionResetReport(data)),
 });
 
 const Report = (props) => {
   const { reportReview, reportCategory, quizCategory } = props;
 
   let category = reportReview ? reportCategory : quizCategory;
-
-  // header precisa informar se eh review w a categoria se for review
-  // body prrecisa apenas da categoria
 
   return (
     <PageReport>

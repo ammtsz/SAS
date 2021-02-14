@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { CardContainer, Button } from "../UI/index";
+import { CardContainer, Button } from "../../assets/css/index";
 import {
-  colorDarkBlue,
-  colorDarkBlue50,
   colorRed,
   colorGreen,
-} from "../UI/variables";
+} from "../../assets/css/variables";
 
 export const PageModal = styled.section`
   display: none;
@@ -15,7 +13,7 @@ export const PageModal = styled.section`
   width: 100vw;
   min-height: 100vh;
 
-  background-color: ${colorDarkBlue50};
+  background-color: ${({theme}) => theme.bg50};
 
   z-index: 10;
 `;
@@ -47,7 +45,7 @@ export const Message = styled.p`
   font-size: 1.5rem;
   line-height: 2rem;
 
-  color: ${colorDarkBlue};
+  color: ${({theme})  => theme.text3};
 `;
 
 export const NextBtn = styled(Button)`

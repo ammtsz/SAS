@@ -1,12 +1,17 @@
 import styled from "styled-components";
-import { colorWhite, colorGrey, colorDarkBlue } from "../UI/variables";
+import { colorWhite, colorGrey, colorDarkBlue } from "../../assets/css/variables";
+
 
 /* The switch - the box around the slider */
 export const ButtonSwitch = styled.div`
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   flex-wrap: nowrap;
-  margin-top: 10px;
+
+  .button-switch--label{
+    font-size: 0.8rem;
+  }
 `;
 
 export const ButtonSwitchContainer = styled.label`
@@ -60,7 +65,7 @@ export const Slider = styled.span`
 
 export const Input = styled.input`
   &:checked + .slider {
-    background-color: ${colorDarkBlue};
+    background-color: ${({theme}) => theme.btnSwitcher};
   }
 
   &:focus + .slider {

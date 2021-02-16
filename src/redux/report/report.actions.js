@@ -9,6 +9,7 @@ export const actionSetReportCategory = (data) => ({
   type: ReportActionsTypes.REDUCER_SET_REPORT_CATEGORY,
   payload: data,
 });
+
 export const actionSetReportReviewCategory = (data) => ({
   type: ReportActionsTypes.REDUCER_SET_REPORT_REVIEW_CATEGORY,
   payload: data,

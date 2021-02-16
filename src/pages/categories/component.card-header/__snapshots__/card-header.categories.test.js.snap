@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component categories-page <CardHeader /> Category completed: > 0 and < 10 questions (quiz in progress) should render CardHeader 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdfBwQ cWuOFj"
+  >
+    <div
+      class="sc-gsTCUz eiooQx progress-bar"
+      data-testid="progress-bar"
+    >
+      <span
+        class="sc-dlfnbm dyfDju colored "
+        data-testid="progress-bar-colored "
+      />
+      <span
+        class="sc-dlfnbm dyfDju colored "
+        data-testid="progress-bar-colored "
+      />
+      <span
+        class="sc-dlfnbm dyfDju colored "
+        data-testid="progress-bar-colored "
+      />
+      <span
+        class="sc-dlfnbm dyfDju colored "
+        data-testid="progress-bar-colored "
+      />
+      <span
+        class="sc-dlfnbm dyfDju colored "
+        data-testid="progress-bar-colored "
+      />
+      <span
+        class="sc-dlfnbm dyfDju  "
+        data-testid=" "
+      />
+      <span
+        class="sc-dlfnbm dyfDju  "
+        data-testid=" "
+      />
+      <span
+        class="sc-dlfnbm dyfDju  "
+        data-testid=" "
+      />
+      <span
+        class="sc-dlfnbm dyfDju  "
+        data-testid=" "
+      />
+      <span
+        class="sc-dlfnbm dyfDju  "
+        data-testid=" "
+      />
+    </div>
+    <span
+      class="category-card__link"
+    >
+      continue
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component categories-page <CardHeader /> Category completed: 10 questions (finished quiz) should render CardHeader 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdfBwQ cWuOFj"
+  >
+    <span
+      data-testid="card-header-results"
+    >
+      7/10
+    </span>
+    <span
+      class="category-card__link"
+    >
+      see report
+    </span>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component report-page <CardBody /> should render CardBody 1`] = `
+<DocumentFragment>
+  <article
+    class="sc-dlfnbm lcOmsH"
+  >
+    <h4
+      class="sc-hKgILt kOcsvL"
+    >
+      Check your performance
+    </h4>
+    <div
+      class="sc-eCssSg eGOHVc"
+    >
+      <div>
+        <div
+          class="sumary__number"
+          data-testid="report-rights"
+        >
+          6
+        </div>
+        <div
+          class="sumary__text"
+        >
+          Correct
+        </div>
+      </div>
+      <div>
+        <div
+          class="sumary__number"
+          data-testid="report-wrongs"
+        >
+          4
+        </div>
+        <div
+          class="sumary__text"
+        >
+          Incorrect
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-jSgupP ktuNzm"
+    >
+      <div
+        class="level__details"
+        data-testid="report-level-details"
+      >
+        <h6
+          class="level__details--title"
+        >
+          Easy
+        </h6>
+        <p
+          class="level__details--info"
+          data-testid="report-easy-rights"
+        >
+          Correct: 2
+        </p>
+        <p
+          class="level__details--info"
+          data-testid="report-easy-wrongs"
+        >
+          Incorrect: 0
+        </p>
+      </div>
+      <div
+        class="level__details"
+        data-testid="report-level-details"
+      >
+        <h6
+          class="level__details--title"
+        >
+          Medium
+        </h6>
+        <p
+          class="level__details--info"
+          data-testid="report-medium-rights"
+        >
+          Correct: 4
+        </p>
+        <p
+          class="level__details--info"
+          data-testid="report-medium-wrongs"
+        >
+          Incorrect: 3
+        </p>
+      </div>
+      <div
+        class="level__details"
+        data-testid="report-level-details"
+      >
+        <h6
+          class="level__details--title"
+        >
+          Hard
+        </h6>
+        <p
+          class="level__details--info"
+          data-testid="report-hard-rights"
+        >
+          Correct: 0
+        </p>
+        <p
+          class="level__details--info"
+          data-testid="report-hard-wrongs"
+        >
+          Incorrect: 1
+        </p>
+      </div>
+    </div>
+    <button
+      class="sc-gsTCUz sc-gKsewC bijOHs bfTpLt"
+    >
+      Go to Homepage
+    </button>
+  </article>
+</DocumentFragment>
+`;

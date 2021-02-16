@@ -1,121 +1,215 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import ModalRender from "./modal.render.component";
+import Modal from "./modal.component";
 
+import {
+  colorRed,
+  colorGreen,
+} from "../../assets/css/variables";
+
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import { createMemoryHistory } from "history";
 import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
 
-describe("<ModalRender />", () => {
-  const mockStore = configureMockStore();
-  const store = mockStore({
-    quiz: {
-      questionNumber: 1,
-    },
-  });
-  const goToNextQuestion = jest.fn();
+import {
+  actionGoToNextQuestion,
+  actionUpdateQuizResumeReport,
+} from "../../redux/quiz/quiz.actions";
+import { MemoryRouter, Router } from "react-router-dom";
 
-  describe("Right answer", () => {
+describe("Component <Modal />", () => {
+  const mockStore = configureMockStore();
+
+  describe("Correct answer before last question", () => {
+    const store = mockStore({
+      quiz: {
+        questionNumber: 9,
+      },
+    });
+    store.dispatch = jest.fn();
+
     const mockProps = {
       right: true,
-      goToNextQuestion,
-      history: {},
-      quizQuestionNumber: 1,
     };
+
+    let component;
+
     beforeEach(() => {
-      render(
+      component = render(
         <Provider store={store}>
-          <ModalRender {...mockProps} />
+          <MemoryRouter>
+            <Modal {...mockProps} />
+          </MemoryRouter>
         </Provider>
       );
+    });
+
+    afterEach(() => {
+      cleanup();
+    });
+
+    it("should render Modal", () => {
+      expect(component.asFragment()).toMatchSnapshot();
     });
 
     it("should show 'Correct answer!' text", () => {
       expect(screen.getByText("Correct answer!")).toBeInTheDocument();
     });
-    it("should have a green color", () => {
-      expect(screen.getByTestId("card-modal")).toHaveStyle({
-        border: "3px solid #32CB82",
+
+    it("should have a green border", () => {
+      expect(screen.getByTestId("modal-card")).toHaveStyle({
+        border: `3px solid ${colorGreen}`,
       });
     });
+
     it("should show correct-icon", () => {
       expect(screen.getByAltText("correct")).toBeInTheDocument();
     });
-    it("should call goToNextQuestion() on button click", () => {
+
+    it("should have button with text 'next question'", () => {
+      expect(screen.getByText("Next question")).toBeInTheDocument();
+    });
+
+    it("should call nextQuestionActions() on button click", () => {
       const button = screen.getByText("Next question");
       fireEvent.click(button);
-      expect(goToNextQuestion).toHaveBeenCalledTimes(1);
-      expect(goToNextQuestion).toHaveBeenCalledWith(mockProps.history);
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
+      expect(store.dispatch).toHaveBeenCalledWith(actionGoToNextQuestion());
+    });
+
+    it("should hide Modal Component", () => {
+      const button = screen.getByText("Next question");
+      fireEvent.click(button);
+
+      expect(screen.getByTestId("modal-card-container")).toHaveStyle({
+        display: "none",
+      });
     });
   });
 
-  describe("Wrong answer", () => {
+  describe("Wrong answer before last question", () => {
+    const store = mockStore({
+      quiz: {
+        questionNumber: 9,
+      },
+    });
+    store.dispatch = jest.fn();
+
     const mockProps = {
       right: false,
-      goToNextQuestion,
-      history: {},
-      quizQuestionNumber: 1,
     };
+
+    let component;
+
     beforeEach(() => {
-      render(
+      component = render(
         <Provider store={store}>
-          <ModalRender {...mockProps} />
+          <MemoryRouter>
+            <Modal {...mockProps} />
+          </MemoryRouter>
         </Provider>
       );
+    });
+
+    it("should render Modal", () => {
+      expect(component.asFragment()).toMatchSnapshot();
     });
 
     it("should show 'Wrong answer!' text", () => {
       expect(screen.getByText("Wrong answer")).toBeInTheDocument();
     });
-    it("should have a red color", () => {
-      expect(screen.getByTestId("card-modal")).toHaveStyle({
-        border: "3px solid #FF4F4F",
+
+    it("should have a red border", () => {
+      expect(screen.getByTestId("modal-card")).toHaveStyle({
+        border: `3px solid ${colorRed}`,
       });
     });
+
     it("should show wrong-icon", () => {
       expect(screen.getByAltText("incorrect")).toBeInTheDocument();
+    });
+
+    it("should have button with text 'next question'", () => {
+      expect(screen.getByText("Next question")).toBeInTheDocument();
+    });
+
+    it("should call nextQuestionActions() on button click", () => {
+      const button = screen.getByText("Next question");
+      fireEvent.click(button);
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
+      expect(store.dispatch).toHaveBeenCalledWith(actionGoToNextQuestion());
+    });
+
+    it("should hide Modal Component", () => {
+      const button = screen.getByText("Next question");
+      fireEvent.click(button);
+
+      expect(screen.getByTestId("modal-card-container")).toHaveStyle({
+        display: "none",
+      });
     });
   });
 
   describe("Last question", () => {
+    const store = mockStore({
+      quiz: {
+        questionNumber: 10,
+      },
+    });
+    store.dispatch = jest.fn();
+
     const mockProps = {
       right: true,
-      goToNextQuestion,
-      history: {},
-      quizQuestionNumber: 10,
+      history: {
+        push: jest.fn(),
+      },
     };
+    const history = createMemoryHistory();
+
+    let component;
+
     beforeEach(() => {
-      render(
+      component = render(
         <Provider store={store}>
-          <ModalRender {...mockProps} />
+          <Router history={history}>
+            <Modal {...mockProps} />
+          </Router>
         </Provider>
       );
     });
+
+    it("should render Modal", () => {
+      expect(component.asFragment()).toMatchSnapshot();
+    });
+
     it("should have button with text 'see report'", () => {
       expect(screen.getByText("See report")).toBeInTheDocument();
     });
-    it("should call goToNextQuestion() on button click", () => {
+
+    it("should call updateQuizResumeReport() on button click", () => {
       const button = screen.getByText("See report");
       fireEvent.click(button);
-      expect(goToNextQuestion).toHaveBeenCalledTimes(1);
-      expect(goToNextQuestion).toHaveBeenCalledWith(mockProps.history);
-    });
-  });
-  describe("Not last question", () => {
-    const mockProps = {
-      right: true,
-      goToNextQuestion,
-      history: {},
-      quizQuestionNumber: 9,
-    };
-    beforeEach(() => {
-      render(
-        <Provider store={store}>
-          <ModalRender {...mockProps} />
-        </Provider>
+
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
+      expect(store.dispatch).toHaveBeenCalledWith(
+        actionUpdateQuizResumeReport()
       );
     });
-    it("should have button with text 'next question' if it's not last question", () => {
-      expect(screen.getByText("Next question")).toBeInTheDocument();
+
+    it("should redirect to '/report' on button click", () => {
+      const button = screen.getByText("See report");
+      fireEvent.click(button);
+
+      expect(history.location.pathname).toBe("/report");
+    });
+
+    it("should hide Modal Component", () => {
+      const button = screen.getByText("See report");
+      fireEvent.click(button);
+
+      expect(screen.getByTestId("modal-card-container")).toHaveStyle({
+        display: "none",
+      });
     });
   });
 });

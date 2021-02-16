@@ -36,7 +36,6 @@ export function* fetchQuestionFn(difficulty, category) {
     const token = yield select(selectQuizToken);
     const fetchedQuestion = yield fetchQuestion(difficulty, category, token);
     yield updateToken(token, fetchedQuestion.token);
-    console.log(fetchedQuestion)
     return fetchedQuestion.results;
   } catch (error) {
     yield put(actionSetQuizError(error));
@@ -46,8 +45,6 @@ export function* fetchQuestionFn(difficulty, category) {
 export function* updateToken(stateToken, fetchedToken) {
   try {
     if (stateToken !== fetchedToken) {
-      console.log("newtoken");
-      //test => tokens
       yield put(actionSetQuizToken(fetchedToken));
     }
   } catch (error) {
@@ -94,19 +91,6 @@ export function* rightAnswerActions() {
     yield put(actionSetQuizError(error));
   }
 }
-export function* wrongAnswerActions() {
-  try {
-    const quizPromotion = yield select(selectQuizPromotion);
-    if (quizPromotion === "0") {
-      yield decreaseDifficulty();
-      yield put(actionSetQuizPromotion("1"));
-    } else {
-      yield put(actionSetQuizPromotion("0"));
-    }
-  } catch (error) {
-    yield put(actionSetQuizError(error));
-  }
-}
 export function* increaseDifficulty() {
   try {
     const quizDifficulty = yield select(selectQuizDifficulty);
@@ -120,6 +104,19 @@ export function* increaseDifficulty() {
       default:
         yield put(actionSetQuizDifficulty(quizDifficulty));
         break;
+    }
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+  }
+}
+export function* wrongAnswerActions() {
+  try {
+    const quizPromotion = yield select(selectQuizPromotion);
+    if (quizPromotion === "0") {
+      yield decreaseDifficulty();
+      yield put(actionSetQuizPromotion("1"));
+    } else {
+      yield put(actionSetQuizPromotion("0"));
     }
   } catch (error) {
     yield put(actionSetQuizError(error));
@@ -200,12 +197,7 @@ export function* updateReportOnDB(report) {
   try {
     const userDatasState = yield select(selectUserDatas);
     if (userDatasState) {
-      const userSnapshot = yield call(
-        rsf.firestore.getDocument,
-        `users/${userDatasState.id}`
-      );
-      const userDatas = userSnapshot.data();
-
+      const userDatas = yield getUserDatasFromFirebase(userDatasState.id)
       yield call(rsf.firestore.updateDocument, `users/${userDatasState.id}`, {
         ...userDatas,
         reports: { ...userDatas.reports, ...report },
@@ -215,6 +207,18 @@ export function* updateReportOnDB(report) {
     }
   } catch (error) {
     yield put(actionSetQuizError(error));
+  }
+}
+export function* getUserDatasFromFirebase(id) {
+  try {
+    const userSnapshot = yield call(
+      rsf.firestore.getDocument,
+      `users/${id}`
+    );
+    return userSnapshot.data();
+  } catch (error) {
+    yield put(actionSetQuizError(error));
+    return {}
   }
 }
 
@@ -269,7 +273,6 @@ export function* updateQuizReport() {
       resume,
     };
     const newReport = { ...reports, [category.id]: categoryReport };
-    console.log(newReport);
     yield put(actionSetCategoriesReport(newReport));
     yield updateReportOnDB(newReport);
   } catch (error) {

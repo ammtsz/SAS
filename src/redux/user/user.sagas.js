@@ -1,12 +1,15 @@
 import { all, call, takeLatest, put, select } from "redux-saga/effects";
 import { UserActionsTypes } from "./user.types";
+
 import {
   auth,
   createUserProfileDocumentFirebase,
   getCurrentUserFirebase,
   rsf,
 } from "../../firebase/firebase.utils";
+
 import firebase from "firebase/app";
+
 import {
   actionSetAuthError,
   actionSignInSuccess,
@@ -17,6 +20,7 @@ import {
   actionSetUserError,
   actionSetUserTheme,
 } from "./user.actions";
+
 import { selectPersistence, selectUserDatas } from "./user.selectors";
 
 // UTILS
@@ -34,7 +38,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
         ...userSnapshot.data(),
       })
     );
-    yield getUserTheme() // <= realocar
+    yield getUserTheme() //*** <= realocar
 
   } catch (error) {
     yield put(actionSignInFailure(error));
@@ -45,6 +49,18 @@ export function* signInPersistence() {
   persistence
     ? auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     : auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+}
+export function* getUserDatasFromFirebase(id) {
+  try {
+    const userSnapshot = yield call(
+      rsf.firestore.getDocument,
+      `users/${id}`
+    );
+    return userSnapshot.data();
+  } catch (error) {
+    yield put(actionSetUserError(error));
+    return {}
+  }
 }
 
 // CALLED
@@ -86,12 +102,7 @@ export function* updateThemeOnDatabase(theme) {
   try {
     const userDatasState = yield select(selectUserDatas);
     if (userDatasState) {
-      const userSnapshot = yield call(
-        rsf.firestore.getDocument,
-        `users/${userDatasState.id}`
-      );
-      const userDatas = userSnapshot.data();
-
+      const userDatas = yield getUserDatasFromFirebase(userDatasState.id)
       yield call(rsf.firestore.updateDocument, `users/${userDatasState.id}`, {
         ...userDatas,
         theme: theme.payload,
@@ -106,16 +117,10 @@ export function* updateThemeOnDatabase(theme) {
 export function* getUserTheme() {
   try {
     const userDatasState = yield select(selectUserDatas);
-    
     let theme = "light";
-    if (userDatasState) {
-      
-      const userSnapshot = yield call(
-        rsf.firestore.getDocument,
-        `users/${userDatasState.id}`
-      );
-      const userDatas = userSnapshot.data();
 
+    if (userDatasState) {
+      const userDatas = yield getUserDatasFromFirebase(userDatasState.id)
       if (userDatas.theme) theme = userDatas.theme;
     } else {
       const LS = JSON.parse(localStorage.getItem("triviaTheme"));

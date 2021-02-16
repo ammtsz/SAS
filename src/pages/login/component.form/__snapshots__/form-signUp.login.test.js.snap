@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component login-page <SignUp /> should render SignUp 1`] = `
+<DocumentFragment>
+  <h4
+    class="sc-gKsewC fHGveF"
+  >
+    Sign Up
+  </h4>
+  <form
+    class="sc-iBPRYJ jHiIsc"
+  >
+    <div
+      class="sc-bdfBwQ kmCbvM form-input__box"
+    >
+      <label
+        for="signup-name"
+      >
+        <i
+          class="fas fa-user"
+        />
+      </label>
+      <input
+        class="sc-gsTCUz dDffFH form-input__input"
+        id="signup-name"
+        name="displayName"
+        placeholder="name"
+        type="text"
+      />
+    </div>
+    <div
+      class="sc-bdfBwQ kmCbvM form-input__box"
+    >
+      <label
+        for="signup-email"
+      >
+        <i
+          class="fas fa-envelope"
+        />
+      </label>
+      <input
+        class="sc-gsTCUz dDffFH form-input__input"
+        id="signup-email"
+        name="email"
+        placeholder="email"
+        type="email"
+      />
+    </div>
+    <div
+      class="sc-bdfBwQ kmCbvM form-input__box"
+    >
+      <label
+        for="signup-password"
+      >
+        <i
+          class="fas fa-lock"
+        />
+      </label>
+      <input
+        class="sc-gsTCUz dDffFH form-input__input"
+        id="signup-password"
+        name="password"
+        placeholder="password"
+        type="password"
+      />
+    </div>
+    <div
+      class="sc-bdfBwQ kmCbvM form-input__box"
+    >
+      <label
+        for="signup-confirm-password"
+      >
+        <i
+          class="fas fa-lock"
+        />
+      </label>
+      <input
+        class="sc-gsTCUz dDffFH form-input__input"
+        id="signup-confirm-password"
+        name="confirmPassword"
+        placeholder="confirm password"
+        type="password"
+      />
+    </div>
+    <button
+      class="sc-hKgILt sc-fubCfw ivrlBZ ywriB"
+    >
+      Create account
+    </button>
+    <button
+      class="sc-hKgILt sc-fubCfw ivrlBZ ywriB"
+    >
+      Log in
+    </button>
+  </form>
+</DocumentFragment>
+`;

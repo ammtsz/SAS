@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component trivia-page <QATrivia /> should render QATrivia 1`] = `
+<DocumentFragment>
+  <h4
+    class="sc-bdfBwQ dSJsba"
+    tabindex="0"
+  >
+    What year was Huun Huur Tu's album Altai Sayan Tandy-Uula released?
+  </h4>
+  <div
+    class="sc-gsTCUz cvEQVy trivia__option"
+    data-option="0"
+    data-testid="trivia-card-option-0"
+  >
+    <p
+      class="sc-dlfnbm elojmd"
+      data-option="0"
+      data-testid="trivia-card-option-text"
+      tabindex="0"
+    >
+      2004
+    </p>
+  </div>
+  <div
+    class="sc-gsTCUz cvEQVy trivia__option"
+    data-option="1"
+    data-testid="trivia-card-option-1"
+  >
+    <p
+      class="sc-dlfnbm elojmd"
+      data-option="1"
+      data-testid="trivia-card-option-text"
+      tabindex="0"
+    >
+      1993
+    </p>
+  </div>
+  <div
+    class="sc-gsTCUz cvEQVy trivia__option"
+    data-option="2"
+    data-testid="trivia-card-option-2"
+  >
+    <p
+      class="sc-dlfnbm elojmd"
+      data-option="2"
+      data-testid="trivia-card-option-text"
+      tabindex="0"
+    >
+      2006
+    </p>
+  </div>
+  <div
+    class="sc-gsTCUz cvEQVy trivia__option"
+    data-option="3"
+    data-testid="trivia-card-option-3"
+  >
+    <p
+      class="sc-dlfnbm elojmd"
+      data-option="3"
+      data-testid="trivia-card-option-text"
+      tabindex="0"
+    >
+      2010
+    </p>
+  </div>
+</DocumentFragment>
+`;

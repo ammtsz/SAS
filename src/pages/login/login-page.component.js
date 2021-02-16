@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { PageLogin, CardForm } from "./login-page.styles";
-import SignIn from "./form.login/form-signIn.login.component";
-import SignUp from "./form.login/form-signUp.login.component";
+
+import SignIn from "./component.form/form-signIn.login.component";
+import SignUp from "./component.form/form-signUp.login.component";
 
 import { connect } from "react-redux";
 import { actionSetAuthError } from "../../redux/user/user.actions";
+
+const mapDispatchToProps = (dispatch) => ({
+  setAuthError: (error) => dispatch(actionSetAuthError(error)),
+});
 
 const Login = ({ setAuthError }) => {
   const [newAccount, setNewAccount] = useState(false);
@@ -15,7 +20,7 @@ const Login = ({ setAuthError }) => {
   };
 
   return (
-    <PageLogin>
+    <PageLogin data-testid="login-page">
       <CardForm>
         {newAccount ? (
           <SignUp newAccount={isNewAccount} />
@@ -26,9 +31,5 @@ const Login = ({ setAuthError }) => {
     </PageLogin>
   );
 };
-
-const mapDispatchToProps = (dispatch) => ({
-  setAuthError: (error) => dispatch(actionSetAuthError(error)),
-});
 
 export default connect(null, mapDispatchToProps)(Login);

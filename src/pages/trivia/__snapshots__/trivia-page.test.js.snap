@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page component <Trivia /> not loading should render Trivia 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-iBPRYJ cpqzIC"
+    data-testid="trivia-page"
+  >
+    <div
+      class="sc-fubCfw gTGHKX"
+    >
+      <section
+        class="sc-dlfnbm kMosoO"
+        data-testid="modal-card-container"
+        id="modal"
+      >
+        <div
+          class="sc-bdfBwQ sc-hKgILt cXyUsK eptuml"
+          data-testid="modal-card"
+        >
+          <img
+            alt="incorrect"
+            class="sc-eCssSg iCTmzf"
+            src="wrong.svg"
+          />
+          <p
+            class="sc-jSgupP ietSEv"
+          >
+            Wrong answer
+          </p>
+          <button
+            class="sc-gsTCUz sc-gKsewC bijOHs jmdVDD"
+            id="modal-button"
+          >
+            Next question
+            <img
+              alt="..."
+              class="modal__nextButton--icon"
+              src="arrow-right.svg"
+            />
+          </button>
+        </div>
+      </section>
+      <div
+        class="sc-iqHYGH cfIoLg"
+      >
+        <h4
+          class="sc-crrsfI femVhl"
+        >
+          Vehicles
+        </h4>
+        <button
+          class="sc-dQppl gXQlrE"
+          data-testid="trivia-close-button"
+        >
+          <img
+            alt="close"
+            class="sc-bqyKva jGSKAU"
+            src="close-btn.svg"
+            tabindex="-1"
+          />
+          Close
+        </button>
+      </div>
+      <article
+        class="sc-bdfBwQ sc-pFZIQ cXyUsK egFQvc"
+      >
+        <div
+          class="sc-kstrdz fCqIKu"
+        >
+          <h6
+            class="sc-hBEYos fXGRYT"
+            tabindex="0"
+          >
+            Question 3
+          </h6>
+          <div
+            class="sc-fodVxV cNXSJY"
+          >
+            <span
+              class="sc-fFubgz dpOLLe"
+              tabindex="-1"
+            >
+              <img
+                alt="star-level-easy"
+                class=""
+                src="star.svg"
+              />
+              <img
+                alt="star-level-medium"
+                class=""
+                src="star.svg"
+              />
+              <img
+                alt="star-level-hard"
+                class="starless"
+                src="star.svg"
+              />
+            </span>
+            <span
+              tabindex="0"
+            >
+              Medium
+            </span>
+          </div>
+        </div>
+        <h4
+          class="sc-bkzZxe leMFja"
+          tabindex="0"
+        >
+          undefined
+        </h4>
+        <div
+          class="sc-jrAGrp jUyhyp"
+          id="trivia-btn-answer-container"
+        >
+          <button
+            class="sc-gsTCUz sc-kEjbxe bijOHs dlSfnO"
+            disabled=""
+            id="trivia-btn-answer"
+          >
+            Check Answer
+          </button>
+        </div>
+      </article>
+    </div>
+  </section>
+</DocumentFragment>
+`;

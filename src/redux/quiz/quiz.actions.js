@@ -1,6 +1,5 @@
 import { QuizActionsTypes } from "./quiz.types";
 
-
 // REDUCERS
 export const actionSetQuizActive = (data) => ({
   type: QuizActionsTypes.REDUCER_SET_ACTIVE,
@@ -14,22 +13,19 @@ export const actionSetQuizCategory = (data) => ({
   type: QuizActionsTypes.REDUCER_SET_CATEGORY,
   payload: data,
 });
-export const actionSetQuizQuestionNumber = (data) => ({
-  type: QuizActionsTypes.REDUCER_SET_QUESTION_NUMBER,
-  payload: data,
-});
 export const actionSetQuizDifficulty = (data) => ({
   type: QuizActionsTypes.REDUCER_SET_DIFFICULTY,
+  payload: data,
+});
+export const actionSetQuizQuestionNumber = (data) => ({
+  type: QuizActionsTypes.REDUCER_SET_QUESTION_NUMBER,
   payload: data,
 });
 export const actionSetQuizPromotion = (data) => ({
   type: QuizActionsTypes.REDUCER_SET_PROMOTION,
   payload: data,
 });
-export const actionSetQuizQuestionsDatas = (data) => ({
-  type: QuizActionsTypes.REDUCER_SET_QUESTIONS_DATAS,
-  payload: data,
-});
+
 export const actionSetQuizCurrentQuestion = (data) => ({
   type: QuizActionsTypes.REDUCER_SET_CURRENT_QUESTION,
   payload: data,
@@ -42,6 +38,10 @@ export const actionSetQuizToken = (data) => ({
   type: QuizActionsTypes.REDUCER_SET_TOKEN,
   payload: data,
 });
+export const actionSetQuizQuestionsDatas = (data) => ({
+  type: QuizActionsTypes.REDUCER_SET_QUESTIONS_DATAS,
+  payload: data,
+});
 export const actionSetQuizError = (data) => ({
   type: QuizActionsTypes.REDUCER_SET_QUIZ_ERROR,
   payload: data,
@@ -50,7 +50,6 @@ export const actionSetQuizError = (data) => ({
 export const actionResetQuiz = () => ({
   type: QuizActionsTypes.REDUCER_RESET_QUIZ,
 });
-
 
 
 // SAGAS

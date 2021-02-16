@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component <Modal /> Correct answer before last question should render Modal 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-dlfnbm kMosoO"
+    data-testid="modal-card-container"
+    id="modal"
+  >
+    <div
+      class="sc-bdfBwQ sc-hKgILt cXyUsK bdHURv"
+      data-testid="modal-card"
+    >
+      <img
+        alt="correct"
+        class="sc-eCssSg iCTmzf"
+        src="right.svg"
+      />
+      <p
+        class="sc-jSgupP ietSEv"
+      >
+        Correct answer!
+      </p>
+      <button
+        class="sc-gsTCUz sc-gKsewC bijOHs jmdVDD"
+        id="modal-button"
+      >
+        Next question
+        <img
+          alt="..."
+          class="modal__nextButton--icon"
+          src="arrow-right.svg"
+        />
+      </button>
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`Component <Modal /> Last question should render Modal 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-dlfnbm kMosoO"
+    data-testid="modal-card-container"
+    id="modal"
+  >
+    <div
+      class="sc-bdfBwQ sc-hKgILt cXyUsK bdHURv"
+      data-testid="modal-card"
+    >
+      <img
+        alt="correct"
+        class="sc-eCssSg iCTmzf"
+        src="right.svg"
+      />
+      <p
+        class="sc-jSgupP ietSEv"
+      >
+        Correct answer!
+      </p>
+      <button
+        class="sc-gsTCUz sc-gKsewC bijOHs jmdVDD"
+        id="modal-button"
+      >
+        See report
+        <img
+          alt="..."
+          class="modal__nextButton--icon"
+          src="arrow-right.svg"
+        />
+      </button>
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`Component <Modal /> Wrong answer before last question should render Modal 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-dlfnbm kMosoO"
+    data-testid="modal-card-container"
+    id="modal"
+  >
+    <div
+      class="sc-bdfBwQ sc-hKgILt cXyUsK eptuml"
+      data-testid="modal-card"
+    >
+      <img
+        alt="incorrect"
+        class="sc-eCssSg iCTmzf"
+        src="wrong.svg"
+      />
+      <p
+        class="sc-jSgupP ietSEv"
+      >
+        Wrong answer
+      </p>
+      <button
+        class="sc-gsTCUz sc-gKsewC bijOHs jmdVDD"
+        id="modal-button"
+      >
+        Next question
+        <img
+          alt="..."
+          class="modal__nextButton--icon"
+          src="arrow-right.svg"
+        />
+      </button>
+    </div>
+  </section>
+</DocumentFragment>
+`;

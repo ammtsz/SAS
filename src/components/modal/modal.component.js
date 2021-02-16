@@ -1,15 +1,19 @@
 import React from "react";
 import { PageModal, CardModal, Icon, Message, NextBtn } from "./modal.styles";
+
 import RightIcon from "../../assets/img/right.svg";
 import WrongIcon from "../../assets/img/wrong.svg";
 import ArrowIcon from "../../assets/img/arrow-right.svg";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-
-import { actionGoToNextQuestion, actionUpdateQuizResumeReport } from "../../redux/quiz/quiz.actions";
 import { createStructuredSelector } from "reselect";
+
 import { selectQuizQuestionNumber } from "../../redux/quiz/quiz.selectors";
+import {
+  actionGoToNextQuestion,
+  actionUpdateQuizResumeReport,
+} from "../../redux/quiz/quiz.actions";
 
 const mapStateToProps = createStructuredSelector({
   quizQuestionNumber: selectQuizQuestionNumber,
@@ -20,23 +24,29 @@ const mapDispatchToProps = (dispatch) => ({
   updateQuizResumeReport: () => dispatch(actionUpdateQuizResumeReport()),
 });
 
-const Modal = ({ right, goToNextQuestion, updateQuizResumeReport, quizQuestionNumber, history }) => {
+const Modal = ({
+  quizQuestionNumber,
+  goToNextQuestion,
+  updateQuizResumeReport,
+  history,
+  right,
+}) => {
 
   const nextQuestionActions = () => {
     document.querySelector("#modal-button").disabled = true;
     document.querySelector("#modal").style.display = "none";
+
     if (quizQuestionNumber < 10) {
       goToNextQuestion();
     } else {
-      updateQuizResumeReport()
+      updateQuizResumeReport();
       history.push("/report");
     }
-    // 
   };
 
   return (
-    <PageModal id="modal">
-      <CardModal data-testid="card-modal" right={right}>
+    <PageModal id="modal" data-testid="modal-card-container">
+      <CardModal data-testid="modal-card" right={right}>
         <Icon
           src={right ? RightIcon : WrongIcon}
           alt={right ? "correct" : "incorrect"}
@@ -49,7 +59,7 @@ const Modal = ({ right, goToNextQuestion, updateQuizResumeReport, quizQuestionNu
           onClick={() => nextQuestionActions()}
         >
           {quizQuestionNumber < 10 ? "Next question" : "See report"}
-          <img className="nextButton__icon" src={ArrowIcon} alt="..." />
+          <img className="modal__nextButton--icon" src={ArrowIcon} alt="..." />
         </NextBtn>
       </CardModal>
     </PageModal>

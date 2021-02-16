@@ -53,7 +53,7 @@ export const NextBtn = styled(Button)`
 
   font-weight: bold;
 
-  .nextButton__icon {
+  .modal__nextButton--icon {
     vertical-align: middle;
     margin-left: 20px;
   }

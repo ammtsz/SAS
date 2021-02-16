@@ -13,9 +13,11 @@ export const actionSetCategoriesError = (data) => ({
   type: CategoriesActionsTypes.REDUCER_SET_CATEGORIES_ERROR,
   payload: data,
 });
+
 export const actionResetCategories = () => ({
   type: CategoriesActionsTypes.REDUCER_RESET_CATEGORIES,
 });
+
 
 // SAGAS
 export const actionGetCategories = (data) => ({

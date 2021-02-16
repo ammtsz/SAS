@@ -1,20 +1,18 @@
 import React, { lazy, Suspense } from "react";
-import { GlobalStyle } from "./assets/css/GlobalStyle";
-import Navbar from "./components/navbar/navbar.component";
-// import Categories from "./pages/categories/categories-page.component";
-// import Trivia from "./pages/trivia/trivia-page.component";
-// import Report from "./pages/report/report-page.component";
-// import Login from "./pages/login/login-page.component";
-import { Main } from "./App.styles";
-import { ThemeProvider } from "styled-components";
-import { LightTheme, DarkTheme } from "./assets/css/themes";
-import { Switch, Route, Redirect } from "react-router-dom";
-import Spinner from "./components/spinner/spinner.component";
-import ErrorBoundary from "./components/ErrorBoundary/error-boundary.component";
 
-const Categories = lazy(() =>
-  import("./pages/categories/categories-page.component")
-);
+import { Switch, Route, Redirect } from "react-router-dom";
+
+import { GlobalStyle } from "./assets/css/GlobalStyle";
+import { LightTheme, DarkTheme } from "./assets/css/themes";
+import { ThemeProvider } from "styled-components";
+
+import ErrorBoundary from "./components/ErrorBoundary/error-boundary.component";
+import Spinner from "./components/spinner/spinner.component";
+
+import Navbar from "./components/navbar/navbar.component";
+import { Main } from "./App.styles";
+
+const Categories = lazy(() => import("./pages/categories/categories-page.component"));
 const Trivia = lazy(() => import("./pages/trivia/trivia-page.component"));
 const Report = lazy(() => import("./pages/report/report-page.component"));
 const Login = lazy(() => import("./pages/login/login-page.component"));
@@ -26,6 +24,7 @@ function AppRoutes({
   quizCategory,
   userTheme,
 }) {
+  
   return (
     <ThemeProvider theme={userTheme === "light" ? LightTheme : DarkTheme}>
       <GlobalStyle />

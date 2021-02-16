@@ -1,26 +1,38 @@
 import React from "react";
-import { NavbarStyled, Logo, UserBox, Name, Login, SwitchButtonStyled } from "./navbar.styles";
+import {
+  NavbarStyled,
+  Logo,
+  UserBox,
+  Name,
+  Login,
+  SwitchButtonStyled,
+} from "./navbar.styles";
 import SwitchButton from "../button-switch/button-switch.component";
+
+import { withRouter } from "react-router";
+
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+
 import {
   selectUserTheme,
   selectUserDatas,
 } from "../../redux/user/user.selectors";
-import { actionSignOut } from "../../redux/user/user.actions";
-
-import { withRouter } from "react-router";
-
+import {
+  actionSignOut,
+  actionSetUserTheme,
+  actionUpdateThemeOnDatabase,
+} from "../../redux/user/user.actions";
 import { actionResetCategories } from "../../redux/categories/categories.actions";
 import { actionResetReport } from "../../redux/report/report.actions";
 import { actionResetQuiz } from "../../redux/quiz/quiz.actions";
-import { actionSetUserTheme } from "../../redux/user/user.actions";
-import { actionUpdateThemeOnDatabase } from "../../redux/user/user.actions";
+
 
 const mapStateToProps = createStructuredSelector({
   user: selectUserDatas,
   userTheme: selectUserTheme,
 });
+
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(actionSignOut()),
   resetQuiz: () => dispatch(actionResetQuiz()),
@@ -32,15 +44,16 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Navbar = ({
   user,
-  history,
+  userTheme,
   signOut,
   resetQuiz,
   resetCategories,
   resetReport,
   setTheme,
-  userTheme,
   updateThemeOnDatabase,
+  history,
 }) => {
+
   const signOutActions = () => {
     localStorage.removeItem("trivia");
     localStorage.removeItem("triviaTheme");
@@ -50,19 +63,12 @@ const Navbar = ({
     signOut();
   };
 
-  const goToLogin = () => {
-    history.push("/login");
-  };
-
-  const goToCategories = () => {
-    history.push("/");
-  };
-
   const setUserTheme = (event) => {
-    const theme = event.target.checked ? "dark" : "light"
-    setTheme(theme)
-    updateThemeOnDatabase(theme)
-  }
+    const theme = event.target.checked ? "dark" : "light";
+    setTheme(theme);
+    updateThemeOnDatabase(theme);
+  };
+
   return (
     <NavbarStyled>
       <Logo tabIndex="0">Teste Dev Frontend</Logo>
@@ -71,15 +77,13 @@ const Navbar = ({
         {user ? (
           <Login onClick={() => signOutActions()}>Log out</Login>
         ) : history.location.pathname === "/login" ? (
-          <Login onClick={() => goToCategories()}>
-            skip log in
-          </Login>
+          <Login onClick={() => history.push("/")}>skip log in</Login>
         ) : (
-          <Login onClick={() => goToLogin()}>Log in</Login>
+          <Login onClick={() => history.push("/login")}>Log in</Login>
         )}
         <SwitchButtonStyled>
           <SwitchButton
-            id="theme-toggle"
+            id="navbar-toggle-theme"
             onChange={(event) => setUserTheme(event)}
             label={userTheme}
             checked={userTheme === "dark"}

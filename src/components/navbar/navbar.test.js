@@ -1,91 +1,231 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
 import Navbar from "./navbar.component";
 
+import { createMemoryHistory } from "history";
+
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import { MemoryRouter, Router } from "react-router-dom";
 import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
 
-describe("<Navbar />", () => {
+import {
+  actionSignOut,
+  actionSetUserTheme,
+  actionUpdateThemeOnDatabase,
+} from "../../redux/user/user.actions";
+import { actionResetCategories } from "../../redux/categories/categories.actions";
+import { actionResetReport } from "../../redux/report/report.actions";
+import { actionResetQuiz } from "../../redux/quiz/quiz.actions";
+
+describe("Component <Navbar />", () => {
   const mockStore = configureMockStore();
-  const store = mockStore({});
+  const name = "Peter";
 
   describe("User is logged in", () => {
-    const signOut = jest.fn()
+    const store = mockStore({
+      user: { datas: { displayName: name } },
+    });
+
+    store.dispatch = jest.fn();
+
     const mockProps = {
-        user: { displayName: "Peter" },
-        signOut
-    }
+      history: { push: jest.fn() },
+    };
+
+    let component;
+
     beforeEach(() => {
-      render(
+      component = render(
         <Provider store={store}>
-          <Navbar {...mockProps} />
+          <MemoryRouter>
+            <Navbar {...mockProps} />
+          </MemoryRouter>
         </Provider>
       );
+    });
+
+    afterEach(() => {
+      cleanup();
+    });
+
+    it("should render Navbar", () => {
+      expect(component.asFragment()).toMatchSnapshot();
     });
 
     it("should show User's name on Navbar", () => {
-      expect(screen.getByText("Hello, Peter")).toBeInTheDocument();
-      expect(screen.getByText("Log out")).toBeInTheDocument();
+      expect(screen.getByText(`Hello, ${name}`)).toBeInTheDocument();
     });
-    
-    it("should call signOut() method when click on 'Log out' button", () => {
-        const exit = screen.getByText("Log out")
-        fireEvent.click(exit)
-        expect(signOut).toHaveBeenCalledTimes(1);
-      });
+
+    it("should fire 'signOutActions()' when click on 'Log out' button", () => {
+      expect(screen.getByText("Log out")).toBeInTheDocument();
+
+      const exit = screen.getByText("Log out");
+      fireEvent.click(exit);
+
+      expect(store.dispatch).toHaveBeenCalledTimes(4);
+      expect(store.dispatch).toHaveBeenCalledWith(actionResetQuiz());
+      expect(store.dispatch).toHaveBeenCalledWith(actionResetCategories());
+      expect(store.dispatch).toHaveBeenCalledWith(actionResetReport());
+      expect(store.dispatch).toHaveBeenCalledWith(actionSignOut());
+    });
+
+    it("should not redirect page when click on 'Log out' button", () => {
+      expect(screen.getByText("Log out")).toBeInTheDocument();
+
+      const exit = screen.getByText("Log out");
+      fireEvent.click(exit);
+
+      expect(mockProps.history.push).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe("User is logged out and it's on login page", () => {
+    const store = mockStore({
+      user: { datas: null },
+    });
+
+    store.dispatch = jest.fn();
+
+    const mockProps = {
+      history: {
+        push: jest.fn(),
+      },
+    };
+
+    const history = createMemoryHistory();
+    history.push("/login");
+
+    let component;
+
+    beforeEach(() => {
+      component = render(
+        <Provider store={store}>
+          <Router history={history}>
+            <Navbar {...mockProps} />
+          </Router>
+        </Provider>
+      );
+    });
+
+    afterEach(() => {
+      cleanup();
+    });
+
+    it("should render Navbar", () => {
+      expect(component.asFragment()).toMatchSnapshot();
+    });
+
+    it("should show 'skip log in' on Navbar", () => {
+      expect(screen.getByText("skip log in")).toBeInTheDocument();
+    });
+
+    it("should redirect page when click on 'skip log in' button", () => {
+      const skipLogin = screen.getByText("skip log in");
+      expect(skipLogin).toBeInTheDocument();
+
+      expect(history.location.pathname).toBe("/login");
+
+      fireEvent.click(skipLogin);
+      expect(history.location.pathname).toBe("/");
+    });
   });
 
   describe("User is logged out and on homepage", () => {
-    const goToLogin = jest.fn()
+    const store = mockStore({
+      user: { datas: null },
+    });
+
+    store.dispatch = jest.fn();
+
     const mockProps = {
-        user: null,
-        goToLogin,
-        history: {location: {pathname: "/"}}
-    }
+      history: {
+        push: jest.fn(),
+      },
+    };
+
+    const history = createMemoryHistory();
+    history.push("/");
+
+    let component;
+
     beforeEach(() => {
-      render(
+      component = render(
         <Provider store={store}>
-          <Navbar {...mockProps} />
+          <Router history={history}>
+            <Navbar {...mockProps} />
+          </Router>
         </Provider>
       );
+    });
+
+    afterEach(() => {
+      cleanup();
+    });
+
+    it("should render Navbar", () => {
+      expect(component.asFragment()).toMatchSnapshot();
     });
 
     it("should show 'Log in' on Navbar", () => {
       expect(screen.getByText("Log in")).toBeInTheDocument();
     });
 
-    it("should call goToLogin() method when click on 'Log in' button", () => {
-        const login = screen.getByText("Log in")
-        fireEvent.click(login)
-        expect(goToLogin).toHaveBeenCalledTimes(1);
-      });
+    it("should redirect page to '/login' when click on 'Log in' button", () => {
+      const skipLogin = screen.getByText("Log in");
+      expect(skipLogin).toBeInTheDocument();
 
+      expect(history.location.pathname).toBe("/");
+
+      fireEvent.click(skipLogin);
+      expect(history.location.pathname).toBe("/login");
+    });
   });
 
-  describe("User is logged out and on login page", () => {
-    const goToCategories = jest.fn()
-    const mockProps = {
-        user: null,
-        goToCategories,
-        history: {location: {pathname: "/login"}}
-    }
+  describe("Theme toggle button", () => {
+    const theme1 = "dark"
+    const theme2 = "light"
+    const store = mockStore({
+      user: { theme: theme1 },
+    });
+
+    store.dispatch = jest.fn();
+
+    let component;
+
     beforeEach(() => {
-      render(
+      component = render(
         <Provider store={store}>
-          <Navbar {...mockProps} />
+          <MemoryRouter>
+            <Navbar />
+          </MemoryRouter>
         </Provider>
       );
     });
 
-    it("should show 'Log in' on Navbar", () => {
-      expect(screen.getByText("continue without log in")).toBeInTheDocument();
+    afterEach(() => {
+      cleanup();
     });
 
-    it("should call goToCategories() method when click on 'continue without log in' button", () => {
-        const login = screen.getByText("continue without log in")
-        fireEvent.click(login)
-        expect(goToCategories).toHaveBeenCalledTimes(1);
-      });
+    it("should render Navbar", () => {
+      expect(component.asFragment()).toMatchSnapshot();
+    });
 
+    it("should call 'setUserTheme' actions when click on swicth button", () => {
+      const switcher = screen.getByText(theme1);
+      fireEvent.click(switcher);
+
+      expect(store.dispatch).toHaveBeenCalledTimes(2);
+      expect(store.dispatch).toHaveBeenCalledWith(actionSetUserTheme(theme2));
+      expect(store.dispatch).toHaveBeenCalledWith(
+        actionUpdateThemeOnDatabase(theme2)
+      );
+    });
+
+    it("should 'uncheck' checkbox when click on swicth button", () => {
+      const switcher = screen.getByText(theme1);
+      fireEvent.click(switcher);
+
+      expect(switcher).not.toBeChecked();
+    });
   });
 });

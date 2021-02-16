@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component categories-page <Card /> Category completed: > 0 and < 10 questions (quiz in progress) should render Card 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+    data-testid="category-card"
+    disabled=""
+  >
+    <div
+      class="sc-eCssSg fwvBmJ"
+    >
+      <div
+        class="sc-jSgupP eMsPRm progress-bar"
+        data-testid="progress-bar"
+      >
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+        <span
+          class="sc-gKsewC eDsWGz  "
+          data-testid=" "
+        />
+      </div>
+      <span
+        class="category-card__link"
+      >
+        continue
+      </span>
+    </div>
+    <h2
+      class="sc-hKgILt juEGes"
+    >
+      Books
+    </h2>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Component categories-page <Card /> Category completed: 0 questions (quiz not started) should render Card 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-bdfBwQ sc-dlfnbm cXyUsK fVoFtA"
+    data-testid="category-card"
+  >
+    <h2
+      class="sc-hKgILt juEGes"
+    >
+      Books
+    </h2>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Component categories-page <Card /> Category completed: 10 questions (finished quiz) should render Card 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+    data-testid="category-card"
+    disabled=""
+  >
+    <div
+      class="sc-eCssSg fwvBmJ"
+    >
+      <span
+        data-testid="card-header-results"
+      >
+        /
+      </span>
+      <span
+        class="category-card__link"
+      >
+        see report
+      </span>
+    </div>
+    <h2
+      class="sc-hKgILt juEGes"
+    >
+      Books
+    </h2>
+  </button>
+</DocumentFragment>
+`;

@@ -3,7 +3,8 @@ import AppRoutes from "./App.routes";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectUserDatas } from "./redux/user/user.selectors";
+
+import { selectUserDatas, selectUserTheme } from "./redux/user/user.selectors";
 import {
   actionSetUserAuth,
   actionGetUserTheme,
@@ -13,7 +14,6 @@ import {
   selectQuizCategory,
 } from "./redux/quiz/quiz.selectors";
 import { selectReportCategory } from "./redux/report/report.selectors";
-import { selectUserTheme } from "./redux/user/user.selectors";
 
 const mapStateToProps = createStructuredSelector({
   user: selectUserDatas,

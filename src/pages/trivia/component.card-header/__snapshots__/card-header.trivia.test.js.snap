@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component trivia-page <CardHeaderTrivia /> should render CardHeaderTrivia 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdfBwQ gpnPqW"
+  >
+    <h6
+      class="sc-gsTCUz jiOGPV"
+      tabindex="0"
+    >
+      Question 3
+    </h6>
+    <div
+      class="sc-dlfnbm jrYdKu"
+    >
+      <span
+        class="sc-hKgILt dFTvLt"
+        tabindex="-1"
+      >
+        <img
+          alt="star-level-easy"
+          class=""
+          src="star.svg"
+        />
+        <img
+          alt="star-level-medium"
+          class=""
+          src="star.svg"
+        />
+        <img
+          alt="star-level-hard"
+          class="starless"
+          src="star.svg"
+        />
+      </span>
+      <span
+        tabindex="0"
+      >
+        Medium
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;

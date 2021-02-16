@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page component <PageLogin /> should render PageLogin 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-dlfnbm cxIsBr"
+    data-testid="login-page"
+  >
+    <div
+      class="sc-bdfBwQ sc-hKgILt cXyUsK fIDsDE"
+    >
+      <h4
+        class="sc-gKsewC fHGveF"
+      >
+        Login
+      </h4>
+      <form
+        class="sc-iBPRYJ jHiIsc"
+      >
+        <div
+          class="sc-pFZIQ eulNDw form-input__box"
+        >
+          <label
+            for="signin-email"
+          >
+            <i
+              class="fas fa-envelope"
+            />
+          </label>
+          <input
+            class="sc-jrAGrp eqdoFb form-input__input"
+            id="signin-email"
+            name="email"
+            placeholder="email"
+            type="email"
+          />
+        </div>
+        <div
+          class="sc-pFZIQ eulNDw form-input__box"
+        >
+          <label
+            for="signin-password"
+          >
+            <i
+              class="fas fa-lock"
+            />
+          </label>
+          <input
+            class="sc-jrAGrp eqdoFb form-input__input"
+            id="signin-password"
+            name="password"
+            placeholder="password"
+            type="password"
+          />
+        </div>
+        <div
+          class="sc-kEjbxe jyXxIT"
+        >
+          <label
+            class="sc-iqHYGH eXtfx"
+          >
+            <input
+              class="sc-dQppl gWuuge"
+              data-testid="signin-persistence"
+              id="button-switch--signin-persistence"
+              type="checkbox"
+            />
+            <span
+              class="sc-crrsfI ejgHsP slider round"
+            />
+          </label>
+          <label
+            class="button-switch--label"
+            for="button-switch--signin-persistence"
+          >
+            keep me logged in
+          </label>
+        </div>
+        <button
+          class="sc-gsTCUz sc-fubCfw bijOHs ywriB"
+          type="submit"
+        >
+          Log in
+        </button>
+        <button
+          class="sc-gsTCUz sc-fubCfw bijOHs ywriB"
+        >
+          Sign up
+        </button>
+      </form>
+    </div>
+  </section>
+</DocumentFragment>
+`;

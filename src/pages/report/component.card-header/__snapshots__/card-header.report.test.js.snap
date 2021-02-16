@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component report-page <CardHeader /> Report created right after a quiz is finished should render CardHeader 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdfBwQ ddYKHZ"
+  >
+    <img
+      class="sc-gsTCUz iydVwP"
+      src="mascot.svg"
+    />
+    <div
+      class="sc-dlfnbm kjwOKs"
+    >
+      <h2
+        class="sc-hKgILt hJcEo"
+      >
+        Congratulation!
+      </h2>
+      <p
+        class="sc-eCssSg eOtUap"
+      >
+        You finished the quiz
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component report-page <CardHeader /> Report requested from categories page should render CardHeader 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdfBwQ ddYKHZ"
+  >
+    <img
+      class="sc-gsTCUz iydVwP"
+      src="mascot.svg"
+    />
+    <div
+      class="sc-dlfnbm kjwOKs"
+    >
+      <h2
+        class="sc-hKgILt hJcEo"
+      >
+        Sports
+      </h2>
+      <p
+        class="sc-eCssSg eOtUap"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

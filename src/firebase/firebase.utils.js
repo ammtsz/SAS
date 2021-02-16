@@ -19,8 +19,6 @@ const firebaseApp = firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 export const storage = firebase.storage();
-
-//REDUX SAGA FIREBASE
 export const rsf = new ReduxSagaFirebase(firebaseApp);
 
 export const createUserProfileDocumentFirebase = async (userAuth, additionalData) => {

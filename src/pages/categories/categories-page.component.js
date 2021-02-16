@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Card from "./card.categories/card.categories.components";
+import Card from "./component.card/card.categories.components";
 import {
   Title,
   PageCategories,
@@ -8,9 +8,10 @@ import {
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+
 import { selectAllCategories } from "../../redux/categories/categories.selectors";
-import { actionGetCategories } from "../../redux/categories/categories.actions";
 import { selectUserDatas } from "../../redux/user/user.selectors";
+import { actionGetCategories } from "../../redux/categories/categories.actions";
 import { actionResetReport } from "../../redux/report/report.actions";
 import { actionResetQuiz } from "../../redux/quiz/quiz.actions";
 
@@ -25,8 +26,13 @@ const mapDispatchToProps = (dispatch) => ({
   resetQuiz: () => dispatch(actionResetQuiz()),
 });
 
-const Categories = ({ getCategories, categories, userDatas, resetReport, resetQuiz }) => {
-  
+const Categories = ({
+  categories,
+  userDatas,
+  getCategories,
+  resetReport,
+  resetQuiz,
+}) => {
   let userId;
   if (userDatas) {
     userId = userDatas.id;
@@ -38,25 +44,18 @@ const Categories = ({ getCategories, categories, userDatas, resetReport, resetQu
     resetQuiz();
   }, [getCategories, userId, resetReport, resetQuiz]);
 
-  
   return (
-    <PageCategories>
-      <Title >
+    <PageCategories data-testid="categories-page" id="test-categories">
+      <Title id="test-categories2">
         Categories <small>({categories.length})</small>
       </Title>
-      <CardsContainer >
+      <CardsContainer>
         {categories.map((category) => (
-          <Card
-            key={category.id}
-            category={category}
-            data-testid="categories-cards"/>
+          <Card key={category.id} category={category} />
         ))}
       </CardsContainer>
     </PageCategories>
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

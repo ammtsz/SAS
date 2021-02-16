@@ -1,0 +1,299 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page component <Report /> Report created right after a quiz is finished should render Report 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-dlfnbm dlSvaN"
+    data-testid="report-page"
+  >
+    <div
+      class="sc-bdfBwQ sc-hKgILt cXyUsK dBaUJn"
+    >
+      <div
+        class="sc-eCssSg idQTZf"
+      >
+        <img
+          class="sc-jSgupP iCuyco"
+          src="mascot.svg"
+        />
+        <div
+          class="sc-gKsewC jqveOd"
+        >
+          <h2
+            class="sc-iBPRYJ eOmvXf"
+          >
+            Congratulation!
+          </h2>
+          <p
+            class="sc-fubCfw hFwHhI"
+          >
+            You finished the quiz
+          </p>
+        </div>
+      </div>
+      <article
+        class="sc-pFZIQ kpNfE"
+      >
+        <h4
+          class="sc-jrAGrp yRYjm"
+        >
+          Check your performance
+        </h4>
+        <div
+          class="sc-kEjbxe iykKIp"
+        >
+          <div>
+            <div
+              class="sumary__number"
+              data-testid="report-rights"
+            >
+              4
+            </div>
+            <div
+              class="sumary__text"
+            >
+              Correct
+            </div>
+          </div>
+          <div>
+            <div
+              class="sumary__number"
+              data-testid="report-wrongs"
+            >
+              6
+            </div>
+            <div
+              class="sumary__text"
+            >
+              Incorrect
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-iqHYGH iQDmjP"
+        >
+          <div
+            class="level__details"
+            data-testid="report-level-details"
+          >
+            <h6
+              class="level__details--title"
+            >
+              Easy
+            </h6>
+            <p
+              class="level__details--info"
+              data-testid="report-easy-rights"
+            >
+              Correct: 2
+            </p>
+            <p
+              class="level__details--info"
+              data-testid="report-easy-wrongs"
+            >
+              Incorrect: 2
+            </p>
+          </div>
+          <div
+            class="level__details"
+            data-testid="report-level-details"
+          >
+            <h6
+              class="level__details--title"
+            >
+              Medium
+            </h6>
+            <p
+              class="level__details--info"
+              data-testid="report-medium-rights"
+            >
+              Correct: 2
+            </p>
+            <p
+              class="level__details--info"
+              data-testid="report-medium-wrongs"
+            >
+              Incorrect: 2
+            </p>
+          </div>
+          <div
+            class="level__details"
+            data-testid="report-level-details"
+          >
+            <h6
+              class="level__details--title"
+            >
+              Hard
+            </h6>
+            <p
+              class="level__details--info"
+              data-testid="report-hard-rights"
+            >
+              Correct: 0
+            </p>
+            <p
+              class="level__details--info"
+              data-testid="report-hard-wrongs"
+            >
+              Incorrect: 2
+            </p>
+          </div>
+        </div>
+        <button
+          class="sc-gsTCUz sc-crrsfI bijOHs cBQRTc"
+        >
+          Go to Homepage
+        </button>
+      </article>
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`Page component <Report /> Report requested from categories page should render Report 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-dlfnbm dlSvaN"
+    data-testid="report-page"
+  >
+    <div
+      class="sc-bdfBwQ sc-hKgILt cXyUsK dBaUJn"
+    >
+      <div
+        class="sc-eCssSg idQTZf"
+      >
+        <img
+          class="sc-jSgupP iCuyco"
+          src="mascot.svg"
+        />
+        <div
+          class="sc-gKsewC jqveOd"
+        >
+          <h2
+            class="sc-iBPRYJ eOmvXf"
+          >
+            Board Games
+          </h2>
+          <p
+            class="sc-fubCfw hFwHhI"
+          />
+        </div>
+      </div>
+      <article
+        class="sc-pFZIQ kpNfE"
+      >
+        <h4
+          class="sc-jrAGrp yRYjm"
+        >
+          Check your performance
+        </h4>
+        <div
+          class="sc-kEjbxe iykKIp"
+        >
+          <div>
+            <div
+              class="sumary__number"
+              data-testid="report-rights"
+            >
+              4
+            </div>
+            <div
+              class="sumary__text"
+            >
+              Correct
+            </div>
+          </div>
+          <div>
+            <div
+              class="sumary__number"
+              data-testid="report-wrongs"
+            >
+              6
+            </div>
+            <div
+              class="sumary__text"
+            >
+              Incorrect
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-iqHYGH iQDmjP"
+        >
+          <div
+            class="level__details"
+            data-testid="report-level-details"
+          >
+            <h6
+              class="level__details--title"
+            >
+              Easy
+            </h6>
+            <p
+              class="level__details--info"
+              data-testid="report-easy-rights"
+            >
+              Correct: 2
+            </p>
+            <p
+              class="level__details--info"
+              data-testid="report-easy-wrongs"
+            >
+              Incorrect: 2
+            </p>
+          </div>
+          <div
+            class="level__details"
+            data-testid="report-level-details"
+          >
+            <h6
+              class="level__details--title"
+            >
+              Medium
+            </h6>
+            <p
+              class="level__details--info"
+              data-testid="report-medium-rights"
+            >
+              Correct: 2
+            </p>
+            <p
+              class="level__details--info"
+              data-testid="report-medium-wrongs"
+            >
+              Incorrect: 2
+            </p>
+          </div>
+          <div
+            class="level__details"
+            data-testid="report-level-details"
+          >
+            <h6
+              class="level__details--title"
+            >
+              Hard
+            </h6>
+            <p
+              class="level__details--info"
+              data-testid="report-hard-rights"
+            >
+              Correct: 0
+            </p>
+            <p
+              class="level__details--info"
+              data-testid="report-hard-wrongs"
+            >
+              Incorrect: 2
+            </p>
+          </div>
+        </div>
+        <button
+          class="sc-gsTCUz sc-crrsfI bijOHs cBQRTc"
+        >
+          Go to Homepage
+        </button>
+      </article>
+    </div>
+  </section>
+</DocumentFragment>
+`;

@@ -1,4 +1,3 @@
-// export const colorPrimary = ""
 export const colorWhite = "#ffffff";
 export const colorLight = "#e4e4e6";
 export const colorLight08 = "rgba(255, 255, 255, 0.08)";

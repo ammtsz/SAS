@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component <App /> should render App 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <header
+      class="App-header"
+    >
+      <nav
+        class="sc-jSgupP dglkrd"
+      >
+        <h3
+          class="sc-gKsewC kqPbG"
+          tabindex="0"
+        >
+          Teste Dev Frontend
+        </h3>
+        <div
+          class="sc-iBPRYJ knSzVm"
+        >
+          <p
+            class="sc-fubCfw ehTKJF"
+          />
+          <button
+            class="sc-pFZIQ dykRqL"
+          >
+            Log in
+          </button>
+          <span
+            class="sc-jrAGrp cnBeoq"
+          >
+            <div
+              class="sc-kEjbxe jyXxIT"
+            >
+              <label
+                class="sc-iqHYGH eXtfx"
+              >
+                <input
+                  class="sc-dQppl gXvpZz"
+                  id="button-switch--navbar-toggle-theme"
+                  type="checkbox"
+                />
+                <span
+                  class="sc-crrsfI ejgHsP slider round"
+                />
+              </label>
+              <label
+                class="button-switch--label"
+                for="button-switch--navbar-toggle-theme"
+              >
+                light
+              </label>
+            </div>
+          </span>
+        </div>
+      </nav>
+    </header>
+    <main
+      class="sc-bqyKva elOEp"
+    >
+      <div
+        class="sc-hKgILt kCQzmP"
+      >
+        <div
+          class="sc-eCssSg elQFSQ"
+        />
+      </div>
+    </main>
+  </div>
+</DocumentFragment>
+`;

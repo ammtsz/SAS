@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component <Navbar /> Theme toggle button should render Navbar 1`] = `
+<DocumentFragment>
+  <nav
+    class="sc-bdfBwQ jIIKgP"
+  >
+    <h3
+      class="sc-gsTCUz iyGGEo"
+      tabindex="0"
+    >
+      Teste Dev Frontend
+    </h3>
+    <div
+      class="sc-dlfnbm cyDqmn"
+    >
+      <p
+        class="sc-hKgILt llgplH"
+      />
+      <button
+        class="sc-eCssSg etcwcl"
+      >
+        Log in
+      </button>
+      <span
+        class="sc-jSgupP gOGJce"
+      >
+        <div
+          class="sc-gKsewC cMTlMO"
+        >
+          <label
+            class="sc-iBPRYJ gAapIF"
+          >
+            <input
+              checked=""
+              class="sc-pFZIQ cjTSOr"
+              id="button-switch--navbar-toggle-theme"
+              type="checkbox"
+            />
+            <span
+              class="sc-fubCfw kkjObP slider round"
+            />
+          </label>
+          <label
+            class="button-switch--label"
+            for="button-switch--navbar-toggle-theme"
+          >
+            dark
+          </label>
+        </div>
+      </span>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`Component <Navbar /> User is logged in should render Navbar 1`] = `
+<DocumentFragment>
+  <nav
+    class="sc-bdfBwQ jIIKgP"
+  >
+    <h3
+      class="sc-gsTCUz iyGGEo"
+      tabindex="0"
+    >
+      Teste Dev Frontend
+    </h3>
+    <div
+      class="sc-dlfnbm cyDqmn"
+    >
+      <p
+        class="sc-hKgILt llgplH"
+      >
+        Hello, Peter
+      </p>
+      <button
+        class="sc-eCssSg etcwcl"
+      >
+        Log out
+      </button>
+      <span
+        class="sc-jSgupP gOGJce"
+      >
+        <div
+          class="sc-gKsewC cMTlMO"
+        >
+          <label
+            class="sc-iBPRYJ gAapIF"
+          >
+            <input
+              class="sc-pFZIQ cjTSOr"
+              id="button-switch--navbar-toggle-theme"
+              type="checkbox"
+            />
+            <span
+              class="sc-fubCfw kkjObP slider round"
+            />
+          </label>
+          <label
+            class="button-switch--label"
+            for="button-switch--navbar-toggle-theme"
+          />
+        </div>
+      </span>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`Component <Navbar /> User is logged out and it's on login page should render Navbar 1`] = `
+<DocumentFragment>
+  <nav
+    class="sc-bdfBwQ jIIKgP"
+  >
+    <h3
+      class="sc-gsTCUz iyGGEo"
+      tabindex="0"
+    >
+      Teste Dev Frontend
+    </h3>
+    <div
+      class="sc-dlfnbm cyDqmn"
+    >
+      <p
+        class="sc-hKgILt llgplH"
+      />
+      <button
+        class="sc-eCssSg etcwcl"
+      >
+        skip log in
+      </button>
+      <span
+        class="sc-jSgupP gOGJce"
+      >
+        <div
+          class="sc-gKsewC cMTlMO"
+        >
+          <label
+            class="sc-iBPRYJ gAapIF"
+          >
+            <input
+              class="sc-pFZIQ cjTSOr"
+              id="button-switch--navbar-toggle-theme"
+              type="checkbox"
+            />
+            <span
+              class="sc-fubCfw kkjObP slider round"
+            />
+          </label>
+          <label
+            class="button-switch--label"
+            for="button-switch--navbar-toggle-theme"
+          />
+        </div>
+      </span>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`Component <Navbar /> User is logged out and on homepage should render Navbar 1`] = `
+<DocumentFragment>
+  <nav
+    class="sc-bdfBwQ jIIKgP"
+  >
+    <h3
+      class="sc-gsTCUz iyGGEo"
+      tabindex="0"
+    >
+      Teste Dev Frontend
+    </h3>
+    <div
+      class="sc-dlfnbm cyDqmn"
+    >
+      <p
+        class="sc-hKgILt llgplH"
+      />
+      <button
+        class="sc-eCssSg etcwcl"
+      >
+        Log in
+      </button>
+      <span
+        class="sc-jSgupP gOGJce"
+      >
+        <div
+          class="sc-gKsewC cMTlMO"
+        >
+          <label
+            class="sc-iBPRYJ gAapIF"
+          >
+            <input
+              class="sc-pFZIQ cjTSOr"
+              id="button-switch--navbar-toggle-theme"
+              type="checkbox"
+            />
+            <span
+              class="sc-fubCfw kkjObP slider round"
+            />
+          </label>
+          <label
+            class="button-switch--label"
+            for="button-switch--navbar-toggle-theme"
+          />
+        </div>
+      </span>
+    </div>
+  </nav>
+</DocumentFragment>
+`;

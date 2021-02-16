@@ -1,22 +1,23 @@
 import { all, call, takeLatest, put, select } from "redux-saga/effects";
+
 import { fetchCategories } from "../../api/trivia";
+import { rsf } from "../../firebase/firebase.utils";
 
 import { CategoriesActionsTypes } from "./categories.types";
-
 import {
   actionSetAllCategories,
   actionSetCategoriesError,
   actionSetCategoriesReport,
 } from "./categories.actions";
+
 import { selectReports, selectAllCategories } from "./categories.selectors";
 import { selectUserDatas } from "../user/user.selectors";
-import { rsf } from "../../firebase/firebase.utils";
 
 // UTILS
 export function* setCategoriesProgressStatus(categoriesFetched) {
   try {
     const reports = yield select(selectReports);
-    const completedCategoriesId = reports ? Object.keys(reports) : []; //retorna [categoryId, categoryId]
+    const completedCategoriesId = reports ? Object.keys(reports) : [];
     const categoryWithStatus = [];
 
     categoriesFetched.forEach((category) => {

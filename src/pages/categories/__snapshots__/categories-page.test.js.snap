@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page component <Categories /> shoud render Categories 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-iBPRYJ brIDSy"
+    data-testid="categories-page"
+    id="test-categories"
+  >
+    <h1
+      class="sc-fubCfw jcLlnp"
+      id="test-categories2"
+    >
+      Categories 
+      <small>
+        (3)
+      </small>
+    </h1>
+    <section
+      class="sc-pFZIQ cQsANz"
+    >
+      <button
+        class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+        data-testid="category-card"
+        disabled=""
+      >
+        <div
+          class="sc-eCssSg fwvBmJ"
+        >
+          <div
+            class="sc-jSgupP eMsPRm progress-bar"
+            data-testid="progress-bar"
+          >
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+          </div>
+          <span
+            class="category-card__link"
+          >
+            continue
+          </span>
+        </div>
+        <h2
+          class="sc-hKgILt juEGes"
+        >
+          Books
+        </h2>
+      </button>
+      <button
+        class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+        data-testid="category-card"
+        disabled=""
+      >
+        <div
+          class="sc-eCssSg fwvBmJ"
+        >
+          <div
+            class="sc-jSgupP eMsPRm progress-bar"
+            data-testid="progress-bar"
+          >
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+          </div>
+          <span
+            class="category-card__link"
+          >
+            continue
+          </span>
+        </div>
+        <h2
+          class="sc-hKgILt juEGes"
+        >
+          History
+        </h2>
+      </button>
+      <button
+        class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+        data-testid="category-card"
+        disabled=""
+      >
+        <div
+          class="sc-eCssSg fwvBmJ"
+        >
+          <div
+            class="sc-jSgupP eMsPRm progress-bar"
+            data-testid="progress-bar"
+          >
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+            <span
+              class="sc-gKsewC eDsWGz  "
+              data-testid=" "
+            />
+          </div>
+          <span
+            class="category-card__link"
+          >
+            continue
+          </span>
+        </div>
+        <h2
+          class="sc-hKgILt juEGes"
+        >
+          Sports
+        </h2>
+      </button>
+    </section>
+  </section>
+</DocumentFragment>
+`;

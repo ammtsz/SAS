@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component login-page <SignIn /> should render SignIn 1`] = `
+<DocumentFragment>
+  <h4
+    class="sc-eCssSg iRCHgB"
+  >
+    Login
+  </h4>
+  <form
+    class="sc-jSgupP ddDNyR"
+  >
+    <div
+      class="sc-iBPRYJ gYooWe form-input__box"
+    >
+      <label
+        for="signin-email"
+      >
+        <i
+          class="fas fa-envelope"
+        />
+      </label>
+      <input
+        class="sc-fubCfw fXNbEQ form-input__input"
+        id="signin-email"
+        name="email"
+        placeholder="email"
+        type="email"
+      />
+    </div>
+    <div
+      class="sc-iBPRYJ gYooWe form-input__box"
+    >
+      <label
+        for="signin-password"
+      >
+        <i
+          class="fas fa-lock"
+        />
+      </label>
+      <input
+        class="sc-fubCfw fXNbEQ form-input__input"
+        id="signin-password"
+        name="password"
+        placeholder="password"
+        type="password"
+      />
+    </div>
+    <div
+      class="sc-pFZIQ ejEntE"
+    >
+      <label
+        class="sc-jrAGrp eClLHT"
+      >
+        <input
+          class="sc-iqHYGH jpHUlN"
+          data-testid="signin-persistence"
+          id="button-switch--signin-persistence"
+          type="checkbox"
+        />
+        <span
+          class="sc-kEjbxe WmdIn slider round"
+        />
+      </label>
+      <label
+        class="button-switch--label"
+        for="button-switch--signin-persistence"
+      >
+        keep me logged in
+      </label>
+    </div>
+    <button
+      class="sc-gsTCUz sc-gKsewC bijOHs kUNQyM"
+      type="submit"
+    >
+      Log in
+    </button>
+    <button
+      class="sc-gsTCUz sc-gKsewC bijOHs kUNQyM"
+    >
+      Sign up
+    </button>
+  </form>
+</DocumentFragment>
+`;

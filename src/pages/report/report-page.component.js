@@ -1,13 +1,15 @@
 import React from "react";
 import { PageReport, CardReport } from "./report-page.styles";
-import ReportHeader from "./card-header.report/card-header.report.component";
-import ReportBody from "./card-body.report/card-body.report.component";
+
+import ReportHeader from "./component.card-header/card-header.report.component";
+import ReportBody from "./component.card-body/card-body.report.component";
+
+import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { actionFinishQuiz } from "../../redux/quiz/quiz.actions";
-
-import { withRouter } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
+
 import { selectReports } from "../../redux/categories/categories.selectors";
 import { selectQuizCategory } from "../../redux/quiz/quiz.selectors";
 import {
@@ -24,19 +26,19 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  finishQuiz: (data) => dispatch(actionFinishQuiz(data)),
   resetReport: (data) => dispatch(actionResetReport(data)),
+  finishQuiz: (data) => dispatch(actionFinishQuiz(data)),
 });
 
 const Report = (props) => {
-  const { reportReview, reportCategory, quizCategory } = props;
+  const { quizCategory, reportCategory, reportReview } = props;
 
   let category = reportReview ? reportCategory : quizCategory;
 
   return (
-    <PageReport>
+    <PageReport data-testid="report-page">
       <CardReport>
-        <ReportHeader review={reportReview} category={category}/>
+        <ReportHeader review={reportReview} category={category} />
         <ReportBody {...props} category={category} />
       </CardReport>
     </PageReport>

@@ -7,24 +7,26 @@ import {
   AnswerBtn,
   AnswerBtnContainer,
 } from "./trivia-page.styles";
-import HeaderTriviaComponent from "./header.trivia/header.trivia.component";
-import CardHeaderTriviaComponent from "./card-header.trivia/card-header.trivia.component";
-import QATrivia from "./card-qa.trivia/card-qa.trivia.component";
+
+import HeaderTriviaComponent from "./component.header/header.trivia.component";
+import CardHeaderTriviaComponent from "./component.card-header/card-header.trivia.component";
+import QATrivia from "./component.card-qa/card-qa.trivia.component";
 import Spinner from "../../components/spinner/spinner.component";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import {
-  actionSetQuizQuestionsDatas,
-  actionCheckAnswer,
-  actionUpdateQuizReport,
-} from "../../redux/quiz/quiz.actions";
+
 import {
   selectQuizQuestionsDatas,
   selectQuizCurrentQuestion,
   selectQuizCurrentOptions,
   selectQuizLoading,
 } from "../../redux/quiz/quiz.selectors";
+import {
+  actionSetQuizQuestionsDatas,
+  actionCheckAnswer,
+  actionUpdateQuizReport,
+} from "../../redux/quiz/quiz.actions";
 
 const mapStateToProps = createStructuredSelector({
   quizQuestionsDatas: selectQuizQuestionsDatas,
@@ -40,13 +42,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Trivia = ({
-  setQuizQuestionsDatas,
   quizQuestionsDatas,
   quizCurrentQuestion,
   quizCurrentOptions,
+  quizLoading,
+  setQuizQuestionsDatas,
   checkAnswer,
   updateQuizReport,
-  quizLoading,
 }) => {
   const [selectedOption, setSelectedOption] = useState();
   const [answerCorrect, setAnswerCorrect] = useState();
@@ -56,13 +58,12 @@ const Trivia = ({
   const onscroll = (listening) => {
     if (window.innerWidth <= 375) {
       window.onscroll = () => {
-        if (listening) {
-          const btn = document.querySelector("#answer-button__container");
+        const btn = document.querySelector("#trivia-btn-answer-container");
+        if (listening && btn) {
           if (btn.offsetTop > window.innerHeight) {
-            console.log("false");
+            // ***corrigir logica
             setSticky(false);
           } else {
-            console.log("true");
             setSticky(true);
           }
         }
@@ -72,6 +73,7 @@ const Trivia = ({
 
   const confirmAnswer = () => {
     setDisabled(true);
+
     if (selectedOption !== null) {
       setQuizQuestionsDatas([
         ...quizQuestionsDatas,
@@ -82,6 +84,7 @@ const Trivia = ({
           answered_at: new Date(),
         },
       ]);
+
       checkAnswer(selectedOption);
       updateQuizReport();
       setAnswerCorrect(selectedOption === "0");
@@ -99,7 +102,7 @@ const Trivia = ({
   }, []);
 
   return (
-    <PageTrivia>
+    <PageTrivia data-testid="trivia-page">
       <ContainerTrivia>
         <Modal right={answerCorrect} />
         <HeaderTriviaComponent />
@@ -113,9 +116,9 @@ const Trivia = ({
               setDisabled={setDisabled}
             />
           )}
-          <AnswerBtnContainer id="answer-button__container" sticky={sticky}>
+          <AnswerBtnContainer id="trivia-btn-answer-container" sticky={sticky}>
             <AnswerBtn
-              id="answer-button_"
+              id="trivia-btn-answer"
               disabled={disabled}
               onClick={() => confirmAnswer()}
             >

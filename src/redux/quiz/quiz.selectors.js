@@ -14,13 +14,13 @@ export const selectQuizCategory = createSelector(
   [selectQuiz],
   (quiz) => quiz.category
 );
-export const selectQuizQuestionNumber = createSelector(
-  [selectQuiz],
-  (quiz) => quiz.questionNumber
-);
 export const selectQuizDifficulty = createSelector(
   [selectQuiz],
   (quiz) => quiz.difficulty
+);
+export const selectQuizQuestionNumber = createSelector(
+  [selectQuiz],
+  (quiz) => quiz.questionNumber
 );
 export const selectQuizPromotion = createSelector(
   [selectQuiz],

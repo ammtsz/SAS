@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component categories-page <ProgressBar /> should render ProgressBar 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bdfBwQ ccxwCN progress-bar"
+    data-testid="progress-bar"
+  >
+    <span
+      class="sc-gsTCUz dmqapp colored "
+      data-testid="progress-bar-colored "
+    />
+    <span
+      class="sc-gsTCUz dmqapp colored "
+      data-testid="progress-bar-colored "
+    />
+    <span
+      class="sc-gsTCUz dmqapp colored "
+      data-testid="progress-bar-colored "
+    />
+    <span
+      class="sc-gsTCUz dmqapp colored "
+      data-testid="progress-bar-colored "
+    />
+    <span
+      class="sc-gsTCUz dmqapp colored "
+      data-testid="progress-bar-colored "
+    />
+    <span
+      class="sc-gsTCUz dmqapp colored "
+      data-testid="progress-bar-colored "
+    />
+    <span
+      class="sc-gsTCUz dmqapp colored "
+      data-testid="progress-bar-colored "
+    />
+    <span
+      class="sc-gsTCUz dmqapp colored "
+      data-testid="progress-bar-colored "
+    />
+    <span
+      class="sc-gsTCUz dmqapp  "
+      data-testid=" "
+    />
+    <span
+      class="sc-gsTCUz dmqapp  "
+      data-testid=" "
+    />
+  </div>
+</DocumentFragment>
+`;

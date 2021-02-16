@@ -3,6 +3,7 @@ import { ReportActionsTypes } from "./report.types";
 const INITIAL_STATE = {
   review: false,
   category: null,
+  error: null,
 };
 
 const reportReducer = (state = INITIAL_STATE, action) => {
@@ -15,6 +16,9 @@ const reportReducer = (state = INITIAL_STATE, action) => {
 
     case ReportActionsTypes.REDUCER_SET_REPORT_REVIEW_CATEGORY:
       return { ...state, review: true, category: action.payload };
+
+    case ReportActionsTypes.REDUCER_SET_REPORT_ERROR:
+      return { ...state, error: action.payload };
 
     case ReportActionsTypes.REDUCER_RESET_REPORT:
       return INITIAL_STATE;

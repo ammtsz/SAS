@@ -4,8 +4,6 @@ import { PageReport, CardReport } from "./report-page.styles";
 import ReportHeader from "./component.card-header/card-header.report.component";
 import ReportBody from "./component.card-body/card-body.report.component";
 
-import { withRouter } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { actionFinishQuiz } from "../../redux/quiz/quiz.actions";
 import { createStructuredSelector } from "reselect";
@@ -45,4 +43,4 @@ const Report = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Report));
+export default connect(mapStateToProps, mapDispatchToProps)(Report);

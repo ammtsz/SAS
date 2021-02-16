@@ -85,6 +85,7 @@ const Trivia = ({
         },
       ]);
 
+      document.querySelector("#modal-button").disabled = false;
       checkAnswer(selectedOption);
       updateQuizReport();
       setAnswerCorrect(selectedOption === "0");

@@ -26,9 +26,8 @@ export const actionSignInFailure = (error) => ({
   type: UserActionsTypes.REDUCER_SIGN_IN_FAILURE,
   payload: error,
 });
-export const actionSignOutSuccess = (user) => ({
+export const actionSignOutSuccess = () => ({
   type: UserActionsTypes.REDUCER_SIGN_OUT_SUCCESS,
-  payload: user,
 });
 export const actionSignOutFailure = (error) => ({
   type: UserActionsTypes.REDUCER_SIGN_OUT_FAILURE,
@@ -41,14 +40,14 @@ export const actionSignUpFailure = (error) => ({
 export const actionResetUserTheme = () => ({
   type: UserActionsTypes.REDUCER_RESET_THEME,
 });
-export const actionSetUserError = () => ({
+export const actionSetUserError = (error) => ({
   type: UserActionsTypes.REDUCER_SET_USER_ERROR,
+  payload: error,
 });
 
 // SAGAS
-export const actionSetUserAuth = (user) => ({
+export const actionSetUserAuth = () => ({
   type: UserActionsTypes.SAGA_SET_USER_AUTH,
-  payload: user,
 });
 export const actionSignOut = () => ({
   type: UserActionsTypes.SAGA_SIGN_OUT,

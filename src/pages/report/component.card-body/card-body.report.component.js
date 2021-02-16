@@ -11,7 +11,6 @@ const ReportBody = ({
   reports,
   category,
   finishQuiz,
-  history,
   resetReport,
 }) => {
 
@@ -44,7 +43,7 @@ const ReportBody = ({
         ))}
       </ResultsDetails>
       <GoBackBtn onClick={() => {
-        finishQuiz(history)
+        finishQuiz()
         resetReport()
       }}>
         Go to Homepage

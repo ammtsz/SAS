@@ -20,7 +20,6 @@ export const actionResetCategories = () => ({
 
 
 // SAGAS
-export const actionGetCategories = (data) => ({
+export const actionGetCategories = () => ({
   type: CategoriesActionsTypes.SAGA_GET_CATEGORIES,
-  payload: data,
 });

@@ -21,7 +21,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getCategories: (data) => dispatch(actionGetCategories(data)),
+  getCategories: () => dispatch(actionGetCategories()),
   resetReport: () => dispatch(actionResetReport()),
   resetQuiz: () => dispatch(actionResetQuiz()),
 });

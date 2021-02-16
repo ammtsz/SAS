@@ -5,8 +5,6 @@ import { render, screen, cleanup } from "@testing-library/react";
 import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
 
-import { MemoryRouter } from "react-router-dom";
-
 describe("Page component <Report />", () => {
   const mockStore = configureMockStore();
 
@@ -51,9 +49,7 @@ describe("Page component <Report />", () => {
     beforeEach(() => {
       component = render(
         <Provider store={store}>
-          <MemoryRouter>
-            <Report />
-          </MemoryRouter>
+          <Report />
         </Provider>
       );
     });
@@ -112,9 +108,7 @@ describe("Page component <Report />", () => {
     beforeEach(() => {
       component = render(
         <Provider store={store}>
-          <MemoryRouter>
-            <Report />
-          </MemoryRouter>
+          <Report />
         </Provider>
       );
     });

@@ -236,7 +236,6 @@ export function* getNewQuestion({ payload: { difficulty, category } }) {
 }
 export function* checkAnswer(selectedOption) {
   try {
-    document.querySelector("#modal-button").disabled = false;
     if (selectedOption.payload === "0") {
       yield rightAnswerActions();
     } else {
@@ -321,10 +320,9 @@ export function* goToNextQuestion() {
     yield put(actionSetQuizError(error));
   }
 }
-export function* finishQuiz(history) {
+export function* finishQuiz() {
   try {
     yield put(actionResetQuiz());
-    history.payload.push("/");
   } catch (error) {
     yield put(actionSetQuizError(error));
   }

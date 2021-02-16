@@ -81,6 +81,5 @@ describe("Component report-page <CardBody />", () => {
           
           fireEvent.click(btn)
           expect(mockFinishQuiz).toHaveBeenCalledTimes(1)
-          expect(mockFinishQuiz).toHaveBeenCalledWith(mockHistory)
       })
 });

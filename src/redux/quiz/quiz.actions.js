@@ -67,13 +67,11 @@ export const actionUpdateQuizReport = () => ({
 export const actionUpdateQuizResumeReport = () => ({
   type: QuizActionsTypes.SAGA_UPDATE_QUIZ_RESUME_REPORT,
 });
-export const actionGoToNextQuestion = (data) => ({
+export const actionGoToNextQuestion = () => ({
   type: QuizActionsTypes.SAGA_GO_TO_NEXT_QUESTION,
-  payload: data,
 });
-export const actionFinishQuiz = (data) => ({
+export const actionFinishQuiz = () => ({
   type: QuizActionsTypes.SAGA_FINISH_QUIZ,
-  payload: data,
 });
 export const actionResumeQuiz = (data) => ({
   type: QuizActionsTypes.SAGA_RESUME_QUIZ,

@@ -7,12 +7,6 @@ import { Provider } from "react-redux";
 
 import { MemoryRouter } from "react-router-dom";
 
-import {
-  actionSetQuizQuestionsDatas,
-  actionCheckAnswer,
-  actionUpdateQuizReport,
-} from "../../redux/quiz/quiz.actions";
-
 import { colorGrey } from "../../assets/css/variables";
 
 describe("Page component <Trivia />", () => {

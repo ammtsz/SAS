@@ -20,7 +20,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  goToNextQuestion: (data) => dispatch(actionGoToNextQuestion(data)),
+  goToNextQuestion: () => dispatch(actionGoToNextQuestion()),
   updateQuizResumeReport: () => dispatch(actionUpdateQuizResumeReport()),
 });
 

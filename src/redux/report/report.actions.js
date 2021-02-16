@@ -14,6 +14,12 @@ export const actionSetReportReviewCategory = (data) => ({
   type: ReportActionsTypes.REDUCER_SET_REPORT_REVIEW_CATEGORY,
   payload: data,
 });
+
+export const actionSetReportError = (data) => ({
+  type: ReportActionsTypes.REDUCER_SET_REPORT_ERROR,
+  payload: data,
+});
+
 export const actionResetReport = () => ({
   type: ReportActionsTypes.REDUCER_RESET_REPORT,
 });

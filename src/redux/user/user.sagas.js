@@ -46,7 +46,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 }
 export function* signInPersistence() {
   const persistence = yield select(selectPersistence);
-  persistence
+  yield persistence
     ? auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     : auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
 }

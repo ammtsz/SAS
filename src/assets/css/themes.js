@@ -23,7 +23,7 @@ export const LightTheme = {
   navbar: colorDarkBlue,
 
   cards: colorWhite,
-  cardHover: colorGrey,
+  cardHover: colorLightGrey,
 
   shadow: colorDarkBlue40,
 
@@ -35,6 +35,7 @@ export const LightTheme = {
   text3: colorDarkBlue,
   text4: colorDarkBlue70,
   text5: colorDarkGrey,
+  text6: colorWhite,
 
   icon: "",
 
@@ -69,6 +70,7 @@ export const DarkTheme = {
   text3: colorWhite,
   text4: colorGrey,
   text5: colorGrey,
+  text6: colorDarkBlue,
 
   icon: "invert(60%) brightness(5)",
 

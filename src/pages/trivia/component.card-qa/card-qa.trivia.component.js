@@ -72,7 +72,6 @@ const QATrivia = ({
           onClick={(event) => selectOption(event)}
         >
           <AnswerText
-            tabIndex="0"
             data-option={option.id}
             data-testid="trivia-card-option-text"
           >

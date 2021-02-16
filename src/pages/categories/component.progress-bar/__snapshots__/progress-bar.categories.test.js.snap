@@ -3,6 +3,7 @@
 exports[`Component categories-page <ProgressBar /> should render ProgressBar 1`] = `
 <DocumentFragment>
   <div
+    aria-label="8 questions answered"
     class="sc-bdfBwQ ccxwCN progress-bar"
     data-testid="progress-bar"
   >

@@ -1,25 +1,33 @@
 import styled from "styled-components";
-import {
-  mq_md,
-  mq_sm,
-  mq_xs,
-} from "../../../assets/css/variables";
+import { mq_md, mq_sm, mq_xs } from "../../../assets/css/variables";
 import { CardContainer } from "../../../assets/css";
 
 export const CardCategory = styled(CardContainer)`
   display: flex;
   flex-direction: column;
-  justify-content:  ${(props) => (props.completed ? "space-between" : "flex-end")};
+  justify-content: ${(props) =>
+    props.completed ? "space-between" : "flex-end"};
   height: 100%;
 
   padding: 16px;
 
   min-height: 104px;
   word-break: break-word;
-  cursor: pointer;
 
-  &:disabled{
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.cardHover};
+  }
+
+  &[data-readonly="true"] {
     cursor: default;
+    &:hover,
+    &:focus {
+      background-color: ${({ theme }) => theme.cards};
+    }
   }
 
   // medium to extra-large screen (>=768)
@@ -97,5 +105,5 @@ export const CategoryName = styled.h2`
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.5rem;
-  color: ${ ({theme, completed}) => completed ? theme.text3 : theme.text2};
+  color: ${({ theme, completed }) => (completed ? theme.text3 : theme.text2)};
 `;

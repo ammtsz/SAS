@@ -25,7 +25,7 @@ const Card = ({
   history,
 }) => {
   const startQuiz = () => {
-    if (category.completed !== 10) {
+    if (category.completed === 0) {
       setQuizCategory(category);
       setQuizActive(true);
       getNewQuestion({ difficulty: "medium", category: category.id });
@@ -35,16 +35,24 @@ const Card = ({
 
   return (
     <CardCategory
-      disabled={category.completed !== 0}
-      completed={category.completed !== 0}
-      as="button"
       onClick={() => startQuiz()}
       data-testid="category-card"
+      data-readonly={category.completed !== 0}
+  
+      completed={category.completed !== 0}
+  
+      tabIndex={category.completed === 0 ? "0" : "-1"}
+      role={category.completed === 0 ? "button" : "div"}
+      aria-label={`${category.name} start quiz`}
     >
-      {category.completed !== 0 ? <CardHeader category={category} history={history}/> : null}
-      <CategoryName completed={category.completed !== 0}>{decodeHtml(category.name)}</CategoryName>
+      {category.completed !== 0 ? (
+        <CardHeader category={category} history={history} />
+      ) : null}
+      <CategoryName completed={category.completed !== 0}>
+        {decodeHtml(category.name)}
+      </CategoryName>
     </CardCategory>
-  )
+  );
 };
 
 export default connect(null, mapDispatchToProps)(withRouter(Card));

@@ -7,10 +7,15 @@ export const CardHeaderStyled = styled.div`
   justify-content: space-between;
   width: 100%;
 
+  font-size: 0.85rem;
+
   .category-card__link {
+    outline: none;
     margin-left: auto;
     cursor: pointer;
-    &:hover {
+
+    &:hover,
+    &:focus {
       font-weight: 700;
       text-decoration: underline;
     }

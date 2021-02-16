@@ -39,12 +39,16 @@ export const Login = styled.button`
   background-color: transparent;
 
   font-size: 0.75rem;
-  text-decoration: underline;
   color: ${colorWhite};
 
   cursor: pointer;
 
   outline: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
 `;
 
 export const SwitchButtonStyled = styled.span`

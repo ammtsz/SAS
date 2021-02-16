@@ -16,6 +16,8 @@ export const colorDarkBlue40 = "rgba(52, 60, 88, 0.4)";
 export const colorDarkBlue50 = "rgba(52, 60, 88, 0.5)";
 export const colorDarkBlue70 = "rgba(52, 60, 88, 0.7)";
 
+export const colorAquaGreen = "#4ADAC0"
+
 export const colorBlue = "#0467db";
 export const colorLightBlue = "#438DE4";
 export const colorRed = "#FF4F4F";

@@ -19,7 +19,7 @@ const ReportBody = ({
   return (
     <CardBodyTrivia>
       <BodyTitle>Check your performance</BodyTitle>
-        <ResultsSumary>
+        <ResultsSumary   tabIndex="0">
         <div>
           <div className="sumary__number" data-testid="report-rights">{reportDatas.rights}</div>
           <div className="sumary__text">Correct</div>
@@ -29,7 +29,7 @@ const ReportBody = ({
           <div className="sumary__text">Incorrect</div>
         </div>
       </ResultsSumary>
-      <ResultsDetails>
+      <ResultsDetails  tabIndex="0">
         {Object.keys(reportDatas.difficulty).map((difficulty) => (
           <div key={difficulty} className="level__details" data-testid="report-level-details">
             <h6 className="level__details--title">{difficulty[0].toUpperCase() + difficulty.substring(1)}</h6>

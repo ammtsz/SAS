@@ -14,6 +14,7 @@ exports[`Component login-page <SignUp /> should render SignUp 1`] = `
       class="sc-bdfBwQ kmCbvM form-input__box"
     >
       <label
+        aria-label="name"
         for="signup-name"
       >
         <i
@@ -32,6 +33,7 @@ exports[`Component login-page <SignUp /> should render SignUp 1`] = `
       class="sc-bdfBwQ kmCbvM form-input__box"
     >
       <label
+        aria-label="email"
         for="signup-email"
       >
         <i
@@ -50,6 +52,7 @@ exports[`Component login-page <SignUp /> should render SignUp 1`] = `
       class="sc-bdfBwQ kmCbvM form-input__box"
     >
       <label
+        aria-label="password"
         for="signup-password"
       >
         <i
@@ -68,6 +71,7 @@ exports[`Component login-page <SignUp /> should render SignUp 1`] = `
       class="sc-bdfBwQ kmCbvM form-input__box"
     >
       <label
+        aria-label="confirm password"
         for="signup-confirm-password"
       >
         <i
@@ -83,12 +87,12 @@ exports[`Component login-page <SignUp /> should render SignUp 1`] = `
       />
     </div>
     <button
-      class="sc-hKgILt sc-fubCfw ivrlBZ ywriB"
+      class="sc-hKgILt sc-fubCfw iAsxjW ywriB"
     >
       Create account
     </button>
     <button
-      class="sc-hKgILt sc-fubCfw ivrlBZ ywriB"
+      class="sc-hKgILt sc-fubCfw iAsxjW ywriB"
     >
       Log in
     </button>

@@ -56,9 +56,17 @@ export const AnswerBtn = styled(Button)`
   margin: auto;
   margin-top: 40px;
 
-  background: ${colorGrey};
+  /* background: ${colorGrey}; */ // (original color) bad contrast for acessibility
+  background: ${({ theme }) => theme.btn1};
 
   font-family: ${fontAvenir};
+  color: ${({ theme }) => theme.text6};
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-color: ${colorGrey};
+  }
 
   @media (max-width: ${mq_md}) {
     width: 100%;
@@ -67,9 +75,11 @@ export const AnswerBtn = styled(Button)`
     margin: 16px 24px;
   }
 
-  &:disabled {
-    &:hover {
-      background: ${colorGrey};
+  &[data-readonly="true"] {
+    &:hover,
+    &:focus {
+      background: ${({ theme }) => theme.btn1};
+      color: ${({ theme }) => theme.text6};
     }
   }
 `;

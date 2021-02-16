@@ -24,12 +24,15 @@ exports[`Page component <Trivia /> not loading should render Trivia 1`] = `
             src="wrong.svg"
           />
           <p
-            class="sc-jSgupP ietSEv"
+            class="sc-jSgupP mBSMo"
+            id="modal-message"
+            tabindex="0"
           >
             Wrong answer
           </p>
           <button
-            class="sc-gsTCUz sc-gKsewC bijOHs jmdVDD"
+            class="sc-gsTCUz sc-gKsewC dfZqOT jdxOto"
+            data-readonly="true"
             id="modal-button"
           >
             Next question
@@ -105,7 +108,7 @@ exports[`Page component <Trivia /> not loading should render Trivia 1`] = `
           </div>
         </div>
         <h4
-          class="sc-bkzZxe leMFja"
+          class="sc-bkzZxe efoKvk"
           tabindex="0"
         >
           undefined
@@ -115,8 +118,8 @@ exports[`Page component <Trivia /> not loading should render Trivia 1`] = `
           id="trivia-btn-answer-container"
         >
           <button
-            class="sc-gsTCUz sc-kEjbxe bijOHs dlSfnO"
-            disabled=""
+            class="sc-gsTCUz sc-kEjbxe dfZqOT hlScfv"
+            data-readonly="true"
             id="trivia-btn-answer"
           >
             Check Answer

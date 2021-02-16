@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { CardContainer, Button } from "../../assets/css/index";
-import {
-  colorRed,
-  colorGreen,
-} from "../../assets/css/variables";
+import { colorRed, colorGreen } from "../../assets/css/variables";
 
 export const PageModal = styled.section`
   display: none;
@@ -13,7 +10,7 @@ export const PageModal = styled.section`
   width: 100vw;
   min-height: 100vh;
 
-  background-color: ${({theme}) => theme.bg50};
+  background-color: ${({ theme }) => theme.bg50};
 
   z-index: 10;
 `;
@@ -45,13 +42,19 @@ export const Message = styled.p`
   font-size: 1.5rem;
   line-height: 2rem;
 
-  color: ${({theme})  => theme.text3};
+  color: ${({ theme }) => theme.text3};
+
+  outline: none;
 `;
 
 export const NextBtn = styled(Button)`
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
 
   font-weight: bold;
+
+  outline: none;
+
+  cursor: pointer;
 
   .modal__nextButton--icon {
     vertical-align: middle;

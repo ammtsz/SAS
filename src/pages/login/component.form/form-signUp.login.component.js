@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormInput from "../component.form-input/form-input.login.component";
 import { FormTitle, Form, ButtonLogin } from "./form.login.styles";
 
@@ -46,6 +46,14 @@ const SignUp = ({ error, emailSignUp, setError, newAccount }) => {
     emailSignUp({ email, password, displayName });
   };
 
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+      document.querySelector("#signUp-error").focus();
+    }
+  }, [error]);
+
+
   return (
     <React.Fragment>
       <FormTitle>Sign Up</FormTitle>
@@ -83,6 +91,8 @@ const SignUp = ({ error, emailSignUp, setError, newAccount }) => {
           handleChange={(event) => handleChange(event)}
         />
         <ErrorMessage
+          tabIndex="0"
+          id="signUp-error"
           error={error}
           message={
             error

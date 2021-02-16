@@ -33,7 +33,7 @@ const Modal = ({
 }) => {
 
   const nextQuestionActions = () => {
-    document.querySelector("#modal-button").disabled = true;
+    document.querySelector("#modal-button").dataset.readonly = true;
     document.querySelector("#modal").style.display = "none";
 
     if (quizQuestionNumber < 10) {
@@ -52,11 +52,12 @@ const Modal = ({
           alt={right ? "correct" : "incorrect"}
           tabindex="-1"
         />
-        <Message>{right ? "Correct answer!" : "Wrong answer"}</Message>
+        <Message id="modal-message" tabIndex="0" >{right ? "Correct answer!" : "Wrong answer"}</Message>
         <NextBtn
-          tabindex="0"
           id="modal-button"
+          data-readonly={true}
           onClick={() => nextQuestionActions()}
+          // aria-label={ right ? "Correct answer! Go to next question" : "Wrong answer. Go to next question"}
         >
           {quizQuestionNumber < 10 ? "Next question" : "See report"}
           <img className="modal__nextButton--icon" src={ArrowIcon} alt="..." />

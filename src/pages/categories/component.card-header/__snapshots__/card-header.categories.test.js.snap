@@ -3,9 +3,10 @@
 exports[`Component categories-page <CardHeader /> Category completed: > 0 and < 10 questions (quiz in progress) should render CardHeader 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bdfBwQ cWuOFj"
+    class="sc-bdfBwQ hesUtF"
   >
     <div
+      aria-label="5 questions answered"
       class="sc-gsTCUz eiooQx progress-bar"
       data-testid="progress-bar"
     >
@@ -51,7 +52,10 @@ exports[`Component categories-page <CardHeader /> Category completed: > 0 and < 
       />
     </div>
     <span
+      aria-label="continue Books quiz (5 questions answered)"
       class="category-card__link"
+      role="button"
+      tabindex="0"
     >
       continue
     </span>
@@ -62,15 +66,18 @@ exports[`Component categories-page <CardHeader /> Category completed: > 0 and < 
 exports[`Component categories-page <CardHeader /> Category completed: 10 questions (finished quiz) should render CardHeader 1`] = `
 <DocumentFragment>
   <div
-    class="sc-bdfBwQ cWuOFj"
+    class="sc-bdfBwQ hesUtF"
   >
-    <span
+    <div
       data-testid="card-header-results"
     >
       7/10
-    </span>
+    </div>
     <span
+      aria-label="see report for Books (quiz completed)"
       class="category-card__link"
+      role="button"
+      tabindex="0"
     >
       see report
     </span>

@@ -19,15 +19,19 @@ exports[`Page component <Categories /> shoud render Categories 1`] = `
     <section
       class="sc-pFZIQ cQsANz"
     >
-      <button
-        class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+      <div
+        aria-label="Books start quiz"
+        class="sc-bdfBwQ sc-dlfnbm cXyUsK haOKjT"
+        data-readonly="true"
         data-testid="category-card"
-        disabled=""
+        role="div"
+        tabindex="-1"
       >
         <div
-          class="sc-eCssSg fwvBmJ"
+          class="sc-eCssSg caVUlX"
         >
           <div
+            aria-label="0 questions answered"
             class="sc-jSgupP eMsPRm progress-bar"
             data-testid="progress-bar"
           >
@@ -73,7 +77,10 @@ exports[`Page component <Categories /> shoud render Categories 1`] = `
             />
           </div>
           <span
+            aria-label="continue Books quiz (0 questions answered)"
             class="category-card__link"
+            role="button"
+            tabindex="0"
           >
             continue
           </span>
@@ -83,16 +90,20 @@ exports[`Page component <Categories /> shoud render Categories 1`] = `
         >
           Books
         </h2>
-      </button>
-      <button
-        class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+      </div>
+      <div
+        aria-label="History start quiz"
+        class="sc-bdfBwQ sc-dlfnbm cXyUsK haOKjT"
+        data-readonly="true"
         data-testid="category-card"
-        disabled=""
+        role="div"
+        tabindex="-1"
       >
         <div
-          class="sc-eCssSg fwvBmJ"
+          class="sc-eCssSg caVUlX"
         >
           <div
+            aria-label="0 questions answered"
             class="sc-jSgupP eMsPRm progress-bar"
             data-testid="progress-bar"
           >
@@ -138,7 +149,10 @@ exports[`Page component <Categories /> shoud render Categories 1`] = `
             />
           </div>
           <span
+            aria-label="continue History quiz (0 questions answered)"
             class="category-card__link"
+            role="button"
+            tabindex="0"
           >
             continue
           </span>
@@ -148,16 +162,20 @@ exports[`Page component <Categories /> shoud render Categories 1`] = `
         >
           History
         </h2>
-      </button>
-      <button
-        class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+      </div>
+      <div
+        aria-label="Sports start quiz"
+        class="sc-bdfBwQ sc-dlfnbm cXyUsK haOKjT"
+        data-readonly="true"
         data-testid="category-card"
-        disabled=""
+        role="div"
+        tabindex="-1"
       >
         <div
-          class="sc-eCssSg fwvBmJ"
+          class="sc-eCssSg caVUlX"
         >
           <div
+            aria-label="0 questions answered"
             class="sc-jSgupP eMsPRm progress-bar"
             data-testid="progress-bar"
           >
@@ -203,7 +221,10 @@ exports[`Page component <Categories /> shoud render Categories 1`] = `
             />
           </div>
           <span
+            aria-label="continue Sports quiz (0 questions answered)"
             class="category-card__link"
+            role="button"
+            tabindex="0"
           >
             continue
           </span>
@@ -213,7 +234,7 @@ exports[`Page component <Categories /> shoud render Categories 1`] = `
         >
           Sports
         </h2>
-      </button>
+      </div>
     </section>
   </section>
 </DocumentFragment>

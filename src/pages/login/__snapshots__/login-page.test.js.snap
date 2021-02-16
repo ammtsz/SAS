@@ -21,6 +21,7 @@ exports[`Page component <PageLogin /> should render PageLogin 1`] = `
           class="sc-pFZIQ eulNDw form-input__box"
         >
           <label
+            aria-label="email"
             for="signin-email"
           >
             <i
@@ -39,6 +40,7 @@ exports[`Page component <PageLogin /> should render PageLogin 1`] = `
           class="sc-pFZIQ eulNDw form-input__box"
         >
           <label
+            aria-label="password"
             for="signin-password"
           >
             <i
@@ -77,13 +79,13 @@ exports[`Page component <PageLogin /> should render PageLogin 1`] = `
           </label>
         </div>
         <button
-          class="sc-gsTCUz sc-fubCfw bijOHs ywriB"
+          class="sc-gsTCUz sc-fubCfw dfZqOT ywriB"
           type="submit"
         >
           Log in
         </button>
         <button
-          class="sc-gsTCUz sc-fubCfw bijOHs ywriB"
+          class="sc-gsTCUz sc-fubCfw dfZqOT ywriB"
         >
           Sign up
         </button>

@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 
 import { MemoryRouter } from "react-router-dom";
 
-import { colorGrey } from "../../assets/css/variables";
+import { colorDarkBlue } from "../../assets/css/variables";
 
 describe("Page component <Trivia />", () => {
   const mockStore = configureMockStore();
@@ -53,21 +53,20 @@ describe("Page component <Trivia />", () => {
       expect(screen.getByText("Check Answer")).toBeInTheDocument();
     });
 
-    it("should have 'Check Answer' button disabled", () => {
+    it("should have 'Check Answer' button read-only", () => {
       const btn = screen.getByText("Check Answer");
       
       fireEvent.click(btn);
 
-      expect(btn).toBeDisabled()
       expect(store.dispatch).toHaveBeenCalledTimes(0);
     });
 
     it("should NOT have 'Check Answer' button changing on mouseEnter", () => {
       const btn = screen.getByText("Check Answer");
 
-      expect(btn).toHaveStyle({backgroundColor: colorGrey});
+      expect(btn).toHaveStyle({backgroundColor: ({ theme }) => theme.btn1});
       fireEvent.mouseEnter(btn);
-      expect(btn).toHaveStyle({backgroundColor: colorGrey});
+      expect(btn).toHaveStyle({backgroundColor: ({ theme }) => theme.btn1});
     });
 
   });

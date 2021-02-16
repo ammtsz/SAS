@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Test Dev Frontend",
+  "name": "Test Dev Frontend",
   "icons": [
     {
       "src": "mascot.svg",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#343C58",
+  "background_color": "#E5E5E5"
 }

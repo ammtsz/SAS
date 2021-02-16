@@ -21,15 +21,17 @@ export const Button = styled.button`
   line-height: 1.5rem;
 
   cursor: pointer;
+  outline: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: ${colorDarkBlue};
   }
 
-  &:disabled {
+  &[data-readonly="true"] {
+    cursor: default;
     &:hover {
       background: ${colorBlue};
-      cursor: default;
     }
   }
 `;

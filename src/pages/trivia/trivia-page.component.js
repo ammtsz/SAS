@@ -85,12 +85,14 @@ const Trivia = ({
         },
       ]);
 
-      document.querySelector("#modal-button").disabled = false;
+      document.querySelector("#modal-button").dataset.readonly = false;
       checkAnswer(selectedOption);
       updateQuizReport();
       setAnswerCorrect(selectedOption === "0");
       showAnswerModal();
     }
+
+    document.querySelector("#modal-message").focus();
   };
 
   const showAnswerModal = () => {
@@ -120,7 +122,7 @@ const Trivia = ({
           <AnswerBtnContainer id="trivia-btn-answer-container" sticky={sticky}>
             <AnswerBtn
               id="trivia-btn-answer"
-              disabled={disabled}
+              data-readonly={disabled}
               onClick={() => confirmAnswer()}
             >
               Check Answer

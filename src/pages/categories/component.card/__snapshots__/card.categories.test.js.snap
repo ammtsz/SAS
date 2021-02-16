@@ -2,15 +2,19 @@
 
 exports[`Component categories-page <Card /> Category completed: > 0 and < 10 questions (quiz in progress) should render Card 1`] = `
 <DocumentFragment>
-  <button
-    class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+  <div
+    aria-label="Books start quiz"
+    class="sc-bdfBwQ sc-dlfnbm cXyUsK haOKjT"
+    data-readonly="true"
     data-testid="category-card"
-    disabled=""
+    role="div"
+    tabindex="-1"
   >
     <div
-      class="sc-eCssSg fwvBmJ"
+      class="sc-eCssSg caVUlX"
     >
       <div
+        aria-label=" questions answered"
         class="sc-jSgupP eMsPRm progress-bar"
         data-testid="progress-bar"
       >
@@ -56,7 +60,10 @@ exports[`Component categories-page <Card /> Category completed: > 0 and < 10 que
         />
       </div>
       <span
+        aria-label="continue Books quiz ( questions answered)"
         class="category-card__link"
+        role="button"
+        tabindex="0"
       >
         continue
       </span>
@@ -66,42 +73,52 @@ exports[`Component categories-page <Card /> Category completed: > 0 and < 10 que
     >
       Books
     </h2>
-  </button>
+  </div>
 </DocumentFragment>
 `;
 
 exports[`Component categories-page <Card /> Category completed: 0 questions (quiz not started) should render Card 1`] = `
 <DocumentFragment>
-  <button
-    class="sc-bdfBwQ sc-dlfnbm cXyUsK fVoFtA"
+  <div
+    aria-label="Books start quiz"
+    class="sc-bdfBwQ sc-dlfnbm cXyUsK cpFaeN"
+    data-readonly="false"
     data-testid="category-card"
+    role="button"
+    tabindex="0"
   >
     <h2
       class="sc-hKgILt juEGes"
     >
       Books
     </h2>
-  </button>
+  </div>
 </DocumentFragment>
 `;
 
 exports[`Component categories-page <Card /> Category completed: 10 questions (finished quiz) should render Card 1`] = `
 <DocumentFragment>
-  <button
-    class="sc-bdfBwQ sc-dlfnbm cXyUsK gFfJZe"
+  <div
+    aria-label="Books start quiz"
+    class="sc-bdfBwQ sc-dlfnbm cXyUsK haOKjT"
+    data-readonly="true"
     data-testid="category-card"
-    disabled=""
+    role="div"
+    tabindex="-1"
   >
     <div
-      class="sc-eCssSg fwvBmJ"
+      class="sc-eCssSg caVUlX"
     >
-      <span
+      <div
         data-testid="card-header-results"
       >
         /
-      </span>
+      </div>
       <span
+        aria-label="see report for Books (quiz completed)"
         class="category-card__link"
+        role="button"
+        tabindex="0"
       >
         see report
       </span>
@@ -111,6 +128,6 @@ exports[`Component categories-page <Card /> Category completed: 10 questions (fi
     >
       Books
     </h2>
-  </button>
+  </div>
 </DocumentFragment>
 `;

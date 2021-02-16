@@ -7,7 +7,6 @@ exports[`Component <Navbar /> Theme toggle button should render Navbar 1`] = `
   >
     <h3
       class="sc-gsTCUz iyGGEo"
-      tabindex="0"
     >
       Teste Dev Frontend
     </h3>
@@ -18,7 +17,7 @@ exports[`Component <Navbar /> Theme toggle button should render Navbar 1`] = `
         class="sc-hKgILt llgplH"
       />
       <button
-        class="sc-eCssSg etcwcl"
+        class="sc-eCssSg iTEdMl"
       >
         Log in
       </button>
@@ -61,7 +60,6 @@ exports[`Component <Navbar /> User is logged in should render Navbar 1`] = `
   >
     <h3
       class="sc-gsTCUz iyGGEo"
-      tabindex="0"
     >
       Teste Dev Frontend
     </h3>
@@ -74,7 +72,7 @@ exports[`Component <Navbar /> User is logged in should render Navbar 1`] = `
         Hello, Peter
       </p>
       <button
-        class="sc-eCssSg etcwcl"
+        class="sc-eCssSg iTEdMl"
       >
         Log out
       </button>
@@ -114,7 +112,6 @@ exports[`Component <Navbar /> User is logged out and it's on login page should r
   >
     <h3
       class="sc-gsTCUz iyGGEo"
-      tabindex="0"
     >
       Teste Dev Frontend
     </h3>
@@ -125,7 +122,7 @@ exports[`Component <Navbar /> User is logged out and it's on login page should r
         class="sc-hKgILt llgplH"
       />
       <button
-        class="sc-eCssSg etcwcl"
+        class="sc-eCssSg iTEdMl"
       >
         skip log in
       </button>
@@ -165,7 +162,6 @@ exports[`Component <Navbar /> User is logged out and on homepage should render N
   >
     <h3
       class="sc-gsTCUz iyGGEo"
-      tabindex="0"
     >
       Teste Dev Frontend
     </h3>
@@ -176,7 +172,7 @@ exports[`Component <Navbar /> User is logged out and on homepage should render N
         class="sc-hKgILt llgplH"
       />
       <button
-        class="sc-eCssSg etcwcl"
+        class="sc-eCssSg iTEdMl"
       >
         Log in
       </button>

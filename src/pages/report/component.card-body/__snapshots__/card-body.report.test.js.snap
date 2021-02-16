@@ -12,6 +12,7 @@ exports[`Component report-page <CardBody /> should render CardBody 1`] = `
     </h4>
     <div
       class="sc-eCssSg eGOHVc"
+      tabindex="0"
     >
       <div>
         <div
@@ -42,6 +43,7 @@ exports[`Component report-page <CardBody /> should render CardBody 1`] = `
     </div>
     <div
       class="sc-jSgupP ktuNzm"
+      tabindex="0"
     >
       <div
         class="level__details"
@@ -111,7 +113,7 @@ exports[`Component report-page <CardBody /> should render CardBody 1`] = `
       </div>
     </div>
     <button
-      class="sc-gsTCUz sc-gKsewC bijOHs bfTpLt"
+      class="sc-gsTCUz sc-gKsewC dfZqOT bfTpLt"
     >
       Go to Homepage
     </button>

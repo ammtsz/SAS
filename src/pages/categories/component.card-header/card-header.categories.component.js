@@ -39,20 +39,33 @@ const CardHeader = ({
     history.push("/quiz");
   };
 
+  const progress = report.results.rights + report.results.wrongs;
+
   return category.completed === 10 ? (
     <CardHeaderStyled>
-      <span data-testid="card-header-results" >{`${report.results.rights}/${
+      <div data-testid="card-header-results">{`${report.results.rights}/${
         report.results.rights + report.results.wrongs
-      }`}</span>
-      <span className="category-card__link" onClick={() => seeReport()}>
+      }`}</div>
+      <span
+        className="category-card__link"
+        onClick={() => seeReport()}
+        role="button"
+        aria-label={`see report for ${category.name} (quiz completed)`}
+        tabIndex="0"
+      >
         see report
       </span>
     </CardHeaderStyled>
   ) : (
-
     <CardHeaderStyled>
-      <ProgressBar progress={report.results.rights + report.results.wrongs} />
-      <span className="category-card__link" onClick={() => continueQuiz()}>
+      <ProgressBar progress={progress} />
+      <span
+        className="category-card__link"
+        onClick={() => continueQuiz()}
+        role="button"
+        aria-label={`continue ${category.name} quiz (${progress} questions answered)`}
+        tabIndex="0"
+      >
         continue
       </span>
     </CardHeaderStyled>

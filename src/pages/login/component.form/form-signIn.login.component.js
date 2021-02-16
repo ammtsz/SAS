@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FormTitle, Form, ButtonLogin } from "./form.login.styles";
 
@@ -54,6 +54,13 @@ const SignIn = ({
     localStorage.removeItem("triviaTheme");
   };
 
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+      document.querySelector("#signIn-error").focus();
+    }
+  }, [error]);
+
   return (
     <React.Fragment>
       <FormTitle>Login</FormTitle>
@@ -76,6 +83,8 @@ const SignIn = ({
         />
 
         <ErrorMessage
+          tabIndex="0"
+          id="signIn-error"
           error={error}
           message={
             error

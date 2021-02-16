@@ -14,6 +14,7 @@ exports[`Component login-page <SignIn /> should render SignIn 1`] = `
       class="sc-iBPRYJ gYooWe form-input__box"
     >
       <label
+        aria-label="email"
         for="signin-email"
       >
         <i
@@ -32,6 +33,7 @@ exports[`Component login-page <SignIn /> should render SignIn 1`] = `
       class="sc-iBPRYJ gYooWe form-input__box"
     >
       <label
+        aria-label="password"
         for="signin-password"
       >
         <i
@@ -70,13 +72,13 @@ exports[`Component login-page <SignIn /> should render SignIn 1`] = `
       </label>
     </div>
     <button
-      class="sc-gsTCUz sc-gKsewC bijOHs kUNQyM"
+      class="sc-gsTCUz sc-gKsewC dfZqOT kUNQyM"
       type="submit"
     >
       Log in
     </button>
     <button
-      class="sc-gsTCUz sc-gKsewC bijOHs kUNQyM"
+      class="sc-gsTCUz sc-gKsewC dfZqOT kUNQyM"
     >
       Sign up
     </button>

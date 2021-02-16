@@ -71,7 +71,7 @@ const Navbar = ({
 
   return (
     <NavbarStyled>
-      <Logo tabIndex="0">Teste Dev Frontend</Logo>
+      <Logo >Teste Dev Frontend</Logo>
       <UserBox>
         <Name>{user ? `Hello, ${user.displayName}` : ""}</Name>
         {user ? (

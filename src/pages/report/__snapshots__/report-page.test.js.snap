@@ -41,6 +41,7 @@ exports[`Page component <Report /> Report created right after a quiz is finished
         </h4>
         <div
           class="sc-kEjbxe iykKIp"
+          tabindex="0"
         >
           <div>
             <div
@@ -71,6 +72,7 @@ exports[`Page component <Report /> Report created right after a quiz is finished
         </div>
         <div
           class="sc-iqHYGH iQDmjP"
+          tabindex="0"
         >
           <div
             class="level__details"
@@ -140,7 +142,7 @@ exports[`Page component <Report /> Report created right after a quiz is finished
           </div>
         </div>
         <button
-          class="sc-gsTCUz sc-crrsfI bijOHs cBQRTc"
+          class="sc-gsTCUz sc-crrsfI dfZqOT cBQRTc"
         >
           Go to Homepage
         </button>
@@ -189,6 +191,7 @@ exports[`Page component <Report /> Report requested from categories page should 
         </h4>
         <div
           class="sc-kEjbxe iykKIp"
+          tabindex="0"
         >
           <div>
             <div
@@ -219,6 +222,7 @@ exports[`Page component <Report /> Report requested from categories page should 
         </div>
         <div
           class="sc-iqHYGH iQDmjP"
+          tabindex="0"
         >
           <div
             class="level__details"
@@ -288,7 +292,7 @@ exports[`Page component <Report /> Report requested from categories page should 
           </div>
         </div>
         <button
-          class="sc-gsTCUz sc-crrsfI bijOHs cBQRTc"
+          class="sc-gsTCUz sc-crrsfI dfZqOT cBQRTc"
         >
           Go to Homepage
         </button>

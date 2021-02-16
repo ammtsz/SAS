@@ -17,12 +17,15 @@ exports[`Component <Modal /> Correct answer before last question should render M
         src="right.svg"
       />
       <p
-        class="sc-jSgupP ietSEv"
+        class="sc-jSgupP mBSMo"
+        id="modal-message"
+        tabindex="0"
       >
         Correct answer!
       </p>
       <button
-        class="sc-gsTCUz sc-gKsewC bijOHs jmdVDD"
+        class="sc-gsTCUz sc-gKsewC dfZqOT jdxOto"
+        data-readonly="true"
         id="modal-button"
       >
         Next question
@@ -54,12 +57,15 @@ exports[`Component <Modal /> Last question should render Modal 1`] = `
         src="right.svg"
       />
       <p
-        class="sc-jSgupP ietSEv"
+        class="sc-jSgupP mBSMo"
+        id="modal-message"
+        tabindex="0"
       >
         Correct answer!
       </p>
       <button
-        class="sc-gsTCUz sc-gKsewC bijOHs jmdVDD"
+        class="sc-gsTCUz sc-gKsewC dfZqOT jdxOto"
+        data-readonly="true"
         id="modal-button"
       >
         See report
@@ -91,12 +97,15 @@ exports[`Component <Modal /> Wrong answer before last question should render Mod
         src="wrong.svg"
       />
       <p
-        class="sc-jSgupP ietSEv"
+        class="sc-jSgupP mBSMo"
+        id="modal-message"
+        tabindex="0"
       >
         Wrong answer
       </p>
       <button
-        class="sc-gsTCUz sc-gKsewC bijOHs jmdVDD"
+        class="sc-gsTCUz sc-gKsewC dfZqOT jdxOto"
+        data-readonly="true"
         id="modal-button"
       >
         Next question

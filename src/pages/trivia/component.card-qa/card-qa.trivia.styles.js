@@ -29,7 +29,6 @@ export const Question = styled.h4`
 
 export const AnswerOptionCard = styled.button`
   display: flex;
-
   min-height: 60px;
   margin: 8px 0;
   padding: 12px 16px;
@@ -40,6 +39,7 @@ export const AnswerOptionCard = styled.button`
   border: 1px solid ${colorGrey};
   border-radius: 8px;
 
+  text-align: start; 
   cursor: pointer;
 
   &:focus {

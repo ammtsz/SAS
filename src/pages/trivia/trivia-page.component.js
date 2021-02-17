@@ -60,8 +60,7 @@ const Trivia = ({
       window.onscroll = () => {
         const btn = document.querySelector("#trivia-btn-answer-container");
         if (listening && btn) {
-          if (btn.offsetTop > window.innerHeight) {
-            // ***corrigir logica
+          if (btn.offsetTop >= 552) {
             setSticky(false);
           } else {
             setSticky(true);

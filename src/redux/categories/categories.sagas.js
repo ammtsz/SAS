@@ -52,7 +52,6 @@ export function* getReportsFromDatabase() {
         rsf.firestore.getDocument,
         `users/${userDatas.id}`
       );
-      console.log(userSnapshot)
       reports = userSnapshot.data().reports
     } else {
       reports = localStorage.getItem("trivia") ? JSON.parse(localStorage.getItem("trivia")) : {}

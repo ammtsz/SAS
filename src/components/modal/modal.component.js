@@ -57,7 +57,6 @@ const Modal = ({
           id="modal-button"
           data-readonly={true}
           onClick={() => nextQuestionActions()}
-          // aria-label={ right ? "Correct answer! Go to next question" : "Wrong answer. Go to next question"}
         >
           {quizQuestionNumber < 10 ? "Next question" : "See report"}
           <img className="modal__nextButton--icon" src={ArrowIcon} alt="..." />

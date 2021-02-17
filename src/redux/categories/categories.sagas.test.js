@@ -6,11 +6,10 @@ import { rsf } from "../../firebase/firebase.utils";
 import { CategoriesActionsTypes } from "./categories.types";
 import {
   actionSetAllCategories,
-  actionSetCategoriesError,
   actionSetCategoriesReport,
 } from "./categories.actions";
 
-import { selectReports, selectAllCategories } from "./categories.selectors";
+import { selectAllCategories } from "./categories.selectors";
 import { selectUserDatas } from "../user/user.selectors";
 
 import {
@@ -30,7 +29,7 @@ describe("categories.sagas", () => {
       );
     });
   });
-  
+
   // CALLED
   describe("'getCategories' with stateCategories.length === 0", () => {
     const gen = getCategories();
@@ -53,6 +52,10 @@ describe("categories.sagas", () => {
         setCategoriesProgressStatus(mockCategories)
       );
     });
+
+    it("should be done", () => {
+      expect(gen.next().done).toEqual(true);
+    });
   });
 
   describe("'getCategories' with stateCategories.length !== 0", () => {
@@ -66,6 +69,10 @@ describe("categories.sagas", () => {
         setCategoriesProgressStatus(mockCategories)
       );
     });
+
+    it("should be done", () => {
+      expect(gen.next().done).toEqual(true);
+    });
   });
 
   // UTILS
@@ -77,6 +84,10 @@ describe("categories.sagas", () => {
       expect(gen.next(mockCategory).value).toEqual(
         put(actionSetAllCategories(mockCategory))
       );
+    });
+
+    it("should be done", () => {
+      expect(gen.next().done).toEqual(true);
     });
   });
 
@@ -107,29 +118,4 @@ describe("categories.sagas", () => {
       );
     });
   });
-
-  //   describe("'setCategoriesProgressStatus'", () => {
-  //     const mockCategories = [
-  //       { id: 1 },{ id: 2 },{ id: 3 },{ id: 4 },{ id: 5 }
-  //     ]
-
-  //     const gen = setCategoriesProgressStatus(mockCategories);
-
-  //     it("should call 'saveCategories'", () => {
-  //       let mockReports = gen.next().value;
-  //       expect(mockReports).toEqual(select(selectReports));
-
-  //       const mockCategoryWithStatus = [1, 2, 3];
-  //       mockReports = {
-  //         1: { questions_datas: [1, 2, 3] },
-  //         2: { questions_datas: [1, 2, 3, 4, 5, 6] },
-  //         3: { questions_datas: [1, 2, 3, 4, 5] },
-  //       };
-
-  //       expect(gen.next(mockReports, mockCategoryWithStatus).value).toEqual(
-  //         saveCategories(mockCategoryWithStatus)
-  //       );
-  //     });
-
-  //   });
 });

@@ -2,17 +2,13 @@ import { call, takeLatest, put, select } from "redux-saga/effects";
 import { fetchQuestion } from "../../api/trivia";
 import { rsf } from "../../firebase/firebase.utils";
 import {
-  actionSetQuizError,
   actionSetQuizDifficulty,
   actionSetQuizPromotion,
   actionSetQuizCurrentQuestion,
-  actionSetQuizCurrentOptions,
-  actionSetQuizQuestionNumber,
   actionResetQuiz,
   actionSetQuizToken,
   actionSetQuizActive,
   actionSetQuizCategory,
-  actionSetQuizQuestionsDatas,
   actionSetQuizLoading,
 } from "./quiz.actions";
 import { QuizActionsTypes } from "./quiz.types";
@@ -26,7 +22,6 @@ import {
   selectQuizToken,
 } from "./quiz.selectors";
 import { selectReports } from "../categories/categories.selectors";
-import { actionSetCategoriesReport } from "../categories/categories.actions";
 import { selectUserDatas } from "../user/user.selectors";
 
 import {
@@ -112,7 +107,7 @@ describe("quiz.sagas", () => {
     });
   });
 
-// CALLED
+  // CALLED
   describe("'getNewQuestion", () => {
     const mockDifficulty = "hard";
     const mockCategory = { id: 1, name: "Books" };
@@ -217,30 +212,6 @@ describe("quiz.sagas", () => {
       expect(gen.next().value).toEqual(select(selectQuizPromotion));
       expect(gen.next().value).toEqual(select(selectQuizCurrentQuestion));
     });
-
-    // it("should call 'actionSetCategoriesReport'", () => {
-    //   const mockQuizQuestionNumber = 10;
-    //   const mockCategory = { id: 5, name: "Music" };
-    //   const mockReports = {1: {}, 2:{}, 5:{}};
-    //   const mockToken = "1234567890"
-    //   const mockPromotion = 1
-    //   const mockDifficulty = "easy"
-    //   const mockLastQuestion = {};
-
-    //   const resume =
-    //   mockQuizQuestionNumber < 10
-    //     ? {
-    //         token: mockToken,
-    //         promotion: mockPromotion,
-    //         difficulty: mockDifficulty,
-    //         lastQuestion: mockLastQuestion,
-    //       }
-    //     : null;
-
-    // const newReport = {
-    //   ...mockReports,
-    //   [mockCategory.id]: { ...mockReports[mockCategory.id], resume },
-    // };
   });
 
   describe("'goToNextQuestion", () => {
@@ -266,13 +237,6 @@ describe("quiz.sagas", () => {
     it("should call 'updateQuizResumeReport'", () => {
       expect(gen.next().value).toEqual(updateQuizResumeReport());
     });
-
-    // it("should call 'actionSetQuizQuestionNumber'", () => {
-    //   const mockQuizQuestionNumber = 5;
-    //   expect(gen.next(5).value).toEqual(
-    //     put(actionSetQuizQuestionNumber(6))
-    //   );
-    // });
   });
 
   describe("'finishQuiz", () => {
@@ -302,35 +266,6 @@ describe("quiz.sagas", () => {
         put(actionSetQuizCategory(mockCategory.payload))
       );
     });
-
-    it("should call 'actionSetQuizDifficulty'", () => {
-      const mockReports = {
-        1: {
-          resume: {
-            difficulty: "hard",
-            promotion: 1,
-            token: "1234567890",
-          },
-          questions_datas: [],
-        },
-      };
-      console.log(mockReports);
-      // console.log(gen.next(mockReports).value)
-
-      //   expect(gen.next(mockReports).value).toEqual(
-      //     put(
-      //       actionSetQuizDifficulty(
-      //         mockReports[mockCategory.payload.id].resume.difficulty
-      //       )
-      //     )
-      //   );
-    });
-
-    // it("should call 'actionSetQuizDifficulty'", () => {
-    //     expect(gen.next(mockQuizDatas).value).toEqual(
-    //       put(actionSetQuizCategory(mockQuizDatas.resume.difficulty))
-    //     );
-    //   });
   });
 
   // UTILS
@@ -350,7 +285,7 @@ describe("quiz.sagas", () => {
       );
     });
   });
-  
+
   describe("updateToken", () => {
     it("should call 'actionSetQuizToken' id tokens are not equal", () => {
       const mockStateToken = "123";
@@ -380,14 +315,6 @@ describe("quiz.sagas", () => {
     it("should get 'selectQuizCurrentQuestion'", () => {
       expect(gen.next().value).toEqual(select(selectQuizCurrentQuestion));
     });
-
-    // it("should call 'actionSetQuizCurrentOptions'", () => {
-    //   const mockAllOptions = [{id: 0, option: "d"}, {id: 1, option: "c"}, {id: 2, option: "b"}, {id: 3, option: "a"}];
-
-    //   expect(gen.next(mockAllOptions).value).toEqual(put(
-    //     actionSetQuizCurrentOptions(
-    //         mockAllOptions.sort((a, b) => (a.option > b.option ? 1 : -1))
-    //   )));
   });
 
   describe("rightAnswerActions", () => {
@@ -409,7 +336,7 @@ describe("quiz.sagas", () => {
       );
     });
   });
- 
+
   describe("increaseDifficulty", () => {
     const gen = increaseDifficulty();
 
@@ -486,6 +413,4 @@ describe("quiz.sagas", () => {
       );
     });
   });
-
-
 });

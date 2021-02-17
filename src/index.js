@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+// import reportWebVitals from './reportWebVitals';
+
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -16,3 +19,6 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
+serviceWorkerRegistration.register();
+// reportWebVitals();

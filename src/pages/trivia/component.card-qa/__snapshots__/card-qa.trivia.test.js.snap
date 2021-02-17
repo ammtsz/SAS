@@ -9,7 +9,7 @@ exports[`Component trivia-page <QATrivia /> should render QATrivia 1`] = `
     What year was Huun Huur Tu's album Altai Sayan Tandy-Uula released?
   </h4>
   <button
-    class="sc-gsTCUz gOEIop trivia__option"
+    class="sc-gsTCUz hhxKpp trivia__option"
     data-option="0"
     data-testid="trivia-card-option-0"
   >
@@ -22,7 +22,7 @@ exports[`Component trivia-page <QATrivia /> should render QATrivia 1`] = `
     </p>
   </button>
   <button
-    class="sc-gsTCUz gOEIop trivia__option"
+    class="sc-gsTCUz hhxKpp trivia__option"
     data-option="1"
     data-testid="trivia-card-option-1"
   >
@@ -35,7 +35,7 @@ exports[`Component trivia-page <QATrivia /> should render QATrivia 1`] = `
     </p>
   </button>
   <button
-    class="sc-gsTCUz gOEIop trivia__option"
+    class="sc-gsTCUz hhxKpp trivia__option"
     data-option="2"
     data-testid="trivia-card-option-2"
   >
@@ -48,7 +48,7 @@ exports[`Component trivia-page <QATrivia /> should render QATrivia 1`] = `
     </p>
   </button>
   <button
-    class="sc-gsTCUz gOEIop trivia__option"
+    class="sc-gsTCUz hhxKpp trivia__option"
     data-option="3"
     data-testid="trivia-card-option-3"
   >

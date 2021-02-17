@@ -5,7 +5,7 @@ A quiz application with 10 questions from each category available. Categories ca
 Check the deployed project [here](https://sas-trivia.vercel.app/)
 
 
-### Built With
+## Built With
 
 * [Create React App](https://github.com/facebook/create-react-app)
 * React Router
@@ -49,8 +49,6 @@ In the project directory, run:
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
 
 
 ## Firebase
@@ -82,7 +80,7 @@ const config = {
 The project uses 'Authentication' and 'Cloud Firestore' from Firebase, so you need to 'Get started' with Authentication and 'Create database' on Cloud Firestore.
 
 
-## Project dependencies
+## Dependencies
 ```
     @testing-library/jest-dom: ^5.11.9,
     @testing-library/react: ^11.2.5,
@@ -137,6 +135,7 @@ Project was developed using [Trivia API](https://opentdb.com/api_config.php).
 ## Other Funcionalities
 - Email and password authentication using Firebase
 - Light and Dark Theme
+- Responsive
 
 
 ## Acessibility

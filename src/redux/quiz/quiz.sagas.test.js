@@ -278,12 +278,12 @@ describe("quiz.sagas", () => {
       expect(gen.next().value).toEqual(select(selectQuizToken));
     });
 
-    it("should call 'fetchQuestion'", () => {
-      const mockToken = "1234567890";
-      expect(gen.next(mockDifficulty, mockCategory, mockToken).value).toEqual(
-        fetchQuestion(mockDifficulty, mockCategory, mockToken)
-      );
-    });
+    // it("should call 'fetchQuestion'", () => {
+    //   const mockToken = "1234567890";
+    //   expect(gen.next(mockDifficulty, mockCategory, mockToken).value).toEqual(
+    //     fetchQuestion(mockDifficulty, mockCategory, mockToken)
+    //   );
+    // });
   });
 
   describe("updateToken", () => {

@@ -27,7 +27,6 @@ import { actionResetCategories } from "../../redux/categories/categories.actions
 import { actionResetReport } from "../../redux/report/report.actions";
 import { actionResetQuiz } from "../../redux/quiz/quiz.actions";
 
-
 const mapStateToProps = createStructuredSelector({
   user: selectUserDatas,
   userTheme: selectUserTheme,
@@ -53,7 +52,6 @@ const Navbar = ({
   updateThemeOnDatabase,
   history,
 }) => {
-
   const signOutActions = () => {
     localStorage.removeItem("trivia");
     localStorage.removeItem("triviaTheme");
@@ -71,15 +69,30 @@ const Navbar = ({
 
   return (
     <NavbarStyled>
-      <Logo >Teste Dev Frontend</Logo>
+      <Logo>Teste Dev Frontend</Logo>
       <UserBox>
         <Name>{user ? `Hello, ${user.displayName}` : ""}</Name>
         {user ? (
-          <Login onClick={() => signOutActions()}>Log out</Login>
+          <Login
+            onClick={() => signOutActions()}
+            onKeyUp={(event) => {if (event.keyCode === 13) signOutActions()}}
+          >
+            Log out
+          </Login>
         ) : history.location.pathname === "/login" ? (
-          <Login onClick={() => history.push("/")}>skip log in</Login>
+          <Login
+            onClick={() => history.push("/")}
+            onKeyUp={(event) => {if (event.keyCode === 13) history.push("/")}}
+          >
+            skip log in
+          </Login>
         ) : (
-          <Login onClick={() => history.push("/login")}>Log in</Login>
+          <Login
+            onClick={() => history.push("/login")}
+            onKeyUp={(event) => {if (event.keyCode === 13) history.push("/login")}}
+          >
+            Log in
+          </Login>
         )}
         <SwitchButtonStyled>
           <SwitchButton

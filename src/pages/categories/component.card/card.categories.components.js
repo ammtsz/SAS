@@ -36,6 +36,7 @@ const Card = ({
   return (
     <CardCategory
       onClick={() => startQuiz()}
+      onKeyUp={(event) => {if(event.keyCode === 13) startQuiz()}}
       data-testid="category-card"
       data-readonly={category.completed !== 0}
   

@@ -106,7 +106,12 @@ const SignIn = ({
         />
 
         <ButtonLogin type="submit">Log in</ButtonLogin>
-        <ButtonLogin onClick={() => newAccount()}>Sign up</ButtonLogin>
+        <ButtonLogin
+          onClick={() => newAccount()}
+          onKeyUp={(event) => {if (event.keyCode === 13) newAccount()}}
+        >
+          Sign up
+        </ButtonLogin>
       </Form>
     </React.Fragment>
   );

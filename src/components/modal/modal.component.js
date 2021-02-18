@@ -31,7 +31,6 @@ const Modal = ({
   history,
   right,
 }) => {
-
   const nextQuestionActions = () => {
     document.querySelector("#modal-button").dataset.readonly = true;
     document.querySelector("#modal").style.display = "none";
@@ -52,11 +51,14 @@ const Modal = ({
           alt={right ? "correct" : "incorrect"}
           tabindex="-1"
         />
-        <Message id="modal-message" tabIndex="0" >{right ? "Correct answer!" : "Wrong answer"}</Message>
+        <Message id="modal-message" tabIndex="0">
+          {right ? "Correct answer!" : "Wrong answer"}
+        </Message>
         <NextBtn
           id="modal-button"
           data-readonly={true}
           onClick={() => nextQuestionActions()}
+          onKeyUp={(event) => {if (event.keyCode === 13) nextQuestionActions()}}
         >
           {quizQuestionNumber < 10 ? "Next question" : "See report"}
           <img className="modal__nextButton--icon" src={ArrowIcon} alt="..." />

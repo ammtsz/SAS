@@ -49,6 +49,7 @@ const CardHeader = ({
       <span
         className="category-card__link"
         onClick={() => seeReport()}
+        onKeyUp={(event) => {if(event.keyCode === 13) seeReport()}}
         role="button"
         aria-label={`see report for ${category.name} (quiz completed)`}
         tabIndex="0"
@@ -62,6 +63,7 @@ const CardHeader = ({
       <span
         className="category-card__link"
         onClick={() => continueQuiz()}
+        onKeyUp={(event) => {if(event.keyCode === 13) continueQuiz()}}
         role="button"
         aria-label={`continue ${category.name} quiz (${progress} questions answered)`}
         tabIndex="0"

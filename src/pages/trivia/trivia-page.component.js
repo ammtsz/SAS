@@ -123,6 +123,7 @@ const Trivia = ({
               id="trivia-btn-answer"
               data-readonly={disabled}
               onClick={() => confirmAnswer()}
+              onKeyUp={(event) => {if(event.keyCode === 13) confirmAnswer()}}
             >
               Check Answer
             </AnswerBtn>

@@ -70,7 +70,8 @@ const QATrivia = ({
           data-option={option.id}
           data-testid={`trivia-card-option-${option.id}`}
           onClick={(event) => selectOption(event)}
-        >
+          onKeyUp={(event) => {if(event.keyCode === 13) selectOption(event)}}
+          >
           <AnswerText
             data-option={option.id}
             data-testid="trivia-card-option-text"

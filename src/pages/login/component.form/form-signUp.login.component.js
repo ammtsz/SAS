@@ -105,7 +105,10 @@ const SignUp = ({ error, emailSignUp, setError, newAccount }) => {
           }
         />
         <ButtonLogin>Create account</ButtonLogin>
-        <ButtonLogin onClick={() => newAccount()}>Log in</ButtonLogin>
+        <ButtonLogin 
+          onClick={() => newAccount()}
+          onKeyUp={(event) => {if(event.keyCode === 13) newAccount()}}
+        >Log in</ButtonLogin>
       </Form>
     </React.Fragment>
   );

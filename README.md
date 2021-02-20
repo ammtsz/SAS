@@ -79,6 +79,10 @@ const config = {
 
 The project uses 'Authentication' and 'Cloud Firestore' from Firebase, so you need to 'Get started' with Authentication and 'Create database' on Cloud Firestore.
 
+After 'Get started' with Authentication:
+1. Go to 'Sign-in method'
+2. Enable 'Email/password'
+
 
 ## Dependencies
 ```

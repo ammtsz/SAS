@@ -22,7 +22,7 @@ describe("Component categories-page <CardHeader />", () => {
     const mockReports = {
       1: {
         category_name: "",
-        questions_datas: [],
+        questions_answered: [],
         results: {
           difficulty: "",
           rights: 3,
@@ -97,7 +97,7 @@ describe("Component categories-page <CardHeader />", () => {
     const reports = {
       1: {
         category_name: "",
-        questions_datas: [],
+        questions_answered: [],
         results: {
           difficulty: "",
           rights: 7,

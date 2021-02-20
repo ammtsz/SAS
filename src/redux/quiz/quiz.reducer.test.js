@@ -10,8 +10,7 @@ const INITIAL_STATE = {
   promotion: "1",
   currentQuestion: {},
   currentOptions: [],
-  token: null,
-  questionsDatas: [],
+  questionsAnswered: [],
   error: null,
 };
 
@@ -117,24 +116,15 @@ describe("quizReducer", () => {
     ).toEqual(mockCurrentOptions);
   });
 
-  it("should set 'token' to payload", () => {
-    const mockToken = "1234567890";
-    expect(
-      quizReducer(INITIAL_STATE, {
-        type: QuizActionsTypes.REDUCER_SET_TOKEN,
-        payload: mockToken,
-      }).token
-    ).toEqual(mockToken);
-  });
 
-  it("should set 'questionsDatas' to payload", () => {
-    const mockQuestionsDatas = [];
+  it("should set 'questionsAnswered' to payload", () => {
+    const mockQuestionsAnswered = [];
     expect(
       quizReducer(INITIAL_STATE, {
-        type: QuizActionsTypes.REDUCER_SET_QUESTIONS_DATAS,
-        payload: mockQuestionsDatas,
-      }).questionsDatas
-    ).toEqual(mockQuestionsDatas);
+        type: QuizActionsTypes.REDUCER_SET_QUESTIONS_ANSWERED,
+        payload: mockQuestionsAnswered,
+      }).questionsAnswered
+    ).toEqual(mockQuestionsAnswered);
   });
 
   it("should reset quiz", () => {

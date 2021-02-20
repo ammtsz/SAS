@@ -17,36 +17,36 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import {
-  selectQuizQuestionsDatas,
+  selectQuizQuestionsAnswered,
   selectQuizCurrentQuestion,
   selectQuizCurrentOptions,
   selectQuizLoading,
 } from "../../redux/quiz/quiz.selectors";
 import {
-  actionSetQuizQuestionsDatas,
+  actionSetQuizQuestionsAnswered,
   actionCheckAnswer,
   actionUpdateQuizReport,
 } from "../../redux/quiz/quiz.actions";
 
 const mapStateToProps = createStructuredSelector({
-  quizQuestionsDatas: selectQuizQuestionsDatas,
+  quizQuestionsAnswered: selectQuizQuestionsAnswered,
   quizCurrentQuestion: selectQuizCurrentQuestion,
   quizCurrentOptions: selectQuizCurrentOptions,
   quizLoading: selectQuizLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setQuizQuestionsDatas: (data) => dispatch(actionSetQuizQuestionsDatas(data)),
+  setQuizQuestionsAnswered: (data) => dispatch(actionSetQuizQuestionsAnswered(data)),
   checkAnswer: (data) => dispatch(actionCheckAnswer(data)),
   updateQuizReport: () => dispatch(actionUpdateQuizReport()),
 });
 
 const Trivia = ({
-  quizQuestionsDatas,
+  quizQuestionsAnswered,
   quizCurrentQuestion,
   quizCurrentOptions,
   quizLoading,
-  setQuizQuestionsDatas,
+  setQuizQuestionsAnswered,
   checkAnswer,
   updateQuizReport,
 }) => {
@@ -74,8 +74,8 @@ const Trivia = ({
     setDisabled(true);
 
     if (selectedOption !== null) {
-      setQuizQuestionsDatas([
-        ...quizQuestionsDatas,
+      setQuizQuestionsAnswered([
+        ...quizQuestionsAnswered,
         {
           ...quizCurrentQuestion,
           selected_answer: selectedOption,

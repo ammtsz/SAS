@@ -34,12 +34,8 @@ export const actionSetQuizCurrentOptions = (data) => ({
   type: QuizActionsTypes.REDUCER_SET_CURRENT_OPTIONS,
   payload: data,
 });
-export const actionSetQuizToken = (data) => ({
-  type: QuizActionsTypes.REDUCER_SET_TOKEN,
-  payload: data,
-});
-export const actionSetQuizQuestionsDatas = (data) => ({
-  type: QuizActionsTypes.REDUCER_SET_QUESTIONS_DATAS,
+export const actionSetQuizQuestionsAnswered = (data) => ({
+  type: QuizActionsTypes.REDUCER_SET_QUESTIONS_ANSWERED,
   payload: data,
 });
 export const actionSetQuizError = (data) => ({
@@ -53,6 +49,10 @@ export const actionResetQuiz = () => ({
 
 
 // SAGAS
+export const actionStartQuiz = (data) => ({
+  type: QuizActionsTypes.SAGA_START_QUIZ,
+  payload: data,
+});
 export const actionGetNewQuestion = (data) => ({
   type: QuizActionsTypes.SAGA_GET_NEW_QUESTION,
   payload: data,

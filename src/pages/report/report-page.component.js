@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { actionFinishQuiz } from "../../redux/quiz/quiz.actions";
 import { createStructuredSelector } from "reselect";
 
-import { selectReports } from "../../redux/categories/categories.selectors";
+import { selectCategoriesReports } from "../../redux/categories/categories.selectors";
 import { selectQuizCategory } from "../../redux/quiz/quiz.selectors";
 import {
   selectReportReview,
@@ -17,7 +17,7 @@ import {
 import { actionResetReport } from "../../redux/report/report.actions";
 
 const mapStateToProps = createStructuredSelector({
-  reports: selectReports,
+  reports: selectCategoriesReports,
   quizCategory: selectQuizCategory,
   reportReview: selectReportReview,
   reportCategory: selectReportCategory,

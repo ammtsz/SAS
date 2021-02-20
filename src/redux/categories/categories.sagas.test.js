@@ -7,6 +7,7 @@ import { CategoriesActionsTypes } from "./categories.types";
 import {
   actionSetAllCategories,
   actionSetCategoriesReport,
+  actionSetCategoriesLoading,
 } from "./categories.actions";
 
 import { selectAllCategories } from "./categories.selectors";
@@ -33,6 +34,11 @@ describe("categories.sagas", () => {
   // CALLED
   describe("'getCategories' with stateCategories.length === 0", () => {
     const gen = getCategories();
+
+    it("should call 'actionSetCategoriesLoading' with 'true'", () => {
+      expect(gen.next().value).toEqual(put(actionSetCategoriesLoading(true)));
+    });
+
     it("should call 'getReportsFromDatabase'", () => {
       expect(gen.next().value).toEqual(getReportsFromDatabase());
     });
@@ -44,6 +50,11 @@ describe("categories.sagas", () => {
     it("should call 'fetchCategories' if stateCategories em empty", () => {
       const mockStateCategories = [];
       expect(gen.next(mockStateCategories).value).toEqual(fetchCategories());
+    });
+
+    it("should call 'actionSetCategoriesLoading' with 'false'", () => {
+      const mockCategories = []
+      expect(gen.next(mockCategories).value).toEqual(put(actionSetCategoriesLoading(false)));
     });
 
     it("should call 'setCategoriesProgressStatus'", () => {
@@ -62,9 +73,20 @@ describe("categories.sagas", () => {
     const gen = getCategories();
     gen.next();
     gen.next();
+    gen.next();
 
-    it("should call 'fetchCategories' if stateCategories em empty", () => {
-      const mockCategories = [1, 2, 3];
+    it("should call 'actionSetCategoriesLoading' with 'false'", () => {
+      const mockStateCategories = [1, 2, 3];
+
+      expect(gen.next(mockStateCategories).value).toEqual(
+        put(actionSetCategoriesLoading(false))
+      );
+    });
+
+    
+    it("should call 'setCategoriesProgressStatus'", () => {
+      const mockStateCategories = [1, 2, 3];
+      const mockCategories = mockStateCategories;
       expect(gen.next(mockCategories).value).toEqual(
         setCategoriesProgressStatus(mockCategories)
       );

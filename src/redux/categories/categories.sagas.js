@@ -6,24 +6,25 @@ import { rsf } from "../../firebase/firebase.utils";
 import { CategoriesActionsTypes } from "./categories.types";
 import {
   actionSetAllCategories,
+  actionSetCategoriesLoading,
   actionSetCategoriesError,
   actionSetCategoriesReport,
 } from "./categories.actions";
 
-import { selectReports, selectAllCategories } from "./categories.selectors";
+import { selectCategoriesReports, selectAllCategories } from "./categories.selectors";
 import { selectUserDatas } from "../user/user.selectors";
 
 // UTILS
 export function* setCategoriesProgressStatus(categoriesFetched) {
   try {
-    const reports = yield select(selectReports);
+    const reports = yield select(selectCategoriesReports);
     const completedCategoriesId = reports ? Object.keys(reports) : [];
     const categoryWithStatus = [];
 
     categoriesFetched.forEach((category) => {
       let completed = 0;
       if (completedCategoriesId.indexOf(category.id.toString()) > -1) {
-        completed = reports[category.id].questions_datas.length;
+        completed = reports[category.id].questions_answered.length;
       }
       categoryWithStatus.push({
         ...category,
@@ -65,6 +66,7 @@ export function* getReportsFromDatabase() {
 // CALLED
 export function* getCategories() {
   try {
+    yield put(actionSetCategoriesLoading(true))
     yield getReportsFromDatabase();
     const stateCategories = yield select(selectAllCategories);
     let categories;
@@ -73,16 +75,12 @@ export function* getCategories() {
       categories = yield fetchCategories();
       categories = categories.map((category) => ({
         ...category,
-        name: category.name.replace("Entertainment: ", ""),
-      }));
-      categories = categories.map((category) => ({
-        ...category,
-        name: category.name.replace("Science: ", ""),
+        name: category.name.replace(/^.+: /,''),
       }));
     } else {
       categories = stateCategories;
     }
-
+    yield put(actionSetCategoriesLoading(false))
     yield setCategoriesProgressStatus(categories);
   } catch (error) {
     yield put(actionSetCategoriesError(error));

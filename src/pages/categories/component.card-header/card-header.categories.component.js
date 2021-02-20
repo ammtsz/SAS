@@ -3,12 +3,12 @@ import { CardHeaderStyled } from "./card-header.categories.styles";
 import ProgressBar from "../component.progress-bar/progress-bar.categories.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectReports } from "../../../redux/categories/categories.selectors";
+import { selectCategoriesReports } from "../../../redux/categories/categories.selectors";
 import { actionSetReportReviewCategory } from "../../../redux/report/report.actions";
 import { actionResumeQuiz } from "../../../redux/quiz/quiz.actions";
 
 const mapStateToProps = createStructuredSelector({
-  reports: selectReports,
+  reports: selectCategoriesReports,
 });
 
 const mapDispatchToProps = (dispatch) => ({

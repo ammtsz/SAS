@@ -9,8 +9,7 @@ const INITIAL_STATE = {
   promotion: "1", //0 = got last one wrong, 1 = first question on that level, 2 = got last one right
   currentQuestion: {},
   currentOptions: [],
-  token: null,
-  questionsDatas: [],
+  questionsAnswered: [],
   error: null,
 };
 
@@ -40,11 +39,8 @@ const quizReducer = (state = INITIAL_STATE, action) => {
     case QuizActionsTypes.REDUCER_SET_CURRENT_OPTIONS:
       return { ...state, currentOptions: action.payload };
 
-    case QuizActionsTypes.REDUCER_SET_TOKEN:
-      return { ...state, token: action.payload };
-
-    case QuizActionsTypes.REDUCER_SET_QUESTIONS_DATAS:
-      return { ...state, questionsDatas: action.payload };
+    case QuizActionsTypes.REDUCER_SET_QUESTIONS_ANSWERED:
+      return { ...state, questionsAnswered: action.payload };
 
     case QuizActionsTypes.REDUCER_RESET_QUIZ:
       return INITIAL_STATE;

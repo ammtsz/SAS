@@ -18,7 +18,7 @@ describe("Component trivia-page <QATrivia />", () => {
   const question =
     "What year was Huun Huur Tu's album Altai Sayan Tandy-Uula released?";
 
-  const mockQuestionsDatas = [];
+  const mockQuestionsAnswered = [];
   const mockCurrentQuestion = { question };
   const mockCurrentOptions = [
     { id: 0, option: "2004" },
@@ -30,7 +30,7 @@ describe("Component trivia-page <QATrivia />", () => {
   const store = mockStore({
     quiz: {
       category: { id: 1, name: "Music", completed: 5 },
-      questionsDatas: mockQuestionsDatas,
+      questionsAnswered: mockQuestionsAnswered,
       currentQuestion: mockCurrentQuestion,
       currentOptions: mockCurrentOptions,
       loading: false,

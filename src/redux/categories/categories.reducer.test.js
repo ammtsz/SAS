@@ -4,6 +4,7 @@ import categoriesReducer from "./categories.reducer";
 const INITIAL_STATE = {
   reports: {},
   allCategories: [],
+  loading: false,
   error: null,
 };
 

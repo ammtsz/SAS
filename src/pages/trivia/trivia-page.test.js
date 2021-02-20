@@ -11,7 +11,7 @@ import { colorDarkBlue } from "../../assets/css/variables";
 
 describe("Page component <Trivia />", () => {
   const mockStore = configureMockStore();
-  const mockQuestionsDatas = [];
+  const mockQuestionsAnswered = [];
   const mockCurrentQuestion = {};
   const mockCurrentOptions = [];
 
@@ -19,7 +19,7 @@ describe("Page component <Trivia />", () => {
     const store = mockStore({
       quiz: {
         category: { id: 1, name: "Vehicles", completed: 2 },
-        questionsDatas: mockQuestionsDatas,
+        questionsAnswered: mockQuestionsAnswered,
         currentQuestion: mockCurrentQuestion,
         currentOptions: mockCurrentOptions,
         loading: false,

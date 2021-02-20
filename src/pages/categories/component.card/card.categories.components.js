@@ -5,38 +5,24 @@ import CardHeader from "../component.card-header/card-header.categories.componen
 import { decodeHtml } from "../../../utils/utils";
 import { connect } from "react-redux";
 import {
-  actionSetQuizCategory,
-  actionSetQuizActive,
-  actionGetNewQuestion,
+  actionStartQuiz,
 } from "../../../redux/quiz/quiz.actions";
 import { withRouter } from "react-router-dom";
 
 const mapDispatchToProps = (dispatch) => ({
-  setQuizCategory: (data) => dispatch(actionSetQuizCategory(data)),
-  setQuizActive: (data) => dispatch(actionSetQuizActive(data)),
-  getNewQuestion: (data) => dispatch(actionGetNewQuestion(data)),
+  startQuiz: (data) => dispatch(actionStartQuiz(data)),
 });
 
 const Card = ({
   category,
-  setQuizCategory,
-  setQuizActive,
-  getNewQuestion,
+  startQuiz,
   history,
 }) => {
-  const startQuiz = () => {
-    if (category.completed === 0) {
-      setQuizCategory(category);
-      setQuizActive(true);
-      getNewQuestion({ difficulty: "medium", category: category.id });
-      history.push("/quiz");
-    }
-  };
 
   return (
     <CardCategory
-      onClick={() => startQuiz()}
-      onKeyUp={(event) => {if(event.keyCode === 13) startQuiz()}}
+      onClick={() => startQuiz({category, history})}
+      onKeyUp={(event) => {if(event.keyCode === 13) startQuiz({category, history})}}
       data-testid="category-card"
       data-readonly={category.completed !== 0}
   

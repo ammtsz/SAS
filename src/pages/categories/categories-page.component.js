@@ -6,10 +6,15 @@ import {
   CardsContainer,
 } from "./categories-page.styles";
 
+import Spinner from "../../components/spinner/spinner.component";
+
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import { selectAllCategories } from "../../redux/categories/categories.selectors";
+import {
+  selectAllCategories,
+  selectCategoriesLoading,
+} from "../../redux/categories/categories.selectors";
 import { selectUserDatas } from "../../redux/user/user.selectors";
 import { actionGetCategories } from "../../redux/categories/categories.actions";
 import { actionResetReport } from "../../redux/report/report.actions";
@@ -17,6 +22,7 @@ import { actionResetQuiz } from "../../redux/quiz/quiz.actions";
 
 const mapStateToProps = createStructuredSelector({
   categories: selectAllCategories,
+  categoriesLoading: selectCategoriesLoading,
   userDatas: selectUserDatas,
 });
 
@@ -28,6 +34,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Categories = ({
   categories,
+  categoriesLoading,
   userDatas,
   getCategories,
   resetReport,
@@ -44,7 +51,9 @@ const Categories = ({
     resetQuiz();
   }, [getCategories, userId, resetReport, resetQuiz]);
 
-  return (
+  return categoriesLoading ? (
+    <Spinner />
+  ) : (
     <PageCategories data-testid="categories-page" id="test-categories">
       <Title id="test-categories2">
         Categories <small>({categories.length})</small>

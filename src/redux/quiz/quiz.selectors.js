@@ -34,11 +34,7 @@ export const selectQuizCurrentOptions = createSelector(
   [selectQuiz],
   (quiz) => quiz.currentOptions
 );
-export const selectQuizToken = createSelector(
+export const selectQuizQuestionsAnswered = createSelector(
   [selectQuiz],
-  (quiz) => quiz.token
-);
-export const selectQuizQuestionsDatas = createSelector(
-  [selectQuiz],
-  (quiz) => quiz.questionsDatas
+  (quiz) => quiz.questionsAnswered
 );

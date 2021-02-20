@@ -4,7 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-// import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals';
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -21,4 +21,4 @@ ReactDOM.render(
 );
 
 serviceWorkerRegistration.register();
-// reportWebVitals();
+reportWebVitals();

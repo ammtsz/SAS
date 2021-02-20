@@ -1,15 +1,14 @@
 import { call, takeLatest, put, select } from "redux-saga/effects";
-import { fetchQuestion } from "../../api/trivia";
 import { rsf } from "../../firebase/firebase.utils";
 import {
   actionSetQuizDifficulty,
   actionSetQuizPromotion,
   actionSetQuizCurrentQuestion,
   actionResetQuiz,
-  actionSetQuizToken,
   actionSetQuizActive,
   actionSetQuizCategory,
   actionSetQuizLoading,
+  actionSetQuizQuestionNumber,
 } from "./quiz.actions";
 import { QuizActionsTypes } from "./quiz.types";
 import {
@@ -18,16 +17,14 @@ import {
   selectQuizPromotion,
   selectQuizQuestionNumber,
   selectQuizCategory,
-  selectQuizQuestionsDatas,
-  selectQuizToken,
+  selectQuizQuestionsAnswered,
 } from "./quiz.selectors";
-import { selectReports } from "../categories/categories.selectors";
+import { selectCategoriesReports } from "../categories/categories.selectors";
 import { selectUserDatas } from "../user/user.selectors";
 
 import {
-  fetchQuestionFn,
-  updateToken,
-  saveQuestionsDatas,
+  getQuestion,
+  saveCurrentQuestion,
   getCurrentOptions,
   rightAnswerActions,
   increaseDifficulty,
@@ -36,6 +33,7 @@ import {
   getReportDatas,
   updateReportOnDB,
   getUserDatasFromFirebase,
+  startQuiz,
   getNewQuestion,
   checkAnswer,
   updateQuizReport,
@@ -43,7 +41,7 @@ import {
   goToNextQuestion,
   finishQuiz,
   resumeQuiz,
-  onGetNewQuestion,
+  onStartQuiz,
   onCheckAnswer,
   onUpdateQuizReport,
   onUpdateQuizResumeReport,
@@ -54,10 +52,10 @@ import {
 
 describe("quiz.sagas", () => {
   describe("calls", () => {
-    it("should trigger on SAGA_GET_NEW_QUESTION 'onGetNewQuestion'", () => {
-      const gen = onGetNewQuestion();
+    it("should trigger on SAGA_START_QUIZ 'onStartQuiz'", () => {
+      const gen = onStartQuiz();
       expect(gen.next().value).toEqual(
-        takeLatest(QuizActionsTypes.SAGA_GET_NEW_QUESTION, getNewQuestion)
+        takeLatest(QuizActionsTypes.SAGA_START_QUIZ, startQuiz)
       );
     });
 
@@ -110,10 +108,9 @@ describe("quiz.sagas", () => {
   // CALLED
   describe("'getNewQuestion", () => {
     const mockDifficulty = "hard";
-    const mockCategory = { id: 1, name: "Books" };
-    const mockQuizDatas = { payload: { mockDifficulty, mockCategory } };
+    const mockCategoryId = 1;
 
-    const gen = getNewQuestion(mockQuizDatas);
+    const gen = getNewQuestion(mockDifficulty, mockCategoryId);
 
     it("should call 'actionSetQuizLoading' (true)", () => {
       const mockLoading = true;
@@ -122,16 +119,16 @@ describe("quiz.sagas", () => {
       );
     });
 
-    it("should call 'fetchQuestionFn'", () => {
-      expect(gen.next(mockDifficulty, mockCategory).value).toEqual(
-        fetchQuestionFn(mockDifficulty, mockCategory)
+    it("should call 'getQuestion'", () => {
+      expect(gen.next(mockDifficulty, mockCategoryId).value).toEqual(
+        getQuestion(mockDifficulty, mockCategoryId)
       );
     });
 
-    it("should call 'saveQuestionsDatas'", () => {
+    it("should call 'saveCurrentQuestion'", () => {
       const mockFetchedQuestion = {};
       expect(gen.next(mockFetchedQuestion).value).toEqual(
-        saveQuestionsDatas(mockFetchedQuestion)
+        saveCurrentQuestion(mockFetchedQuestion)
       );
     });
 
@@ -171,9 +168,8 @@ describe("quiz.sagas", () => {
       expect(gen.next().value).toEqual(select(selectQuizQuestionNumber));
       expect(gen.next().value).toEqual(select(selectQuizDifficulty));
       expect(gen.next().value).toEqual(select(selectQuizCategory));
-      expect(gen.next().value).toEqual(select(selectReports));
-      expect(gen.next().value).toEqual(select(selectQuizQuestionsDatas));
-      expect(gen.next().value).toEqual(select(selectQuizToken));
+      expect(gen.next().value).toEqual(select(selectCategoriesReports));
+      expect(gen.next().value).toEqual(select(selectQuizQuestionsAnswered));
       expect(gen.next().value).toEqual(select(selectQuizPromotion));
     });
 
@@ -207,8 +203,7 @@ describe("quiz.sagas", () => {
       expect(gen.next().value).toEqual(select(selectQuizQuestionNumber));
       expect(gen.next().value).toEqual(select(selectQuizDifficulty));
       expect(gen.next().value).toEqual(select(selectQuizCategory));
-      expect(gen.next().value).toEqual(select(selectReports));
-      expect(gen.next().value).toEqual(select(selectQuizToken));
+      expect(gen.next().value).toEqual(select(selectCategoriesReports));
       expect(gen.next().value).toEqual(select(selectQuizPromotion));
       expect(gen.next().value).toEqual(select(selectQuizCurrentQuestion));
     });
@@ -225,13 +220,21 @@ describe("quiz.sagas", () => {
     it("should call 'getNewQuestion'", () => {
       const mockDifficulty = "medium";
       const mockCategory = { id: 5, name: "Music" };
-      const mockQuizDatas = {
-        payload: { difficulty: mockDifficulty, category: mockCategory.id },
-      };
+      const args = (mockDifficulty, mockCategory.id)
 
-      expect(gen.next(mockQuizDatas).value).toEqual(
-        getNewQuestion(mockQuizDatas)
+      expect(gen.next(args).value).toEqual(
+        getNewQuestion(args)
       );
+    });
+
+    it("should call 'actionSetQuizQuestionNumber'", () => {
+      gen.next()
+      // const mockQuestionNumber = 5;
+      // const args = mockQuestionNumber + 1
+
+      // expect(gen.next(args).value).toEqual(
+      //   put(actionSetQuizQuestionNumber(args))
+      // );
     });
 
     it("should call 'updateQuizResumeReport'", () => {
@@ -250,8 +253,8 @@ describe("quiz.sagas", () => {
     const mockCategory = { payload: { id: 1, name: "Books", completed: 2 } };
     const gen = resumeQuiz(mockCategory);
 
-    it("should get 'selectReports'", () => {
-      expect(gen.next().value).toEqual(select(selectReports));
+    it("should get 'selectCategoriesReports'", () => {
+      expect(gen.next().value).toEqual(select(selectCategoriesReports));
     });
 
     it("should call 'actionSetQuizActive'", () => {
@@ -269,38 +272,19 @@ describe("quiz.sagas", () => {
   });
 
   // UTILS
-  describe("fetchQuestionFn", () => {
+  describe("getQuestion", () => {
     const mockDifficulty = "hard";
     const mockCategory = 20;
-    const gen = fetchQuestionFn(mockDifficulty, mockCategory);
+    const gen = getQuestion(mockDifficulty, mockCategory);
 
-    it("should get 'selectQuizCurrentQuestion'", () => {
-      expect(gen.next().value).toEqual(select(selectQuizToken));
-    });
-
-    // it("should call 'fetchQuestion'", () => {
-    //   const mockToken = "1234567890";
-    //   expect(gen.next(mockDifficulty, mockCategory, mockToken).value).toEqual(
-    //     fetchQuestion(mockDifficulty, mockCategory, mockToken)
-    //   );
-    // });
-  });
-
-  describe("updateToken", () => {
-    it("should call 'actionSetQuizToken' id tokens are not equal", () => {
-      const mockStateToken = "123";
-      const mockFetchedToken = "1234";
-      const gen = updateToken(mockStateToken, mockFetchedToken);
-
-      expect(gen.next(mockFetchedToken).value).toEqual(
-        put(actionSetQuizToken(mockFetchedToken))
-      );
+    it("should get 'selectCategoriesReports'", () => {
+      expect(gen.next().value).toEqual(select(selectCategoriesReports));
     });
   });
 
-  describe("saveQuestionsDatas", () => {
+  describe("saveCurrentQuestion", () => {
     const mockFetchedQuestion = {};
-    const gen = saveQuestionsDatas(mockFetchedQuestion);
+    const gen = saveCurrentQuestion(mockFetchedQuestion);
 
     it("should call 'actionSetQuizCurrentQuestion'", () => {
       expect(gen.next(mockFetchedQuestion).value).toEqual(

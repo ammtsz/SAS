@@ -10,7 +10,7 @@ import {
   actionSetQuizCurrentQuestion,
   actionSetQuizCurrentOptions,
   actionSetQuizToken,
-  actionSetQuizQuestionsDatas,
+  actionSetQuizQuestionsAnswered,
   actionSetQuizError,
   actionResetQuiz,
   actionGetNewQuestion,
@@ -22,7 +22,7 @@ import {
   actionResumeQuiz,
 } from "./quiz.actions";
 
-describe("categories.actions", () => {
+describe("quiz.actions", () => {
   describe("reducers actions", () => {
     it("should create the 'actionSetQuizActive' action", () => {
       const mockActive = true;
@@ -115,22 +115,13 @@ describe("categories.actions", () => {
       expect(action.payload).toEqual(mockCurrentOptions);
     });
 
-    it("should create the 'actionSetQuizToken' action", () => {
-      const mockToken = "1234567890";
+    it("should create the 'actionSetQuizQuestionsAnswered' action", () => {
+      const mockQuestionsAnswered = [];
 
-      const action = actionSetQuizToken(mockToken);
+      const action = actionSetQuizQuestionsAnswered(mockQuestionsAnswered);
 
-      expect(action.type).toEqual(QuizActionsTypes.REDUCER_SET_TOKEN);
-      expect(action.payload).toEqual(mockToken);
-    });
-
-    it("should create the 'actionSetQuizQuestionsDatas' action", () => {
-      const mockQuestionsDatas = [];
-
-      const action = actionSetQuizQuestionsDatas(mockQuestionsDatas);
-
-      expect(action.type).toEqual(QuizActionsTypes.REDUCER_SET_QUESTIONS_DATAS);
-      expect(action.payload).toEqual(mockQuestionsDatas);
+      expect(action.type).toEqual(QuizActionsTypes.REDUCER_SET_QUESTIONS_ANSWERED);
+      expect(action.payload).toEqual(mockQuestionsAnswered);
     });
 
     it("should create the 'actionSetQuizError' action", () => {
